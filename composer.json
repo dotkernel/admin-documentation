@@ -1,0 +1,13 @@
+{
+  "name": "dotkernel/admin-documentation",
+  "description": "DotKernel Admin documentation markdown files.",
+  "type": "metapackage",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "DotKernel Team",
+      "email": "team@dotkernel.com"
+    }
+  ],
+  "require": {}
+}

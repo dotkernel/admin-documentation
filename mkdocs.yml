@@ -1,0 +1,26 @@
+docs_dir: docs/book
+site_dir: docs/html
+extra:
+  project: API
+  current_version: v5
+  versions:
+    - v4
+    - v5
+nav:
+  - Home: index.md
+  - v5:
+      - Introduction: v5/introduction/introduction.md
+      - Overview:
+          - "Server Requirements": v5/introduction/server-requirements.md
+      - Installation:
+          - "Getting Started": v5/installation/getting-started.md
+          - "Composer": v5/installation/composer.md
+          - "Configuration Files": v5/installation/configuration-files.md
+          - "Doctrine ORM": v5/installation/doctrine-orm.md
+          - "Manage Geolite2": v5/installation/manage-geolite2.md
+          - "Test the Installation": v5/installation/test-the-installation.md
+site_name: api
+site_description: "DotKernel API"
+repo_url: "https://github.com/dotkernel/api"
+plugins:
+  - search

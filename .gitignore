@@ -1,0 +1,7 @@
+.idea
+docs/html
+documentation-theme
+
+composer.phar
+composer.lock
+vendor
