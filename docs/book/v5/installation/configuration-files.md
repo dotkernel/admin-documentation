@@ -8,7 +8,7 @@
 
 ### Note
 
-> if your API will send emails, make sure to fill in SMTP connection params
+> if your Admin will send emails, make sure to fill in SMTP connection params
 
 * **optional**: in order to run/create tests, duplicate `config/autoload/local.test.php.dist` as `config/autoload/local.test.php`
 

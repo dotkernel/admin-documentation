@@ -1,10 +1,9 @@
 docs_dir: docs/book
 site_dir: docs/html
 extra:
-  project: API
+  project: Admin
   current_version: v5
   versions:
-    - v4
     - v5
 nav:
   - Home: index.md
@@ -19,8 +18,8 @@ nav:
           - "Doctrine ORM": v5/installation/doctrine-orm.md
           - "Manage Geolite2": v5/installation/manage-geolite2.md
           - "Test the Installation": v5/installation/test-the-installation.md
-site_name: api
-site_description: "DotKernel API"
-repo_url: "https://github.com/dotkernel/api"
+site_name: admin
+site_description: "DotKernel Admin"
+repo_url: "https://github.com/dotkernel/admin"
 plugins:
   - search
