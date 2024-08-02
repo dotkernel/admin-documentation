@@ -18,6 +18,8 @@ nav:
           - "Doctrine ORM": v5/installation/doctrine-orm.md
           - "Manage Geolite2": v5/installation/manage-geolite2.md
           - "Test the Installation": v5/installation/test-the-installation.md
+      - Core Features:
+          - "CSRF": v5/core-features/csrf.md
 site_name: admin
 site_description: "DotKernel Admin"
 repo_url: "https://github.com/dotkernel/admin"
