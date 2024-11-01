@@ -22,7 +22,7 @@ If you are still getting exceptions or errors regarding some missing services, t
 
 - Open a web browser and visit `http://localhost:8080/`
 
-You should see the `DotKernel admin` login page.
+You should see the `Dotkernel admin` login page.
 
 If you ran the migrations you will have an admin user in the database with the following credentials:
 
