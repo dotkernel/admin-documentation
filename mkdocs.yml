@@ -11,6 +11,8 @@ nav:
       - Introduction: v5/introduction/introduction.md
       - Overview:
           - "Server Requirements": v5/introduction/server-requirements.md
+          - "File Structure": v5/introduction/file-structure.md
+          - "Packages": v5/introduction/packages.md
       - Installation:
           - "Getting Started": v5/installation/getting-started.md
           - "Composer": v5/installation/composer.md
@@ -18,8 +20,11 @@ nav:
           - "Doctrine ORM": v5/installation/doctrine-orm.md
           - "Manage Geolite2": v5/installation/manage-geolite2.md
           - "Test the Installation": v5/installation/test-the-installation.md
-      - Core Features:
-          - "CSRF": v5/core-features/csrf.md
+      - Hot to:
+          - "Configure Authorizations": v5/how-to/authorization.md
+          - "Use NPM Commands": v5/how-to/npm_commands.md
+          - "Inject Dependencies": v5/how-to/dependency-injection.md
+          - "Set Up CSRF": v5/how-to/csrf.md
 site_name: admin
 site_description: "DotKernel Admin"
 repo_url: "https://github.com/dotkernel/admin"
