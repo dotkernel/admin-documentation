@@ -26,4 +26,3 @@ Resolving deltas: 100% (3359/3359), done.
 ```
 
 You can already open the project in your preferred IDE to double-check the files were copied correctly.
-
