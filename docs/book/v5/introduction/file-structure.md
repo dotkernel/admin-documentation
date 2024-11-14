@@ -6,7 +6,7 @@ It is considered good practice to standardize the file structure of projects.
 
 When using Dotkernel Admin the following structure is installed by default:
 
-![Dotkernel Admin File Structure!](https://docs.dotkernel.org/img/Admin/file-structure-dk-Admin.png)
+![Dotkernel Admin File Structure!](https://docs.dotkernel.org/img/admin/file-structure-dk-admin.jpg)
 
 ## Main directories
 
