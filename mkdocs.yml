@@ -21,7 +21,7 @@ nav:
           - "Doctrine ORM": v5/installation/doctrine-orm.md
           - "Manage Geolite2": v5/installation/manage-geolite2.md
           - "Test the Installation": v5/installation/test-the-installation.md
-      - Hot to:
+      - How to:
           - "Create Database Migrations": v5/how-to/creating-migrations.md
           - "Create Database Fixtures": v5/how-to/creating-fixtures.md
           - "Configure Authorizations": v5/how-to/authorization.md
