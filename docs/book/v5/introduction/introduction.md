@@ -5,5 +5,5 @@ It's a fast and reliable way to manage records in your database with a simple ta
 The many graphical components at your disposal ensure an intuitive user experience.
 
 > Check out our [demo](https://admin5.dotkernel.net/).
-> 
+>
 > Submit user `admin` and password `dotadmin` to authenticate yourself.
