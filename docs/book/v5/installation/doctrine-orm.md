@@ -1,47 +1,85 @@
 # Doctrine ORM
 
+This step saves the database connection credentials in an Admin configuration file.
+We do not cover the creation steps of the database itself.
+
 ## Setup database
 
-Make sure you fill out the database credentials in `config/autoload/local.php` under `$databases['default']`.
+Create a new MySQL database and set its collation to `utf8mb4_general_ci`.
 
-Create a new MySQL database - set collation to `utf8mb4_general_ci`
+Make sure you fill out the database credentials in `config/autoload/local.php` under `$databases['default']`.
+Below is the item you need to focus on.
+
+> `my_database`, `my_user`, `my_password` are provided only as an example.
+
+```php
+$databases = [
+    'default' => [
+        'host'     => 'localhost',
+        'dbname'   => 'my_database',
+        'user'     => 'my_user',
+        'password' => 'my_password',
+        'port'     => 3306,
+        'driver'   => 'pdo_mysql',
+        'charset'  => 'utf8mb4',
+        'collate'  => 'utf8mb4_general_ci',
+    ],
+    // you can add more database connections into this array
+];
+```
 
 ## Running migrations
 
 Run the database migrations by using the following command:
 
 ```shell
-php bin/doctrine-migrations migrate
+php vendor/bin/doctrine-migrations migrate
 ```
 
-This command will prompt you to confirm that you want to run it.
-
-> WARNING! You are about to execute a migration in database "..." that could result in schema changes and data loss. Are you sure you wish to continue? (yes/no) [yes]:
-
-Hit `Enter` to confirm the operation.
-
-## Executing fixtures
-
-**Fixtures are used to seed the database with initial values and should be executed after migrating the database.**
-
-To list all the fixtures, run:
+Note: If you have already run the migrations, you may get this message.
+You should double-check to make sure the new migrations are ok to run.
 
 ```shell
-php bin/doctrine fixtures:list
+WARNING! You have x previously executed migrations in the database that are not registered migrations.
+  {migration list}
+Are you sure you wish to continue? (y/n)
 ```
 
-This will output all the fixtures in the order of execution.
+When using an empty database, you will get this confirmation message instead.
 
-To execute all fixtures, run:
+```shell
+WARNING! You are about to execute a database migration that could result in schema changes and data loss. Are you sure you wish to continue? (y/n)
+```
+
+Again, submit `y` to run all the migrations in chronological order.
+Each migration will be logged in the `migrations` table to prevent running the same migration more than once, which is often not desirable.
+
+If everything ran correctly, you will get this confirmation.
+
+```shell
+[OK] Successfully migrated to version: Admin\Migrations\Version20240627134952
+```
+
+> The migration name `Version20240627134952` may differ in future Admin updates.
+
+## Fixtures
+
+Run this command to populate the admin tables with the default values:
 
 ```shell
 php bin/doctrine fixtures:execute
 ```
 
-To execute a specific fixture, run:
+You should see our galloping horse in the command line.
 
 ```shell
-php bin/doctrine fixtures:execute --class=FixtureClassName
+Executing Admin\Fixtures\AdminRoleLoader
+Executing Admin\Fixtures\AdminLoader
+Fixtures have been loaded.
+                .''
+      ._.-.___.' (`\
+     //(        ( `'
+    '/ )\ ).__. )
+    ' <' `\ ._/'\
+       `   \     \
 ```
-
-More details on how fixtures work can be found here: https://github.com/dotkernel/dot-data-fixtures#creating-fixtures

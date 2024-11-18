@@ -1,6 +1,6 @@
 # Composer Installation of Packages
 
-Composer is required to install Dotkernel `admin`. You can install Composer from the [official site](https://getcomposer.org/).
+Composer is required to install Dotkernel Admin. You can install Composer from the [official site](https://getcomposer.org/).
 
 > First make sure that you have navigated your command prompt to the folder where you copied the files in the previous step.
 
