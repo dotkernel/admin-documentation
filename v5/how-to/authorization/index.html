@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/introduction/introduction/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/how-to/authorization/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Introduction - admin - DotKernel Documentation</title>
+        <title>Configure Authorizations - admin - DotKernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -155,8 +155,15 @@
                             
                         
                     
+                        
+                            
+                            
+                                <li class="breadcrumb-item">How to</li>
+                            
+                        
+                    
 
-                    <li class="breadcrumb-item active" aria-current="page">Introduction</li>
+                    <li class="breadcrumb-item active" aria-current="page">Configure Authorizations</li>
                 
             
         </ol>
@@ -183,8 +190,8 @@
                 
                     
                         
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Introduction</a>
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
                     
@@ -216,19 +223,19 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../server-requirements/" class="subnavigation__link">Server Requirements</a>
+    <a href="../../introduction/server-requirements/" class="subnavigation__link">Server Requirements</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../file-structure/" class="subnavigation__link">File Structure</a>
+    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../packages/" class="subnavigation__link">Packages</a>
+    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
 </li>
 
         
@@ -340,37 +347,37 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+    <a href="../creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
+    <a href="../creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Configure Authorizations</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/authorization/" class="subnavigation__link">Configure Authorizations</a>
+    <a href="../npm_commands/" class="subnavigation__link">Use NPM Commands</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/npm_commands/" class="subnavigation__link">Use NPM Commands</a>
+    <a href="../dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item ">
-    <a href="../../how-to/csrf/" class="subnavigation__link">Set Up CSRF</a>
+    <a href="../csrf/" class="subnavigation__link">Set Up CSRF</a>
 </li>
 
         
@@ -404,15 +411,54 @@
 
     
     
+<!--        <h2 class="chapter__headline text-black-50">How to</h2>-->
+    
 
-    <h1 id="introduction">Introduction</h1>
-<p>Dotkernel Admin is an application (skeleton) intended for quickly setting up an administration site for your platform.
-It's a fast and reliable way to manage records in your database with a simple table-based approach, and also to build reports and graphs to monitor your platform.
-The many graphical components at your disposal ensure an intuitive user experience.</p>
-<blockquote>
-<p>Check out our <a href="https://admin5.dotkernel.net/">demo</a>.</p>
-<p>Submit user <code>admin</code> and password <code>dotadmin</code> to authenticate yourself.</p>
-</blockquote>
+    <h1 id="authorization-guards">Authorization Guards</h1>
+<p>The packages responsible for restricting access to certain parts of the application are <a href="https://github.com/dotkernel/dot-rbac-guard">dot-rbac-guard</a> and <a href="https://github.com/dotkernel/dot-rbac">dot-rbac</a>.
+These packages work together to create an infrastructure that is customizable and diversified to manage user access to the platform by specifying the type of role the user has.</p>
+<p>The <code>authorization.global.php</code> file provides multiple configurations specifying multiple roles as well as the types of permissions to which these roles have access.</p>
+<pre class="highlight"><code class="language-php">//example of a flat RBAC model that specifies two types of roles as well as their permission
+    'roles' =&gt; [
+                'admin' =&gt; [
+                    'permissions' =&gt; [
+                        'authenticated',
+                        'edit',
+                        'delete',
+                        //etc..
+                    ]
+                ],
+                'user' =&gt; [
+                    'permissions' =&gt; [
+                        'authenticated',
+                        //etc..
+                    ]
+                ]
+            ]</code></pre>
+<p>The <code>authorization-guards.global.php</code> file provides configuration to restrict access to certain actions based on the permissions defined in <code>authorization.global.php</code> so basically we have to add the permissions in the dot-rbac configuration file first to specify the action restriction permissions.</p>
+<pre class="highlight"><code class="language-php">// configuration example to restrict certain actions of some routes based on the permissions specified in the dot-rbac configuration file
+    'rules' =&gt; [
+                    [
+                        'route' =&gt; 'account',
+                        'actions' =&gt; [//list of actions to apply , or empty array for all actions
+                            'unregister',
+                            'avatar',
+                            'details',
+                            'changePassword'
+                        ],
+                        'permissions' =&gt; ['authenticated']
+                    ],
+                    [
+                        'route' =&gt; 'admin',
+                        'actions' =&gt; [
+                            'deleteAccount'
+                        ],
+                         'permissions' =&gt; [
+                            'delete'
+                            //list of roles to allow
+                        ]
+                    ]
+                ]</code></pre>
 
 
 
@@ -422,10 +468,10 @@ The many graphical components at your disposal ensure an intuitive user experien
         
         <li class="page-nav__item">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../../..">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../creating-fixtures/">
                     <small class="page-nav__label">Previous</small>
                     <i class="bi bi-chevron-left"></i>
-                    Home
+                    Create Database Fixtures
                 </a>
             
         </li>
@@ -433,9 +479,9 @@ The many graphical components at your disposal ensure an intuitive user experien
         
         <li class="page-nav__item">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../server-requirements/">
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../npm_commands/">
                     <small class="page-nav__label">Next</small>
-                    Server Requirements
+                    Use NPM Commands
                     <i class="bi bi-chevron-right"></i>
                 </a>
             

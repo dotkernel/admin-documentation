@@ -227,6 +227,18 @@
 </li>
 
         
+        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
+</li>
+
+        
     </ul>
 </li>
 
@@ -264,6 +276,12 @@
         <span class="subnavigation__headline">Installation</span>
     </a>
     <ul class="subnavigation__list collapse" id="installation">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../installation-intro/" class="subnavigation__link">Introduction</a>
+</li>
+
         
         
 <li class="subnavigation__list-item ">
@@ -321,29 +339,45 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <li class="subnavigation__list-item">
-    <a data-bs-toggle="collapse" href="#core-features" role="button" aria-expanded="false" aria-controls="core-features">
-        <span class="subnavigation__headline">Core Features</span>
+    <a data-bs-toggle="collapse" href="#how-to" role="button" aria-expanded="false" aria-controls="how-to">
+        <span class="subnavigation__headline">How to</span>
     </a>
-    <ul class="subnavigation__list collapse" id="core-features">
+    <ul class="subnavigation__list collapse" id="how-to">
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../core-features/csrf/" class="subnavigation__link">CSRF</a>
+    <a href="../../how-to/creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/authorization/" class="subnavigation__link">Configure Authorizations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/npm_commands/" class="subnavigation__link">Use NPM Commands</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/csrf/" class="subnavigation__link">Set Up CSRF</a>
 </li>
 
         
@@ -378,7 +412,7 @@
                 </li>
             
                 <li class="toc__entry">
-                    <a href="#executing-fixtures" class="toc__link nav-link">Executing fixtures</a>
+                    <a href="#fixtures" class="toc__link nav-link">Fixtures</a>
                 </li>
             
             </ul>
@@ -400,27 +434,58 @@
     
 
     <h1 id="doctrine-orm">Doctrine ORM</h1>
+<p>This step saves the database connection credentials in an Admin configuration file.
+We do not cover the creation steps of the database itself.</p>
 <h2 id="setup-database">Setup database</h2>
-<p>Make sure you fill out the database credentials in <code>config/autoload/local.php</code> under <code>$databases['default']</code>.</p>
-<p>Create a new MySQL database - set collation to <code>utf8mb4_general_ci</code></p>
+<p>Create a new MySQL database and set its collation to <code>utf8mb4_general_ci</code>.</p>
+<p>Make sure you fill out the database credentials in <code>config/autoload/local.php</code> under <code>$databases['default']</code>.
+Below is the item you need to focus on.</p>
+<blockquote>
+<p><code>my_database</code>, <code>my_user</code>, <code>my_password</code> are provided only as an example.</p>
+</blockquote>
+<pre class="highlight"><code class="language-php">$databases = [
+    'default' =&gt; [
+        'host'     =&gt; 'localhost',
+        'dbname'   =&gt; 'my_database',
+        'user'     =&gt; 'my_user',
+        'password' =&gt; 'my_password',
+        'port'     =&gt; 3306,
+        'driver'   =&gt; 'pdo_mysql',
+        'charset'  =&gt; 'utf8mb4',
+        'collate'  =&gt; 'utf8mb4_general_ci',
+    ],
+    // you can add more database connections into this array
+];</code></pre>
 <h2 id="running-migrations">Running migrations</h2>
 <p>Run the database migrations by using the following command:</p>
-<pre class="highlight"><code class="language-shell">php bin/doctrine-migrations migrate</code></pre>
-<p>This command will prompt you to confirm that you want to run it.</p>
+<pre class="highlight"><code class="language-shell">php vendor/bin/doctrine-migrations migrate</code></pre>
+<p>Note: If you have already run the migrations, you may get this message.
+You should double-check to make sure the new migrations are ok to run.</p>
+<pre class="highlight"><code class="language-shell">WARNING! You have x previously executed migrations in the database that are not registered migrations.
+  {migration list}
+Are you sure you wish to continue? (y/n)</code></pre>
+<p>When using an empty database, you will get this confirmation message instead.</p>
+<pre class="highlight"><code class="language-shell">WARNING! You are about to execute a database migration that could result in schema changes and data loss. Are you sure you wish to continue? (y/n)</code></pre>
+<p>Again, submit <code>y</code> to run all the migrations in chronological order.
+Each migration will be logged in the <code>migrations</code> table to prevent running the same migration more than once, which is often not desirable.</p>
+<p>If everything ran correctly, you will get this confirmation.</p>
+<pre class="highlight"><code class="language-shell">[OK] Successfully migrated to version: Admin\Migrations\Version20240627134952</code></pre>
 <blockquote>
-<p>WARNING! You are about to execute a migration in database "..." that could result in schema changes and data loss. Are you sure you wish to continue? (yes/no) [yes]:</p>
+<p>The migration name <code>Version20240627134952</code> may differ in future Admin updates.</p>
 </blockquote>
-<p>Hit <code>Enter</code> to confirm the operation.</p>
-<h2 id="executing-fixtures">Executing fixtures</h2>
-<p><strong>Fixtures are used to seed the database with initial values and should be executed after migrating the database.</strong></p>
-<p>To list all the fixtures, run:</p>
-<pre class="highlight"><code class="language-shell">php bin/doctrine fixtures:list</code></pre>
-<p>This will output all the fixtures in the order of execution.</p>
-<p>To execute all fixtures, run:</p>
+<h2 id="fixtures">Fixtures</h2>
+<p>Run this command to populate the admin tables with the default values:</p>
 <pre class="highlight"><code class="language-shell">php bin/doctrine fixtures:execute</code></pre>
-<p>To execute a specific fixture, run:</p>
-<pre class="highlight"><code class="language-shell">php bin/doctrine fixtures:execute --class=FixtureClassName</code></pre>
-<p>More details on how fixtures work can be found here: https://github.com/dotkernel/dot-data-fixtures#creating-fixtures</p>
+<p>You should see our galloping horse in the command line.</p>
+<pre class="highlight"><code class="language-shell">Executing Admin\Fixtures\AdminRoleLoader
+Executing Admin\Fixtures\AdminLoader
+Fixtures have been loaded.
+                .''
+      ._.-.___.' (`\
+     //(        ( `'
+    '/ )\ ).__. )
+    ' &lt;' `\ ._/'\
+       `   \     \</code></pre>
 
 
 

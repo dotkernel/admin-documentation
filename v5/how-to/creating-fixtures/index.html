@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/introduction/introduction/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/how-to/creating-fixtures/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Introduction - admin - DotKernel Documentation</title>
+        <title>Create Database Fixtures - admin - DotKernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -155,8 +155,15 @@
                             
                         
                     
+                        
+                            
+                            
+                                <li class="breadcrumb-item">How to</li>
+                            
+                        
+                    
 
-                    <li class="breadcrumb-item active" aria-current="page">Introduction</li>
+                    <li class="breadcrumb-item active" aria-current="page">Create Database Fixtures</li>
                 
             
         </ol>
@@ -183,8 +190,8 @@
                 
                     
                         
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Introduction</a>
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
                     
@@ -216,19 +223,19 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../server-requirements/" class="subnavigation__link">Server Requirements</a>
+    <a href="../../introduction/server-requirements/" class="subnavigation__link">Server Requirements</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../file-structure/" class="subnavigation__link">File Structure</a>
+    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../packages/" class="subnavigation__link">Packages</a>
+    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
 </li>
 
         
@@ -340,37 +347,37 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+    <a href="../creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Create Database Fixtures</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
+    <a href="../authorization/" class="subnavigation__link">Configure Authorizations</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/authorization/" class="subnavigation__link">Configure Authorizations</a>
+    <a href="../npm_commands/" class="subnavigation__link">Use NPM Commands</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/npm_commands/" class="subnavigation__link">Use NPM Commands</a>
+    <a href="../dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item ">
-    <a href="../../how-to/csrf/" class="subnavigation__link">Set Up CSRF</a>
+    <a href="../csrf/" class="subnavigation__link">Set Up CSRF</a>
 </li>
 
         
@@ -392,6 +399,17 @@
 
     
     
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+            
+                <li class="toc__entry">
+                    <a href="#working-with-fixtures" class="toc__link nav-link">Working with fixtures</a>
+                </li>
+            
+            </ul>
+        </div>
+    
 
                     
                 </div>
@@ -404,15 +422,26 @@
 
     
     
+<!--        <h2 class="chapter__headline text-black-50">How to</h2>-->
+    
 
-    <h1 id="introduction">Introduction</h1>
-<p>Dotkernel Admin is an application (skeleton) intended for quickly setting up an administration site for your platform.
-It's a fast and reliable way to manage records in your database with a simple table-based approach, and also to build reports and graphs to monitor your platform.
-The many graphical components at your disposal ensure an intuitive user experience.</p>
+    <h1 id="fixtures">Fixtures</h1>
 <blockquote>
-<p>Check out our <a href="https://admin5.dotkernel.net/">demo</a>.</p>
-<p>Submit user <code>admin</code> and password <code>dotadmin</code> to authenticate yourself.</p>
+<p>Fixtures are used to seed the database with initial values and should only be executed ONCE each, after migrating the database.</p>
 </blockquote>
+<p>Seeding the database is done with the help of our custom package <code>dotkernel/dot-data-fixtures</code> built on top of <code>doctrine/data-fixtures</code>.
+See below on how to use our CLI command for listing and executing Doctrine data fixtures.</p>
+<h2 id="working-with-fixtures">Working with fixtures</h2>
+<p>You can find an example of a fixtures class in <code>data/doctrine/fixtures/AdminLoader.php</code>.</p>
+<p>To list all the available fixtures by order of execution run:</p>
+<pre class="highlight"><code class="language-shell">php bin/doctrine fixtures:list</code></pre>
+<p>To execute all fixtures run:</p>
+<pre class="highlight"><code class="language-shell">php bin/doctrine fixtures:execute</code></pre>
+<p>To execute a specific fixture, use its class name, like in this example:</p>
+<pre class="highlight"><code class="language-shell">php bin/doctrine fixtures:execute --class=AdminLoader</code></pre>
+<p>Fixtures can and should be ordered to ensure database consistency.
+More on ordering fixtures can be found here :
+https://www.doctrine-project.org/projects/doctrine-data-fixtures/en/latest/how-to/fixture-ordering.html#fixture-ordering</p>
 
 
 
@@ -422,10 +451,10 @@ The many graphical components at your disposal ensure an intuitive user experien
         
         <li class="page-nav__item">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../../..">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../creating-migrations/">
                     <small class="page-nav__label">Previous</small>
                     <i class="bi bi-chevron-left"></i>
-                    Home
+                    Create Database Migrations
                 </a>
             
         </li>
@@ -433,9 +462,9 @@ The many graphical components at your disposal ensure an intuitive user experien
         
         <li class="page-nav__item">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../server-requirements/">
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../authorization/">
                     <small class="page-nav__label">Next</small>
-                    Server Requirements
+                    Configure Authorizations
                     <i class="bi bi-chevron-right"></i>
                 </a>
             

@@ -18,7 +18,7 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/introduction/introduction/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/installation/installation-intro/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
@@ -155,6 +155,13 @@
                             
                         
                     
+                        
+                            
+                            
+                                <li class="breadcrumb-item">Installation</li>
+                            
+                        
+                    
 
                     <li class="breadcrumb-item active" aria-current="page">Introduction</li>
                 
@@ -183,8 +190,8 @@
                 
                     
                         
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Introduction</a>
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
                     
@@ -216,19 +223,19 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../server-requirements/" class="subnavigation__link">Server Requirements</a>
+    <a href="../../introduction/server-requirements/" class="subnavigation__link">Server Requirements</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../file-structure/" class="subnavigation__link">File Structure</a>
+    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../packages/" class="subnavigation__link">Packages</a>
+    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
 </li>
 
         
@@ -271,44 +278,44 @@
     <ul class="subnavigation__list collapse" id="installation">
         
         
-<li class="subnavigation__list-item ">
-    <a href="../../installation/installation-intro/" class="subnavigation__link">Introduction</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../installation/getting-started/" class="subnavigation__link">Getting Started</a>
+    <a href="../getting-started/" class="subnavigation__link">Getting Started</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../installation/composer/" class="subnavigation__link">Composer</a>
+    <a href="../composer/" class="subnavigation__link">Composer</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../installation/configuration-files/" class="subnavigation__link">Configuration Files</a>
+    <a href="../configuration-files/" class="subnavigation__link">Configuration Files</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../installation/doctrine-orm/" class="subnavigation__link">Doctrine ORM</a>
+    <a href="../doctrine-orm/" class="subnavigation__link">Doctrine ORM</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../installation/manage-geolite2/" class="subnavigation__link">Manage Geolite2</a>
+    <a href="../manage-geolite2/" class="subnavigation__link">Manage Geolite2</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../installation/test-the-installation/" class="subnavigation__link">Test the Installation</a>
+    <a href="../test-the-installation/" class="subnavigation__link">Test the Installation</a>
 </li>
 
         
@@ -404,15 +411,19 @@
 
     
     
+<!--        <h2 class="chapter__headline text-black-50">Installation</h2>-->
+    
 
     <h1 id="introduction">Introduction</h1>
-<p>Dotkernel Admin is an application (skeleton) intended for quickly setting up an administration site for your platform.
-It's a fast and reliable way to manage records in your database with a simple table-based approach, and also to build reports and graphs to monitor your platform.
-The many graphical components at your disposal ensure an intuitive user experience.</p>
-<blockquote>
-<p>Check out our <a href="https://admin5.dotkernel.net/">demo</a>.</p>
-<p>Submit user <code>admin</code> and password <code>dotadmin</code> to authenticate yourself.</p>
-</blockquote>
+<p>In this tutorial, we will install Dotkernel Admin from scratch.
+We will focus on these tasks:</p>
+<ul>
+<li>Highlight 3rd party tools required for the installation.</li>
+<li>Provide all the relevant commands with expected responses.</li>
+<li>Configure the development environment.</li>
+<li>Run the project.</li>
+</ul>
+<p>By the end of this tutorial you will have a fully-functional Dotkernel Admin on your selected environment and can begin coding.</p>
 
 
 
@@ -422,10 +433,10 @@ The many graphical components at your disposal ensure an intuitive user experien
         
         <li class="page-nav__item">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../../..">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../../introduction/packages/">
                     <small class="page-nav__label">Previous</small>
                     <i class="bi bi-chevron-left"></i>
-                    Home
+                    Packages
                 </a>
             
         </li>
@@ -433,9 +444,9 @@ The many graphical components at your disposal ensure an intuitive user experien
         
         <li class="page-nav__item">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../server-requirements/">
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../getting-started/">
                     <small class="page-nav__label">Next</small>
-                    Server Requirements
+                    Getting Started
                     <i class="bi bi-chevron-right"></i>
                 </a>
             

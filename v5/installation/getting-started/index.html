@@ -227,6 +227,18 @@
 </li>
 
         
+        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
+</li>
+
+        
     </ul>
 </li>
 
@@ -264,6 +276,12 @@
         <span class="subnavigation__headline">Installation</span>
     </a>
     <ul class="subnavigation__list collapse" id="installation">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../installation-intro/" class="subnavigation__link">Introduction</a>
+</li>
+
         
         
 <li class="subnavigation__list-item subnavigation__list-item--active">
@@ -321,29 +339,45 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <li class="subnavigation__list-item">
-    <a data-bs-toggle="collapse" href="#core-features" role="button" aria-expanded="false" aria-controls="core-features">
-        <span class="subnavigation__headline">Core Features</span>
+    <a data-bs-toggle="collapse" href="#how-to" role="button" aria-expanded="false" aria-controls="how-to">
+        <span class="subnavigation__headline">How to</span>
     </a>
-    <ul class="subnavigation__list collapse" id="core-features">
+    <ul class="subnavigation__list collapse" id="how-to">
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../core-features/csrf/" class="subnavigation__link">CSRF</a>
+    <a href="../../how-to/creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/authorization/" class="subnavigation__link">Configure Authorizations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/npm_commands/" class="subnavigation__link">Use NPM Commands</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/csrf/" class="subnavigation__link">Set Up CSRF</a>
 </li>
 
         
@@ -397,9 +431,19 @@
 <p>If you are using Windows as OS on your machine, you can use WSL2 as development environment.
 Read more here: <a href="https://www.dotkernel.com/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin/">PHP-Mariadb-on-WLS2</a></p>
 </blockquote>
-<p>Using your terminal, navigate inside the directory you want to download the project files into. Make sure that the
-directory is empty before proceeding to the download process. Once there, run the following command:</p>
+<p>Using your terminal, navigate inside the directory you want to download the project files into.
+Make sure that the directory is empty before proceeding to the download process.
+Once there, run the following command:</p>
 <pre class="highlight"><code class="language-shell">git clone https://github.com/dotkernel/admin.git .</code></pre>
+<p>If everything ran correctly, you can expect to see an output like this, though the numbers may differ.</p>
+<pre class="highlight"><code class="language-shell">Cloning into '.'...
+remote: Enumerating objects: 6538, done.
+remote: Counting objects: 100% (1652/1652), done.
+remote: Compressing objects: 100% (785/785), done.
+remote: Total 6538 (delta 804), reused 1417 (delta 748), pack-reused 4886 (from 1)
+Receiving objects: 100% (6538/6538), 11.84 MiB | 16.52 MiB/s, done.
+Resolving deltas: 100% (3359/3359), done.</code></pre>
+<p>You can already open the project in your preferred IDE to double-check the files were copied correctly.</p>
 
 
 
@@ -409,10 +453,10 @@ directory is empty before proceeding to the download process. Once there, run th
         
         <li class="page-nav__item">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../../introduction/server-requirements/">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../installation-intro/">
                     <small class="page-nav__label">Previous</small>
                     <i class="bi bi-chevron-left"></i>
-                    Server Requirements
+                    Introduction
                 </a>
             
         </li>

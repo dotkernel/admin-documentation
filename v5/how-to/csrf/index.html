@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/introduction/introduction/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/how-to/csrf/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Introduction - admin - DotKernel Documentation</title>
+        <title>Set Up CSRF - admin - DotKernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -155,8 +155,15 @@
                             
                         
                     
+                        
+                            
+                            
+                                <li class="breadcrumb-item">How to</li>
+                            
+                        
+                    
 
-                    <li class="breadcrumb-item active" aria-current="page">Introduction</li>
+                    <li class="breadcrumb-item active" aria-current="page">Set Up CSRF</li>
                 
             
         </ol>
@@ -183,8 +190,8 @@
                 
                     
                         
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Introduction</a>
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
                     
@@ -216,19 +223,19 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../server-requirements/" class="subnavigation__link">Server Requirements</a>
+    <a href="../../introduction/server-requirements/" class="subnavigation__link">Server Requirements</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../file-structure/" class="subnavigation__link">File Structure</a>
+    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../packages/" class="subnavigation__link">Packages</a>
+    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
 </li>
 
         
@@ -340,37 +347,37 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+    <a href="../creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
+    <a href="../creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/authorization/" class="subnavigation__link">Configure Authorizations</a>
+    <a href="../authorization/" class="subnavigation__link">Configure Authorizations</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/npm_commands/" class="subnavigation__link">Use NPM Commands</a>
+    <a href="../npm_commands/" class="subnavigation__link">Use NPM Commands</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
+    <a href="../dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
 </li>
 
         
         
-<li class="subnavigation__list-item ">
-    <a href="../../how-to/csrf/" class="subnavigation__link">Set Up CSRF</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Set Up CSRF</a>
 </li>
 
         
@@ -392,6 +399,21 @@
 
     
     
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+            
+                <li class="toc__entry">
+                    <a href="#implement-csrf-protection" class="toc__link nav-link">Implement CSRF protection</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#test-the-implementation" class="toc__link nav-link">Test the implementation</a>
+                </li>
+            
+            </ul>
+        </div>
+    
 
                     
                 </div>
@@ -404,15 +426,76 @@
 
     
     
+<!--        <h2 class="chapter__headline text-black-50">How to</h2>-->
+    
 
-    <h1 id="introduction">Introduction</h1>
-<p>Dotkernel Admin is an application (skeleton) intended for quickly setting up an administration site for your platform.
-It's a fast and reliable way to manage records in your database with a simple table-based approach, and also to build reports and graphs to monitor your platform.
-The many graphical components at your disposal ensure an intuitive user experience.</p>
+    <h1 id="csrf-protection-in-forms">CSRF protection in forms</h1>
+<p>A Cross-Site Request Forgery (CSRF) attack is a type of security vulnerability that tricks a user into performing
+actions on a web application in which they are authenticated, without their knowledge or consent.</p>
+<p>Web applications can protect users against these types of attacks by implementing CSRF tokens in their forms which are
+known only to the application that generated them and must be included when submitting forms. With each visit, a new
+CSRF token is added to the form so tokens are not reusable between forms. Missing to provide a valid CSRF token will
+result in a form validation error.</p>
+<h2 id="implement-csrf-protection">Implement CSRF protection</h2>
+<p>Implementing CSRF protection requires three steps:</p>
+<ul>
+<li>create new field using <a href="https://github.com/laminas/laminas-form">laminas/laminas-form</a>'s <a href="https://github.com/laminas/laminas-form/blob/3.21.x/src/Element/Csrf.php">CSRF</a> element</li>
+<li>validate new field using <a href="https://github.com/laminas/laminas-session">laminas/laminas-session</a>'s
+<a href="https://github.com/laminas/laminas-session/blob/2.22.x/src/Validator/Csrf.php">CSRF</a> validator</li>
+<li>render field using <a href="https://github.com/laminas/laminas-form">laminas/laminas-form</a>'s <a href="https://github.com/laminas/laminas-form/blob/3.21.x/src/View/Helper/FormElement.php">FormElement</a> helper</li>
+</ul>
+<h3 id="create-field">Create field</h3>
+<p>Open the form's PHP class and append the following code to the method that initializes the fields (usually <code>init</code>):</p>
+<pre class="highlight"><code class="language-php">$this-&gt;add(new \Laminas\Form\Element\Csrf('exampleCsrf', [
+    'csrf_options' =&gt; [
+        'timeout' =&gt; 3600,
+        'session' =&gt; new \Laminas\Session\Container(),
+    ],
+]));</code></pre>
+<p>where <code>exampleCsrf</code> should be a suggestive name that describes the purpose of the field (example: <code>forgotPasswordCsrf</code>).</p>
+<h3 id="validate-field">Validate field</h3>
+<p>Open the InputFilter that validates the form fields and append the following code to the method that initializes the
+fields (usually <code>init</code>):</p>
+<pre class="highlight"><code class="language-php">$csrf = new \Laminas\InputFilter\Input('exampleCsrf');
+$csrf-&gt;setRequired(true);
+$csrf-&gt;getFilterChain()
+    -&gt;attachByName(\Laminas\Filter\StringTrim::class)
+    -&gt;attachByName(\Laminas\Filter\StripTags::class);
+$csrf-&gt;getValidatorChain()
+    -&gt;attachByName(\Laminas\Validator\NotEmpty::class, [
+        'message' =&gt; '&lt;b&gt;CSRF&lt;/b&gt; is required and cannot be empty',
+    ], true)
+    -&gt;attachByName(\Laminas\Session\Validator\Csrf::class, [
+        'name'    =&gt; 'exampleCsrf',
+        'message' =&gt; '&lt;b&gt;CSRF&lt;/b&gt; is invalid',
+        'session' =&gt; new \Laminas\Session\Container(),
+    ], true);
+$this-&gt;add($csrf);</code></pre>
+<p>where <code>exampleCsrf</code> must match the CSRF field's name in the form.</p>
 <blockquote>
-<p>Check out our <a href="https://admin5.dotkernel.net/">demo</a>.</p>
-<p>Submit user <code>admin</code> and password <code>dotadmin</code> to authenticate yourself.</p>
+<p>Don't forget to modify both occurrences in this file.</p>
+<p>Make sure that you validate the form using its <code>isValid</code> method in the handler/controller where it is submitted.</p>
 </blockquote>
+<h3 id="render-field">Render field</h3>
+<p>Open the template that renders your form and add the following code somewhere between the form's opening and closing
+tags:</p>
+<pre class="highlight"><code class="language-text">{{ formElement(form.get('exampleCsrf')) }}</code></pre>
+<h2 id="test-the-implementation">Test the implementation</h2>
+<p>Access your form from the browser and view its source. You should see a new hidden field, called <code>exampleCsrf</code> (or
+however you named it). After filling out the form, submitting it should work as before.</p>
+<p>In order to make sure that the new CSRF field works as expected, you can inspect the form using your browser's
+<code>Developer tools</code> and modify its value in any way. Submitting a filled out form should result in a validation error:</p>
+<blockquote>
+<p><strong>CSRF</strong> is required and cannot be empty</p>
+</blockquote>
+<h3 id="timeout">Timeout</h3>
+<p>Note the <code>timeout</code> option in your PHP form's <code>exampleCsrf</code> field, with its default value set to <strong>3600</strong>. This
+represents the value in seconds for how long the token is valid. Submitting a form that has been rendered for longer
+than this value will result in a validation error:</p>
+<blockquote>
+<p><strong>CSRF</strong> is invalid</p>
+</blockquote>
+<p>You can modify the value of <code>timeout</code> in each form, but the default value should work in most cases.</p>
 
 
 
@@ -422,22 +505,16 @@ The many graphical components at your disposal ensure an intuitive user experien
         
         <li class="page-nav__item">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../../..">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../dependency-injection/">
                     <small class="page-nav__label">Previous</small>
                     <i class="bi bi-chevron-left"></i>
-                    Home
+                    Inject Dependencies
                 </a>
             
         </li>
 
         
         <li class="page-nav__item">
-            
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../server-requirements/">
-                    <small class="page-nav__label">Next</small>
-                    Server Requirements
-                    <i class="bi bi-chevron-right"></i>
-                </a>
             
         </li>
     </ul>

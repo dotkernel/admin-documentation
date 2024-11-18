@@ -227,6 +227,18 @@
 </li>
 
         
+        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
+</li>
+
+        
     </ul>
 </li>
 
@@ -264,6 +276,12 @@
         <span class="subnavigation__headline">Installation</span>
     </a>
     <ul class="subnavigation__list collapse" id="installation">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../installation-intro/" class="subnavigation__link">Introduction</a>
+</li>
+
         
         
 <li class="subnavigation__list-item ">
@@ -321,29 +339,45 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <li class="subnavigation__list-item">
-    <a data-bs-toggle="collapse" href="#core-features" role="button" aria-expanded="false" aria-controls="core-features">
-        <span class="subnavigation__headline">Core Features</span>
+    <a data-bs-toggle="collapse" href="#how-to" role="button" aria-expanded="false" aria-controls="how-to">
+        <span class="subnavigation__headline">How to</span>
     </a>
-    <ul class="subnavigation__list collapse" id="core-features">
+    <ul class="subnavigation__list collapse" id="how-to">
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../core-features/csrf/" class="subnavigation__link">CSRF</a>
+    <a href="../../how-to/creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/authorization/" class="subnavigation__link">Configure Authorizations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/npm_commands/" class="subnavigation__link">Use NPM Commands</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/csrf/" class="subnavigation__link">Set Up CSRF</a>
 </li>
 
         
@@ -373,6 +407,10 @@
                     <a href="#prepare-config-files" class="toc__link nav-link">Prepare config files</a>
                 </li>
             
+                <li class="toc__entry">
+                    <a href="#mail" class="toc__link nav-link">Mail</a>
+                </li>
+            
             </ul>
         </div>
     
@@ -394,24 +432,32 @@
     <h1 id="configuration-files">Configuration Files</h1>
 <h2 id="prepare-config-files">Prepare config files</h2>
 <ul>
-<li>
-<p>duplicate <code>config/autoload/local.php.dist</code> as <code>config/autoload/local.php</code></p>
-</li>
-<li>
-<p>duplicate <code>config/autoload/mail.local.php.dist</code> as <code>config/autoload/mail.local.php</code></p>
-</li>
+<li>duplicate <code>config/autoload/local.php.dist</code> as <code>config/autoload/local.php</code></li>
+<li>duplicate <code>config/autoload/mail.local.php.dist</code> as <code>config/autoload/mail.local.php</code></li>
 </ul>
-<h3 id="note">Note</h3>
 <blockquote>
-<p>if your Admin will send emails, make sure to fill in SMTP connection params</p>
+<p>If you intend to send emails from your Frontend, make sure to fill in SMTP connection params.
+This will be covered in the next section.</p>
+<p><strong>optional</strong>: in order to run/create tests, duplicate <code>config/autoload/local.test.php.dist</code> as <code>config/autoload/local.test.php</code>
+this creates a new in-memory database that your tests will run on.</p>
 </blockquote>
+<h2 id="mail">Mail</h2>
+<p>If you want your application to send mail, add valid credentials to the following keys in <code>config/autoload/mail.local.php</code></p>
+<p>Under <code>message_options</code> key:</p>
 <ul>
-<li><strong>optional</strong>: in order to run/create tests, duplicate <code>config/autoload/local.test.php.dist</code> as <code>config/autoload/local.test.php</code></li>
+<li><code>from</code> - email address that will send emails (required)</li>
+<li><code>from_name</code> - organization name for signing sent emails (optional)</li>
 </ul>
-<h3 id="note_1">Note</h3>
+<p>Under <code>smtp_options</code> key:</p>
+<ul>
+<li><code>host</code> - hostname or IP address of the mail server (required)</li>
+<li><code>connection_config</code> - add the <code>username</code> and <code>password</code> keys (required)</li>
+</ul>
+<p>In <code>config/autoload/local.php</code> edit the key <code>contact</code> =&gt; <code>message_receivers</code> =&gt; <code>to</code> with <em>string</em> values for emails that should receive contact messages.</p>
 <blockquote>
-<p>this creates a new in-memory database that your tests will run on.</p>
+<p><strong>Please add at least 1 email address in order for contact message to reach someone</strong></p>
 </blockquote>
+<p>Also feel free to add as many CCs as you require under the <code>contact</code> =&gt; <code>message_receivers</code> =&gt; <code>cc</code> key.</p>
 
 
 

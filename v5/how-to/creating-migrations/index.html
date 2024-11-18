@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/introduction/introduction/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/how-to/creating-migrations/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Introduction - admin - DotKernel Documentation</title>
+        <title>Create Database Migrations - admin - DotKernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -155,8 +155,15 @@
                             
                         
                     
+                        
+                            
+                            
+                                <li class="breadcrumb-item">How to</li>
+                            
+                        
+                    
 
-                    <li class="breadcrumb-item active" aria-current="page">Introduction</li>
+                    <li class="breadcrumb-item active" aria-current="page">Create Database Migrations</li>
                 
             
         </ol>
@@ -183,8 +190,8 @@
                 
                     
                         
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Introduction</a>
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
                     
@@ -216,19 +223,19 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../server-requirements/" class="subnavigation__link">Server Requirements</a>
+    <a href="../../introduction/server-requirements/" class="subnavigation__link">Server Requirements</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../file-structure/" class="subnavigation__link">File Structure</a>
+    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../packages/" class="subnavigation__link">Packages</a>
+    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
 </li>
 
         
@@ -339,38 +346,38 @@
     <ul class="subnavigation__list collapse" id="how-to">
         
         
-<li class="subnavigation__list-item ">
-    <a href="../../how-to/creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Create Database Migrations</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
+    <a href="../creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/authorization/" class="subnavigation__link">Configure Authorizations</a>
+    <a href="../authorization/" class="subnavigation__link">Configure Authorizations</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/npm_commands/" class="subnavigation__link">Use NPM Commands</a>
+    <a href="../npm_commands/" class="subnavigation__link">Use NPM Commands</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
+    <a href="../dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/csrf/" class="subnavigation__link">Set Up CSRF</a>
+    <a href="../csrf/" class="subnavigation__link">Set Up CSRF</a>
 </li>
 
         
@@ -392,6 +399,17 @@
 
     
     
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+            
+                <li class="toc__entry">
+                    <a href="#example" class="toc__link nav-link">Example</a>
+                </li>
+            
+            </ul>
+        </div>
+    
 
                     
                 </div>
@@ -404,15 +422,25 @@
 
     
     
+<!--        <h2 class="chapter__headline text-black-50">How to</h2>-->
+    
 
-    <h1 id="introduction">Introduction</h1>
-<p>Dotkernel Admin is an application (skeleton) intended for quickly setting up an administration site for your platform.
-It's a fast and reliable way to manage records in your database with a simple table-based approach, and also to build reports and graphs to monitor your platform.
-The many graphical components at your disposal ensure an intuitive user experience.</p>
-<blockquote>
-<p>Check out our <a href="https://admin5.dotkernel.net/">demo</a>.</p>
-<p>Submit user <code>admin</code> and password <code>dotadmin</code> to authenticate yourself.</p>
-</blockquote>
+    <h1 id="creating-migrations">Creating migrations</h1>
+<p>Migrations are used to create and/or edit the database structure.
+To generate a new migration file, use this command:</p>
+<pre class="highlight"><code class="language-shell">php vendor/bin/doctrine-migrations migrations:generate</code></pre>
+<p>It creates a PHP file like this one <code>/data/doctrine/migrations/Version20240627134952.php</code> that can then be edited in the IDE.
+You can add new queries in:</p>
+<ul>
+<li><code>public function up</code> - these are executed when the migration is run.</li>
+<li><code>public function down</code> - these are optional queries that undo the above changes.</li>
+</ul>
+<h2 id="example">Example</h2>
+<p>This example creates a new column named <code>test</code>.
+Add this in <code>public function up</code>:</p>
+<pre class="highlight"><code class="language-shell">$this-&gt;addSql('ALTER TABLE admin ADD test VARCHAR(255) NOT NULL');</code></pre>
+<p>And its opposite in <code>public function down</code>:</p>
+<pre class="highlight"><code class="language-shell">$this-&gt;addSql('ALTER TABLE admin DROP test');</code></pre>
 
 
 
@@ -422,10 +450,10 @@ The many graphical components at your disposal ensure an intuitive user experien
         
         <li class="page-nav__item">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../../..">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../../installation/test-the-installation/">
                     <small class="page-nav__label">Previous</small>
                     <i class="bi bi-chevron-left"></i>
-                    Home
+                    Test the Installation
                 </a>
             
         </li>
@@ -433,9 +461,9 @@ The many graphical components at your disposal ensure an intuitive user experien
         
         <li class="page-nav__item">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../server-requirements/">
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../creating-fixtures/">
                     <small class="page-nav__label">Next</small>
-                    Server Requirements
+                    Create Database Fixtures
                     <i class="bi bi-chevron-right"></i>
                 </a>
             

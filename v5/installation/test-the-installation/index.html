@@ -227,6 +227,18 @@
 </li>
 
         
+        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
+</li>
+
+        
     </ul>
 </li>
 
@@ -264,6 +276,12 @@
         <span class="subnavigation__headline">Installation</span>
     </a>
     <ul class="subnavigation__list collapse" id="installation">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../installation-intro/" class="subnavigation__link">Introduction</a>
+</li>
+
         
         
 <li class="subnavigation__list-item ">
@@ -321,29 +339,45 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <li class="subnavigation__list-item">
-    <a data-bs-toggle="collapse" href="#core-features" role="button" aria-expanded="false" aria-controls="core-features">
-        <span class="subnavigation__headline">Core Features</span>
+    <a data-bs-toggle="collapse" href="#how-to" role="button" aria-expanded="false" aria-controls="how-to">
+        <span class="subnavigation__headline">How to</span>
     </a>
-    <ul class="subnavigation__list collapse" id="core-features">
+    <ul class="subnavigation__list collapse" id="how-to">
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../core-features/csrf/" class="subnavigation__link">CSRF</a>
+    <a href="../../how-to/creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/authorization/" class="subnavigation__link">Configure Authorizations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/npm_commands/" class="subnavigation__link">Use NPM Commands</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/csrf/" class="subnavigation__link">Set Up CSRF</a>
 </li>
 
         
@@ -380,50 +414,43 @@
 <!--        <h2 class="chapter__headline text-black-50">Installation</h2>-->
     
 
-    <h1 id="testing-running">Testing (Running)</h1>
-<p>Note: <strong>Do not enable dev mode in production</strong></p>
-<ul>
-<li>
-<p>Run the following command in your project's directory to start PHPs built-in server:</p>
-<p>php -S 0.0.0.0:8080 -t public</p>
-</li>
-</ul>
+    <h1 id="running-the-application">Running the application</h1>
 <blockquote>
-<p>Running command <code>composer serve</code> will do the exact same, but the above is faster.</p>
+<p><strong>Do not enable dev mode in production</strong></p>
 </blockquote>
-<p><code>0.0.0.0</code> means that the server is open to all incoming connections
-<code>127.0.0.1</code> means that the server can only be accessed locally (localhost only)
-<code>8080</code> the port on which the server is started (the listening port for the server)</p>
-<p><strong>NOTE:</strong>
-If you are still getting exceptions or errors regarding some missing services, try running the following command</p>
-<pre class="codehilite"><code>php bin/clear-config-cache.php
-</code></pre>
-
-<blockquote>
-<p>If <code>config-cache.php</code> is present that config will be loaded regardless of the <code>ConfigAggregator::ENABLE_CACHE</code>
-in <code>config/autoload/mezzio.global.php</code></p>
-</blockquote>
+<p>We recommend running your applications in WSL:</p>
 <ul>
-<li>Open a web browser and visit <code>http://localhost:8080/</code></li>
+<li>Make sure you have <a href="https://github.com/dotkernel/development/blob/main/wsl/README.md">WSL</a> installed on your system.</li>
+<li>Currently we provide a distro implementations for <a href="https://github.com/dotkernel/development/blob/main/wsl/os/almalinux9/README.md">AlmaLinux9</a>.</li>
+<li>Install the application in a virtualhost as recommended by the chosen distro.</li>
+<li>Set <code>$baseUrl</code> in <strong>config/autoload/local.php</strong> to the address of the virtualhost.</li>
+<li>Run the application by opening the virtualhost address in your browser.</li>
 </ul>
 <p>You should see the <code>Dotkernel admin</code> login page.</p>
-<p>If you ran the migrations you will have an admin user in the database with the following credentials:</p>
+<blockquote>
+<p>If you are getting exceptions or errors regarding some missing services, try running the following command:</p>
+</blockquote>
+<pre class="highlight"><code class="language-shell">sudo php bin/clear-config-cache.php</code></pre>
+<blockquote>
+<p>If <code>config-cache.php</code> is present that config will be loaded regardless of the <code>ConfigAggregator::ENABLE_CACHE</code> in <code>config/autoload/mezzio.global.php</code></p>
+</blockquote>
+<p>If you ran the fixtures you will have an admin user in the database with the following credentials:</p>
 <ul>
 <li><strong>User</strong>: <code>admin</code></li>
 <li><strong>Password</strong>: <code>dotadmin</code></li>
 </ul>
-<p><strong>NOTE:</strong></p>
-<ul>
-<li><strong>Production only</strong>: Make sure you modify the default admin credentials.</li>
-<li>
+<blockquote>
+<p><strong>Production only</strong>: Make sure you modify the default admin credentials.</p>
 <p><strong>Development only</strong>: <code>session.cookie_secure</code> does not work locally so make sure you modify your <code>local.php</code>, as per the following:</p>
-<p>return [
+</blockquote>
+<pre class="highlight"><code class="language-php"># other code
+
+return [
+    # other configurations...
     'session_config' =&gt; [
         'cookie_secure' =&gt; false,
-    ]
-  ];</p>
-</li>
-</ul>
+    ],
+];</code></pre>
 <p>Do not change this in <code>local.php.dist</code> as well because this value should remain <code>true</code> on production.</p>
 
 
@@ -445,9 +472,9 @@ in <code>config/autoload/mezzio.global.php</code></p>
         
         <li class="page-nav__item">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../../core-features/csrf/">
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../../how-to/creating-migrations/">
                     <small class="page-nav__label">Next</small>
-                    CSRF
+                    Create Database Migrations
                     <i class="bi bi-chevron-right"></i>
                 </a>
             
