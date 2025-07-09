@@ -7,7 +7,7 @@
 
 > **optional**: in order to run/create tests, duplicate `config/autoload/local.test.php.dist` as `config/autoload/local.test.php`
 > this creates a new in-memory database that your tests will run on.
-> 
+
 If you want your application to send mail, add valid credentials to the following keys in `config/autoload/mail.global.php`
 
 Under `message_options` key:

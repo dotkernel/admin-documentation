@@ -95,7 +95,6 @@ These are the modules included by default:
 * `Setting` - Contains functionality for saving and reading display settings
 * `User` - Contains functionality for managing users; note these are users save in the `user` database table
 
-
 ### Module contents
 
 Each Module folder, in turn, should contain the following folders, unless they are empty:

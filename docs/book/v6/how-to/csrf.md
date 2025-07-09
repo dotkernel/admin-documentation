@@ -67,7 +67,6 @@ In order to make sure that the new CSRF field works as expected, you can inspect
 
 > This field is required and cannot be empty.
 
-
 ### Timeout
 
 Note the `timeout` option in your PHP form's `exampleCsrf` field, with its default value set to **3600**. This
