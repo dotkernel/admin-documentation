@@ -99,10 +99,8 @@ These are the modules included by default:
 
 Each Module folder, in turn, should contain the following folders, unless they are empty:
 
-* `src/Entity` - Used by database entities
 * `src/Handler` - Action classes
 * `src/InputFilter` - Validation rules for inputs
-* `src/Repository` - Entity repository folder
 * `src/Service` - Service classes
 
 The above example is just some of the folders a project may include, but they should give you an idea about the recommended structure.
@@ -120,3 +118,24 @@ This folder contains the template files, used for example to help render e-mail 
 
 > `twig` is used as Templating Engine.
 > All template files have the extension `.html.twig`.
+
+### Core module
+
+The Core module is a common codebase set up to be used by the applications you added to your project. 
+
+These are the submodules included by default:
+
+* `Admin` - Contains logic for the admin submodule features
+* `App` - Contains shared application-level services and infrastructure utilities
+* `Security` - Contains authentication, authorization, and related security mechanisms
+* `Setting` - Contains configuration and application settings management
+* `User` - Contains user entities, repositories, and services handling user data and logic
+
+Each submodule folder should contain:
+
+* `src/Entity` - Used by database entities
+* `src/Repository` - Entity repository folder
+* `ConfigProvider.php` - Configuration data for the module
+
+The above example is just some of the folders a project may include, but they should give you an idea about the recommended structure.
+Other classes the `src` folder may include are `DBAL`, `Enum`, `Command`, `Factory` etc.
