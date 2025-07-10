@@ -33,13 +33,13 @@ $databases = [
 Run the database migrations by using the following command:
 
 ```shell
-php vendor/bin/doctrine-migrations migrate
+php ./vendor/bin/doctrine-migrations migrate
 ```
 
-Note: If you have already run the migrations, you may get this message.
-You should double-check to make sure the new migrations are ok to run.
+> If you have already run the migrations, you may get this message.
+> You should double-check to make sure the new migrations are ok to run.
 
-```shell
+```text
 WARNING! You have x previously executed migrations in the database that are not registered migrations.
   {migration list}
 Are you sure you wish to continue? (y/n)
@@ -47,7 +47,7 @@ Are you sure you wish to continue? (y/n)
 
 When using an empty database, you will get this confirmation message instead.
 
-```shell
+```text
 WARNING! You are about to execute a migration in database "<your_database_name>" that could result in schema changes and data loss. Are you sure you wish to continue? (yes/no)
 ```
 
@@ -56,7 +56,7 @@ Each migration will be logged in the `migrations` table to prevent running the s
 
 If everything ran correctly, you will get this confirmation.
 
-```shell
+```text
 [OK] Successfully migrated to version: Core\App\Migration\Version20250407142911
 ```
 
@@ -67,7 +67,7 @@ If everything ran correctly, you will get this confirmation.
 Run this command to populate the admin tables with the default values:
 
 ```shell
-php bin/doctrine fixtures:execute
+php ./bin/doctrine fixtures:execute
 ```
 
 You should see our galloping horse in the command line.

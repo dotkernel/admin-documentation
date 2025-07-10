@@ -32,7 +32,7 @@ Package operations: 171 installs, 0 updates, 0 removals
 
 The setup script prompts for some configuration settings, for example the lines below:
 
-```shell
+```text
 Please select which config file you wish to inject 'Laminas\Validator\ConfigProvider' into:
   [0] Do not inject
   [1] config/config.php
@@ -46,7 +46,9 @@ Type `0` to select `[0] Do not inject`.
 
 The next question is:
 
-`Remember this option for other packages of the same type? (y/N)`
+```text
+Remember this option for other packages of the same type? (y/N)
+```
 
 Type `y` here, and hit `enter` to complete this stage.
 

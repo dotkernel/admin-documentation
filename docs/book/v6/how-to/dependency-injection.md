@@ -35,8 +35,7 @@ class GetAccountLogoutHandler implements RequestHandlerInterface
 
 > If your class needs the value of a specific configuration key, you can specify the path using dot notation: `config.example`
 
-The next step is to register the class in the `ConfigProvider` under `factories` using
-`Dot\DependencyInjection\Factory\AttributedServiceFactory::class`.
+The next step is to register the class in the `ConfigProvider` under `factories` using `Dot\DependencyInjection\Factory\AttributedServiceFactory::class`.
 
 ```php
 public function getDependencies(): array

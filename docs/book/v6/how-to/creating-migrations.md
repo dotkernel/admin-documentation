@@ -4,7 +4,7 @@ Migrations are used to create and/or edit the database structure.
 To generate a new migration file, use this command:
 
 ```shell
-php vendor/bin/doctrine-migrations migrations:generate
+php ./vendor/bin/doctrine-migrations migrations:generate
 ```
 
 It creates a PHP file like this one `src/Core/src/App/src/Migration/Version20240627134952.php` that can then be edited in the IDE.

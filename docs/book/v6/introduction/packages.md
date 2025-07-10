@@ -1,5 +1,8 @@
 # Packages
 
+> Dotkernel Admin 6.x will have full Laminas Service Manager 4 support once all dependencies do support it.
+> Once Laminas Service Manager 4 is fully supported, Dotkernel Admin 6.x will be installable on PHP 8.4 as well.
+
 * `dotkernel/dot-cache`:`^4.3` - Provides caching based on symfony/cache
 * `dotkernel/dot-cli`:`^3.9` - Build console applications based on laminas-cli
 * `dotkernel/dot-data-fixtures`:`^1.4` - Provides a CLI interface for listing & executing doctrine data fixtures

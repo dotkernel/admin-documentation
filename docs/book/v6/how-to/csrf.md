@@ -23,7 +23,7 @@ Open the form's PHP class and append the following code to the method that initi
 
 ```php
 $this->add(
-    (new Csrf('exampleCsrf'))
+    (new \Laminas\Form\Element\Csrf('exampleCsrf'))
         ->setOptions([
             'csrf_options' => ['timeout' => 3600, 'session' => new Container()],
         ])
@@ -39,7 +39,7 @@ Open the InputFilter that validates the form fields and append the following cod
 fields (usually `init`):
 
 ```php
-$this->add(new CsrfInput('exampleCsrf'));
+$this->add(new \Admin\App\InputFilter\Input\CsrfInput('exampleCsrf'));
 ```
 
 where `exampleCsrf` must match the CSRF field's name in the form.
@@ -50,8 +50,7 @@ where `exampleCsrf` must match the CSRF field's name in the form.
 
 ### Render field
 
-Open the template that renders your form and add the following code somewhere between the form's opening and closing
-tags:
+Open the template that renders your form and add the following code somewhere between the form's opening and closing tags:
 
 ```text
 {{ formElement(form.get('exampleCsrf')) }}
@@ -59,19 +58,15 @@ tags:
 
 ## Test the implementation
 
-Access your form from the browser and view its source. You should see a new hidden field, called `exampleCsrf` (or
-however you named it). After filling out the form, submitting it should work as before.
+Access your form from the browser and view its source. You should see a new hidden field, called `exampleCsrf` (or however you named it). After filling out the form, submitting it should work as before.
 
-In order to make sure that the new CSRF field works as expected, you can inspect the form using your browser's
-`Developer tools` and modify its value in any way. Submitting a filled out form should result in a validation error:
+In order to make sure that the new CSRF field works as expected, you can inspect the form using your browser's `Developer tools` and modify its value in any way. Submitting a filled out form should result in a validation error:
 
 > This field is required and cannot be empty.
 
 ### Timeout
 
-Note the `timeout` option in your PHP form's `exampleCsrf` field, with its default value set to **3600**. This
-represents the value in seconds for how long the token is valid. Submitting a form that has been rendered for longer
-than this value will result in a validation error:
+Note the `timeout` option in your PHP form's `exampleCsrf` field, with its default value set to **3600**. This represents the value in seconds for how long the token is valid. Submitting a form that has been rendered for longer than this value will result in a validation error:
 
 > Invalid CSRF.
 
