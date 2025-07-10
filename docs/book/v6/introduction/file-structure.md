@@ -121,7 +121,7 @@ This folder contains the template files, used for example to help render e-mail 
 
 ### Core module
 
-The Core module is a common codebase set up to be used by the applications you added to your project. 
+The Core module is a common codebase set up to be used by the applications you added to your project.
 
 These are the submodules included by default:
 
