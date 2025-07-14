@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/installation/manage-geolite2/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v6/introduction/introduction/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Manage Geolite2 - admin - Dotkernel Documentation</title>
+        <title>Introduction - admin - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -137,13 +137,13 @@
         <div class="btn-group">
             <button type="button" class="btn dropdown-toggle bg-light" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false" id="version-selector-dropdown">
                 
-                    v5
+                    v6
                 
             </button>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="version-selector-dropdown">
                 
                 
-                <a href="../../../v6/introduction/introduction/" class="dropdown-item">
+                <a href="./" class="dropdown-item active">
                     
                         v6 (latest)
                     
@@ -151,7 +151,7 @@
                 
                 
                 
-                <a href="../../introduction/introduction/" class="dropdown-item active">
+                <a href="../../../v5/introduction/introduction/" class="dropdown-item">
                     
                         v5
                     
@@ -186,15 +186,8 @@
                             
                         
                     
-                        
-                            
-                            
-                                <li class="breadcrumb-item">Installation</li>
-                            
-                        
-                    
 
-                    <li class="breadcrumb-item active" aria-current="page">Manage Geolite2</li>
+                    <li class="breadcrumb-item active" aria-current="page">Introduction</li>
                 
             
         </ol>
@@ -219,10 +212,18 @@
 
                 
                 
+
+                    
+                    
+                
+            
+
+                
+                
                     
                         
-<li class="subnavigation__list-item ">
-    <a href="../../introduction/introduction/" class="subnavigation__link">Introduction</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Introduction</a>
 </li>
 
                     
@@ -254,19 +255,19 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../introduction/server-requirements/" class="subnavigation__link">Server Requirements</a>
+    <a href="../server-requirements/" class="subnavigation__link">Server Requirements</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
+    <a href="../file-structure/" class="subnavigation__link">File Structure</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
+    <a href="../packages/" class="subnavigation__link">Packages</a>
 </li>
 
         
@@ -310,43 +311,43 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../installation-intro/" class="subnavigation__link">Introduction</a>
+    <a href="../../installation/installation-intro/" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../getting-started/" class="subnavigation__link">Getting Started</a>
+    <a href="../../installation/getting-started/" class="subnavigation__link">Getting Started</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../composer/" class="subnavigation__link">Composer</a>
+    <a href="../../installation/composer/" class="subnavigation__link">Composer</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../configuration-files/" class="subnavigation__link">Configuration Files</a>
+    <a href="../../installation/configuration-files/" class="subnavigation__link">Configuration Files</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../doctrine-orm/" class="subnavigation__link">Doctrine ORM</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Manage Geolite2</a>
+    <a href="../../installation/doctrine-orm/" class="subnavigation__link">Doctrine ORM</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../test-the-installation/" class="subnavigation__link">Test the Installation</a>
+    <a href="../../installation/manage-geolite2/" class="subnavigation__link">Manage Geolite2</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../installation/test-the-installation/" class="subnavigation__link">Test the Installation</a>
 </li>
 
         
@@ -418,14 +419,6 @@
                     
                 
             
-
-                
-                
-
-                    
-                    
-                
-            
         </ul>
     </div>
 
@@ -445,36 +438,20 @@
                     
                     
 
-    <div class="alert alert-danger alert-caution" role="alert">
-        <p class="mb-0">
-            The documentation you are viewing is for an older version of this component.<br>
-            <a href="../../..">Switch to the latest (v6) version.</a>
-        </p>
-    </div>
-
 
 
 
     
     
-<!--        <h2 class="chapter__headline text-black-50">Installation</h2>-->
-    
 
-    <h1 id="manage-the-geolite2-databases">Manage the GeoLite2 databases</h1>
-<p>You can download/update a specific GeoLite2 database, by running the following command where <code>{DATABASE}</code> can be <code>asn</code>, <code>city</code>, <code>country</code>:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php geoip:synchronize -d {DATABASE}</code></pre>
-<p>You can download/update all GeoLite2 databases at once, by running the following command:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php geoip:synchronize</code></pre>
-<p>The output should be similar to the below, displaying per row: <code>database identifier</code>: <code>previous build datetime</code> -&gt; <code>current build datetime</code>.</p>
-<pre class="highlight"><code class="language-shell">asn: n/a -&gt; 2024-11-01 02:29:44
-city: n/a -&gt; 2024-11-01 02:29:31
-country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
+    <h1 id="introduction">Introduction</h1>
+<p>Dotkernel Admin is an application (skeleton) intended for quickly setting up an administration site for your platform.
+It's a fast and reliable way to manage records in your database with a simple table-based approach, and also to build reports and graphs to monitor your platform.
+The many graphical components at your disposal ensure an intuitive user experience.</p>
 <blockquote>
-<p><code>n/a</code> will be replaced by the older version of the GeoLite2 databases when you run the command again.</p>
+<p>Check out our <a href="https://admin6.dotkernel.net/">demo</a>.</p>
+<p>Submit user <code>admin</code> and password <code>dotadmin</code> to authenticate yourself.</p>
 </blockquote>
-<p>Get help for this command by running:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php help geoip:synchronize</code></pre>
-<p><strong>Tip</strong>: If you set up the synchronizer command as a cronjob, you can add the <code>-q|--quiet</code> option, and it will output data only if an error has occurred.</p>
 
 
 
@@ -484,9 +461,9 @@ country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
         
         <li class="col text-nowrap text-md-start">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../doctrine-orm/">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../../../v5/how-to/csrf/">
                     <i class="bi bi-chevron-left"></i>
-                    Doctrine ORM
+                    Set Up CSRF
                 </a>
             
         </li>
@@ -494,8 +471,8 @@ country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../test-the-installation/">
-                    Test the Installation
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../server-requirements/">
+                    Server Requirements
                     <i class="bi bi-chevron-right"></i>
                 </a>
             

@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/installation/manage-geolite2/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v6/how-to/creating-fixtures/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Manage Geolite2 - admin - Dotkernel Documentation</title>
+        <title>Create Database Fixtures - admin - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -137,13 +137,13 @@
         <div class="btn-group">
             <button type="button" class="btn dropdown-toggle bg-light" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false" id="version-selector-dropdown">
                 
-                    v5
+                    v6
                 
             </button>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="version-selector-dropdown">
                 
                 
-                <a href="../../../v6/introduction/introduction/" class="dropdown-item">
+                <a href="../../introduction/introduction/" class="dropdown-item active">
                     
                         v6 (latest)
                     
@@ -151,7 +151,7 @@
                 
                 
                 
-                <a href="../../introduction/introduction/" class="dropdown-item active">
+                <a href="../../../v5/introduction/introduction/" class="dropdown-item">
                     
                         v5
                     
@@ -189,12 +189,12 @@
                         
                             
                             
-                                <li class="breadcrumb-item">Installation</li>
+                                <li class="breadcrumb-item">How to</li>
                             
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Manage Geolite2</li>
+                    <li class="breadcrumb-item active" aria-current="page">Create Database Fixtures</li>
                 
             
         </ol>
@@ -215,6 +215,14 @@
         <h5 class="subnavigation__title">Table of Contents</h5>
 
         <ul class="subnavigation__list">
+            
+
+                
+                
+
+                    
+                    
+                
             
 
                 
@@ -310,43 +318,43 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../installation-intro/" class="subnavigation__link">Introduction</a>
+    <a href="../../installation/installation-intro/" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../getting-started/" class="subnavigation__link">Getting Started</a>
+    <a href="../../installation/getting-started/" class="subnavigation__link">Getting Started</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../composer/" class="subnavigation__link">Composer</a>
+    <a href="../../installation/composer/" class="subnavigation__link">Composer</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../configuration-files/" class="subnavigation__link">Configuration Files</a>
+    <a href="../../installation/configuration-files/" class="subnavigation__link">Configuration Files</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../doctrine-orm/" class="subnavigation__link">Doctrine ORM</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Manage Geolite2</a>
+    <a href="../../installation/doctrine-orm/" class="subnavigation__link">Doctrine ORM</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../test-the-installation/" class="subnavigation__link">Test the Installation</a>
+    <a href="../../installation/manage-geolite2/" class="subnavigation__link">Manage Geolite2</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../installation/test-the-installation/" class="subnavigation__link">Test the Installation</a>
 </li>
 
         
@@ -378,51 +386,43 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+    <a href="../creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Create Database Fixtures</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
+    <a href="../authorization/" class="subnavigation__link">Configure Authorizations</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/authorization/" class="subnavigation__link">Configure Authorizations</a>
+    <a href="../npm_commands/" class="subnavigation__link">Use NPM Commands</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/npm_commands/" class="subnavigation__link">Use NPM Commands</a>
+    <a href="../dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../how-to/dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item ">
-    <a href="../../how-to/csrf/" class="subnavigation__link">Set Up CSRF</a>
+    <a href="../csrf/" class="subnavigation__link">Set Up CSRF</a>
 </li>
 
         
     </ul>
 </li>
 
-                    
-                
-            
-
-                
-                
-
-                    
                     
                 
             
@@ -438,6 +438,17 @@
 
     
     
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+            
+                <li class="toc__entry">
+                    <a href="#working-with-fixtures" class="toc__link nav-link">Working with fixtures</a>
+                </li>
+            
+            </ul>
+        </div>
+    
 
                     
                 </div>
@@ -445,36 +456,30 @@
                     
                     
 
-    <div class="alert alert-danger alert-caution" role="alert">
-        <p class="mb-0">
-            The documentation you are viewing is for an older version of this component.<br>
-            <a href="../../..">Switch to the latest (v6) version.</a>
-        </p>
-    </div>
-
 
 
 
     
     
-<!--        <h2 class="chapter__headline text-black-50">Installation</h2>-->
+<!--        <h2 class="chapter__headline text-black-50">How to</h2>-->
     
 
-    <h1 id="manage-the-geolite2-databases">Manage the GeoLite2 databases</h1>
-<p>You can download/update a specific GeoLite2 database, by running the following command where <code>{DATABASE}</code> can be <code>asn</code>, <code>city</code>, <code>country</code>:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php geoip:synchronize -d {DATABASE}</code></pre>
-<p>You can download/update all GeoLite2 databases at once, by running the following command:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php geoip:synchronize</code></pre>
-<p>The output should be similar to the below, displaying per row: <code>database identifier</code>: <code>previous build datetime</code> -&gt; <code>current build datetime</code>.</p>
-<pre class="highlight"><code class="language-shell">asn: n/a -&gt; 2024-11-01 02:29:44
-city: n/a -&gt; 2024-11-01 02:29:31
-country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
+    <h1 id="fixtures">Fixtures</h1>
 <blockquote>
-<p><code>n/a</code> will be replaced by the older version of the GeoLite2 databases when you run the command again.</p>
+<p>Fixtures are used to seed the database with initial values and should only be executed ONCE each, after migrating the database.</p>
 </blockquote>
-<p>Get help for this command by running:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php help geoip:synchronize</code></pre>
-<p><strong>Tip</strong>: If you set up the synchronizer command as a cronjob, you can add the <code>-q|--quiet</code> option, and it will output data only if an error has occurred.</p>
+<p>Seeding the database is done with the help of our custom package <code>dotkernel/dot-data-fixtures</code> built on top of <code>doctrine/data-fixtures</code>. See below on how to use our CLI command for listing and executing Doctrine data fixtures.</p>
+<h2 id="working-with-fixtures">Working with fixtures</h2>
+<p>You can find an example of a fixtures class in <code>src/Core/src/App/src/Fixture/AdminLoader.php</code>.</p>
+<p>To list all the available fixtures by order of execution run:</p>
+<pre class="highlight"><code class="language-shell">php ./bin/doctrine fixtures:list</code></pre>
+<p>To execute all fixtures run:</p>
+<pre class="highlight"><code class="language-shell">php ./bin/doctrine fixtures:execute</code></pre>
+<p>To execute a specific fixture, use its class name, like in this example:</p>
+<pre class="highlight"><code class="language-shell">php ./bin/doctrine fixtures:execute --class=AdminLoader</code></pre>
+<p>Fixtures can and should be ordered to ensure database consistency.
+More on ordering fixtures can be found here :
+https://www.doctrine-project.org/projects/doctrine-data-fixtures/en/latest/how-to/fixture-ordering.html#fixture-ordering</p>
 
 
 
@@ -484,9 +489,9 @@ country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
         
         <li class="col text-nowrap text-md-start">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../doctrine-orm/">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../creating-migrations/">
                     <i class="bi bi-chevron-left"></i>
-                    Doctrine ORM
+                    Create Database Migrations
                 </a>
             
         </li>
@@ -494,8 +499,8 @@ country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../test-the-installation/">
-                    Test the Installation
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../authorization/">
+                    Configure Authorizations
                     <i class="bi bi-chevron-right"></i>
                 </a>
             

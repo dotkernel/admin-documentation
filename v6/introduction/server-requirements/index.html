@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/installation/manage-geolite2/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v6/introduction/server-requirements/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Manage Geolite2 - admin - Dotkernel Documentation</title>
+        <title>Server Requirements - admin - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -137,13 +137,13 @@
         <div class="btn-group">
             <button type="button" class="btn dropdown-toggle bg-light" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false" id="version-selector-dropdown">
                 
-                    v5
+                    v6
                 
             </button>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="version-selector-dropdown">
                 
                 
-                <a href="../../../v6/introduction/introduction/" class="dropdown-item">
+                <a href="../introduction/" class="dropdown-item active">
                     
                         v6 (latest)
                     
@@ -151,7 +151,7 @@
                 
                 
                 
-                <a href="../../introduction/introduction/" class="dropdown-item active">
+                <a href="../../../v5/introduction/introduction/" class="dropdown-item">
                     
                         v5
                     
@@ -189,12 +189,12 @@
                         
                             
                             
-                                <li class="breadcrumb-item">Installation</li>
+                                <li class="breadcrumb-item">Overview</li>
                             
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Manage Geolite2</li>
+                    <li class="breadcrumb-item active" aria-current="page">Server Requirements</li>
                 
             
         </ol>
@@ -219,10 +219,18 @@
 
                 
                 
+
+                    
+                    
+                
+            
+
+                
+                
                     
                         
 <li class="subnavigation__list-item ">
-    <a href="../../introduction/introduction/" class="subnavigation__link">Introduction</a>
+    <a href="../introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
                     
@@ -253,20 +261,20 @@
     <ul class="subnavigation__list collapse" id="overview">
         
         
-<li class="subnavigation__list-item ">
-    <a href="../../introduction/server-requirements/" class="subnavigation__link">Server Requirements</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Server Requirements</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
+    <a href="../file-structure/" class="subnavigation__link">File Structure</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
+    <a href="../packages/" class="subnavigation__link">Packages</a>
 </li>
 
         
@@ -310,43 +318,43 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../installation-intro/" class="subnavigation__link">Introduction</a>
+    <a href="../../installation/installation-intro/" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../getting-started/" class="subnavigation__link">Getting Started</a>
+    <a href="../../installation/getting-started/" class="subnavigation__link">Getting Started</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../composer/" class="subnavigation__link">Composer</a>
+    <a href="../../installation/composer/" class="subnavigation__link">Composer</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../configuration-files/" class="subnavigation__link">Configuration Files</a>
+    <a href="../../installation/configuration-files/" class="subnavigation__link">Configuration Files</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../doctrine-orm/" class="subnavigation__link">Doctrine ORM</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Manage Geolite2</a>
+    <a href="../../installation/doctrine-orm/" class="subnavigation__link">Doctrine ORM</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../test-the-installation/" class="subnavigation__link">Test the Installation</a>
+    <a href="../../installation/manage-geolite2/" class="subnavigation__link">Manage Geolite2</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../installation/test-the-installation/" class="subnavigation__link">Test the Installation</a>
 </li>
 
         
@@ -418,14 +426,6 @@
                     
                 
             
-
-                
-                
-
-                    
-                    
-                
-            
         </ul>
     </div>
 
@@ -438,6 +438,33 @@
 
     
     
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+            
+                <li class="toc__entry">
+                    <a href="#webserver" class="toc__link nav-link">Webserver</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#php-82" class="toc__link nav-link">PHP &gt;= 8.2</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#required-settings-and-modules-extensions" class="toc__link nav-link">Required Settings and Modules &amp; Extensions</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#rdbms" class="toc__link nav-link">RDBMS</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#recommended-extensions" class="toc__link nav-link">Recommended extensions</a>
+                </li>
+            
+            </ul>
+        </div>
+    
 
                     
                 </div>
@@ -445,36 +472,57 @@
                     
                     
 
-    <div class="alert alert-danger alert-caution" role="alert">
-        <p class="mb-0">
-            The documentation you are viewing is for an older version of this component.<br>
-            <a href="../../..">Switch to the latest (v6) version.</a>
-        </p>
-    </div>
-
 
 
 
     
     
-<!--        <h2 class="chapter__headline text-black-50">Installation</h2>-->
+<!--        <h2 class="chapter__headline text-black-50">Overview</h2>-->
     
 
-    <h1 id="manage-the-geolite2-databases">Manage the GeoLite2 databases</h1>
-<p>You can download/update a specific GeoLite2 database, by running the following command where <code>{DATABASE}</code> can be <code>asn</code>, <code>city</code>, <code>country</code>:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php geoip:synchronize -d {DATABASE}</code></pre>
-<p>You can download/update all GeoLite2 databases at once, by running the following command:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php geoip:synchronize</code></pre>
-<p>The output should be similar to the below, displaying per row: <code>database identifier</code>: <code>previous build datetime</code> -&gt; <code>current build datetime</code>.</p>
-<pre class="highlight"><code class="language-shell">asn: n/a -&gt; 2024-11-01 02:29:44
-city: n/a -&gt; 2024-11-01 02:29:31
-country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
+    <h1 id="server-requirements">Server Requirements</h1>
+<p>For production, we highly recommend a *nix based system.</p>
+<h2 id="webserver">Webserver</h2>
+<h3 id="apache-22">Apache &gt;= 2.2</h3>
+<ul>
+<li>mod_rewrite</li>
+<li>.htaccess support <code>(AllowOverride All)</code></li>
+</ul>
 <blockquote>
-<p><code>n/a</code> will be replaced by the older version of the GeoLite2 databases when you run the command again.</p>
+<p>The repository includes a default <code>.htaccess</code> file in the <code>public</code> folder.</p>
 </blockquote>
-<p>Get help for this command by running:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php help geoip:synchronize</code></pre>
-<p><strong>Tip</strong>: If you set up the synchronizer command as a cronjob, you can add the <code>-q|--quiet</code> option, and it will output data only if an error has occurred.</p>
+<h3 id="nginx">Nginx</h3>
+<p>You need to convert the provided Apache related <code>.htaccess</code> file into Nginx configuration instructions.</p>
+<h2 id="php-82">PHP &gt;= 8.2</h2>
+<p>Both mod_php and FCGI (FPM) are supported.</p>
+<h2 id="required-settings-and-modules-extensions">Required Settings and Modules &amp; Extensions</h2>
+<ul>
+<li>memory_limit &gt;= 128M</li>
+<li>upload_max_filesize and post_max_size &gt;= 100M (depending on your data)</li>
+<li>mbstring</li>
+<li>CLI SAPI (for Cron Jobs)</li>
+<li>Composer (added to $PATH)</li>
+</ul>
+<h2 id="rdbms">RDBMS</h2>
+<ul>
+<li>Tested with MariaDB 10.11 LTS and MariaDB 11.4 LTS</li>
+<li>Tested with MySQL 8.4 LTS</li>
+</ul>
+<blockquote>
+<p>For MySQL 8.4 LTS be sure you have the below line in my.cnf</p>
+</blockquote>
+<pre class="highlight"><code class="language-text">mysql_native_password=ON</code></pre>
+<h2 id="recommended-extensions">Recommended extensions</h2>
+<ul>
+<li>opcache</li>
+<li>pdo_mysql or mysqli (if using MySQL or MariaDB as RDBMS)</li>
+<li>dom - if working with markup files structure (html, xml, etc)</li>
+<li>simplexml - working with xml files</li>
+<li>gd, exif - if working with images</li>
+<li>zlib, zip, bz2 - if compessing files</li>
+<li>curl (required if APIs are used)</li>
+<li>sqlite3 - for tests</li>
+</ul>
 
 
 
@@ -484,9 +532,9 @@ country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
         
         <li class="col text-nowrap text-md-start">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../doctrine-orm/">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../introduction/">
                     <i class="bi bi-chevron-left"></i>
-                    Doctrine ORM
+                    Introduction
                 </a>
             
         </li>
@@ -494,8 +542,8 @@ country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../test-the-installation/">
-                    Test the Installation
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../file-structure/">
+                    File Structure
                     <i class="bi bi-chevron-right"></i>
                 </a>
             

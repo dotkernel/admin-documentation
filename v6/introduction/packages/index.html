@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/installation/manage-geolite2/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v6/introduction/packages/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Manage Geolite2 - admin - Dotkernel Documentation</title>
+        <title>Packages - admin - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -137,13 +137,13 @@
         <div class="btn-group">
             <button type="button" class="btn dropdown-toggle bg-light" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false" id="version-selector-dropdown">
                 
-                    v5
+                    v6
                 
             </button>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="version-selector-dropdown">
                 
                 
-                <a href="../../../v6/introduction/introduction/" class="dropdown-item">
+                <a href="../introduction/" class="dropdown-item active">
                     
                         v6 (latest)
                     
@@ -151,7 +151,7 @@
                 
                 
                 
-                <a href="../../introduction/introduction/" class="dropdown-item active">
+                <a href="../../../v5/introduction/introduction/" class="dropdown-item">
                     
                         v5
                     
@@ -189,12 +189,12 @@
                         
                             
                             
-                                <li class="breadcrumb-item">Installation</li>
+                                <li class="breadcrumb-item">Overview</li>
                             
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Manage Geolite2</li>
+                    <li class="breadcrumb-item active" aria-current="page">Packages</li>
                 
             
         </ol>
@@ -219,10 +219,18 @@
 
                 
                 
+
+                    
+                    
+                
+            
+
+                
+                
                     
                         
 <li class="subnavigation__list-item ">
-    <a href="../../introduction/introduction/" class="subnavigation__link">Introduction</a>
+    <a href="../introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
                     
@@ -254,19 +262,19 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../introduction/server-requirements/" class="subnavigation__link">Server Requirements</a>
+    <a href="../server-requirements/" class="subnavigation__link">Server Requirements</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
+    <a href="../file-structure/" class="subnavigation__link">File Structure</a>
 </li>
 
         
         
-<li class="subnavigation__list-item ">
-    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Packages</a>
 </li>
 
         
@@ -310,43 +318,43 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../installation-intro/" class="subnavigation__link">Introduction</a>
+    <a href="../../installation/installation-intro/" class="subnavigation__link">Introduction</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../getting-started/" class="subnavigation__link">Getting Started</a>
+    <a href="../../installation/getting-started/" class="subnavigation__link">Getting Started</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../composer/" class="subnavigation__link">Composer</a>
+    <a href="../../installation/composer/" class="subnavigation__link">Composer</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../configuration-files/" class="subnavigation__link">Configuration Files</a>
+    <a href="../../installation/configuration-files/" class="subnavigation__link">Configuration Files</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../doctrine-orm/" class="subnavigation__link">Doctrine ORM</a>
-</li>
-
-        
-        
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Manage Geolite2</a>
+    <a href="../../installation/doctrine-orm/" class="subnavigation__link">Doctrine ORM</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../test-the-installation/" class="subnavigation__link">Test the Installation</a>
+    <a href="../../installation/manage-geolite2/" class="subnavigation__link">Manage Geolite2</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../installation/test-the-installation/" class="subnavigation__link">Test the Installation</a>
 </li>
 
         
@@ -418,14 +426,6 @@
                     
                 
             
-
-                
-                
-
-                    
-                    
-                
-            
         </ul>
     </div>
 
@@ -445,36 +445,46 @@
                     
                     
 
-    <div class="alert alert-danger alert-caution" role="alert">
-        <p class="mb-0">
-            The documentation you are viewing is for an older version of this component.<br>
-            <a href="../../..">Switch to the latest (v6) version.</a>
-        </p>
-    </div>
-
 
 
 
     
     
-<!--        <h2 class="chapter__headline text-black-50">Installation</h2>-->
+<!--        <h2 class="chapter__headline text-black-50">Overview</h2>-->
     
 
-    <h1 id="manage-the-geolite2-databases">Manage the GeoLite2 databases</h1>
-<p>You can download/update a specific GeoLite2 database, by running the following command where <code>{DATABASE}</code> can be <code>asn</code>, <code>city</code>, <code>country</code>:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php geoip:synchronize -d {DATABASE}</code></pre>
-<p>You can download/update all GeoLite2 databases at once, by running the following command:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php geoip:synchronize</code></pre>
-<p>The output should be similar to the below, displaying per row: <code>database identifier</code>: <code>previous build datetime</code> -&gt; <code>current build datetime</code>.</p>
-<pre class="highlight"><code class="language-shell">asn: n/a -&gt; 2024-11-01 02:29:44
-city: n/a -&gt; 2024-11-01 02:29:31
-country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
+    <h1 id="packages">Packages</h1>
 <blockquote>
-<p><code>n/a</code> will be replaced by the older version of the GeoLite2 databases when you run the command again.</p>
+<p>Dotkernel Admin 6.x will have full Laminas Service Manager 4 support once all dependencies do support it.
+Once Laminas Service Manager 4 is fully supported, Dotkernel Admin 6.x will be installable on PHP 8.4 as well.</p>
 </blockquote>
-<p>Get help for this command by running:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php help geoip:synchronize</code></pre>
-<p><strong>Tip</strong>: If you set up the synchronizer command as a cronjob, you can add the <code>-q|--quiet</code> option, and it will output data only if an error has occurred.</p>
+<ul>
+<li><code>dotkernel/dot-cache</code>:<code>^4.3</code> - Provides caching based on symfony/cache</li>
+<li><code>dotkernel/dot-cli</code>:<code>^3.9</code> - Build console applications based on laminas-cli</li>
+<li><code>dotkernel/dot-data-fixtures</code>:<code>^1.4</code> - Provides a CLI interface for listing &amp; executing doctrine data fixtures</li>
+<li><code>dotkernel/dot-dependency-injection</code>:<code>^1.2</code> - Dependency injection component using class attributes</li>
+<li><code>dotkernel/dot-errorhandler</code>:<code>^4.0</code> - Logging Error Handler for Middleware Applications</li>
+<li><code>dotkernel/dot-flashmessenger</code>:<code>^3.6</code> - Provides session messages between redirects</li>
+<li><code>dotkernel/dot-geoip</code>:<code>^3.9</code> - Retrieve information about an IP address based on maxmind/GeoIP2-php</li>
+<li><code>dotkernel/dot-helpers</code>:<code>^3.8</code> - Helper/Utility classes based on mezzio/mezzio-helpers</li>
+<li><code>dotkernel/dot-mail</code>:<code>^5.1</code> - Mail component based on laminas-mail</li>
+<li><code>dotkernel/dot-navigation</code>:<code>^3.5</code> - Allows you to easily define and parse menus inside templates, configuration based approach</li>
+<li><code>dotkernel/dot-rbac-guard</code>:<code>^3.6</code> - Defines authorization guards that authorize users for accessing certain parts of an application based on various criteria</li>
+<li><code>dotkernel/dot-router</code>:<code>^1.0</code> - Dotkernel component to build complex routes, based on mezzio/mezzio-fastroute</li>
+<li><code>dotkernel/dot-session</code>:<code>^5.7</code> - Dotkernel session component extending and customizing laminas-session</li>
+<li><code>dotkernel/dot-twigrenderer</code>:<code>^3.6</code> - Dotkernel component providing twig extensions and customizations</li>
+<li><code>friendsofphp/proxy-manager-lts</code>:<code>^1.0</code> - Fork of ocramius/proxy-manager</li>
+<li><code>laminas/laminas-component-installer</code>:<code>^3.5</code> - Composer plugin for injecting modules and configuration providers into application configuration</li>
+<li><code>laminas/laminas-config-aggregator</code>:<code>^1.18</code> - Lightweight library for collecting and merging configuration from different sources</li>
+<li><code>mezzio/mezzio</code>:<code>^3.21</code> - PSR-15 Middleware Microframework</li>
+<li><code>mezzio-authentication-oauth2</code>:<code>^2.11</code> - Middleware for Mezzio and PSR-7 applications providing an OAuth2 server for authentication.</li>
+<li><code>mezzio/mezzio-authorization-rbac</code>:<code>^1.9</code> - Mezzio authorization rbac adapter for laminas/laminas-permissions-rbac</li>
+<li><code>mezzio/mezzio-cors</code>:<code>^1.14</code> - CORS component for Mezzio and other PSR-15 middleware runners</li>
+<li><code>mezzio/mezzio-fastroute</code>:<code>^3.13</code> - FastRoute integration for Mezzio</li>
+<li><code>ramsey/uuid</code>:<code>^4.5</code> - Library for generating and working with universally unique identifiers (UUIDs).</li>
+<li><code>ramsey/uuid-doctrine</code>:<code>^2.1</code> - Use ramsey/uuid as a Doctrine field type</li>
+<li><code>roave/psr-container-doctrine</code>:<code>^5.2</code> - Doctrine Factories for PSR-11 Containers</li>
+</ul>
 
 
 
@@ -484,9 +494,9 @@ country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
         
         <li class="col text-nowrap text-md-start">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../doctrine-orm/">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../file-structure/">
                     <i class="bi bi-chevron-left"></i>
-                    Doctrine ORM
+                    File Structure
                 </a>
             
         </li>
@@ -494,8 +504,8 @@ country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../test-the-installation/">
-                    Test the Installation
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../../installation/installation-intro/">
+                    Introduction
                     <i class="bi bi-chevron-right"></i>
                 </a>
             

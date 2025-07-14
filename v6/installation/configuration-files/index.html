@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v5/installation/manage-geolite2/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v6/installation/configuration-files/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Manage Geolite2 - admin - Dotkernel Documentation</title>
+        <title>Configuration Files - admin - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -137,13 +137,13 @@
         <div class="btn-group">
             <button type="button" class="btn dropdown-toggle bg-light" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false" id="version-selector-dropdown">
                 
-                    v5
+                    v6
                 
             </button>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="version-selector-dropdown">
                 
                 
-                <a href="../../../v6/introduction/introduction/" class="dropdown-item">
+                <a href="../../introduction/introduction/" class="dropdown-item active">
                     
                         v6 (latest)
                     
@@ -151,7 +151,7 @@
                 
                 
                 
-                <a href="../../introduction/introduction/" class="dropdown-item active">
+                <a href="../../../v5/introduction/introduction/" class="dropdown-item">
                     
                         v5
                     
@@ -194,7 +194,7 @@
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Manage Geolite2</li>
+                    <li class="breadcrumb-item active" aria-current="page">Configuration Files</li>
                 
             
         </ol>
@@ -215,6 +215,14 @@
         <h5 class="subnavigation__title">Table of Contents</h5>
 
         <ul class="subnavigation__list">
+            
+
+                
+                
+
+                    
+                    
+                
             
 
                 
@@ -327,8 +335,8 @@
 
         
         
-<li class="subnavigation__list-item ">
-    <a href="../configuration-files/" class="subnavigation__link">Configuration Files</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Configuration Files</a>
 </li>
 
         
@@ -339,8 +347,8 @@
 
         
         
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Manage Geolite2</a>
+<li class="subnavigation__list-item ">
+    <a href="../manage-geolite2/" class="subnavigation__link">Manage Geolite2</a>
 </li>
 
         
@@ -418,14 +426,6 @@
                     
                 
             
-
-                
-                
-
-                    
-                    
-                
-            
         </ul>
     </div>
 
@@ -438,19 +438,23 @@
 
     
     
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+            
+                <li class="toc__entry">
+                    <a href="#mail" class="toc__link nav-link">Mail</a>
+                </li>
+            
+            </ul>
+        </div>
+    
 
                     
                 </div>
                 <div class="col-lg-9 main_docs">
                     
                     
-
-    <div class="alert alert-danger alert-caution" role="alert">
-        <p class="mb-0">
-            The documentation you are viewing is for an older version of this component.<br>
-            <a href="../../..">Switch to the latest (v6) version.</a>
-        </p>
-    </div>
 
 
 
@@ -460,21 +464,23 @@
 <!--        <h2 class="chapter__headline text-black-50">Installation</h2>-->
     
 
-    <h1 id="manage-the-geolite2-databases">Manage the GeoLite2 databases</h1>
-<p>You can download/update a specific GeoLite2 database, by running the following command where <code>{DATABASE}</code> can be <code>asn</code>, <code>city</code>, <code>country</code>:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php geoip:synchronize -d {DATABASE}</code></pre>
-<p>You can download/update all GeoLite2 databases at once, by running the following command:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php geoip:synchronize</code></pre>
-<p>The output should be similar to the below, displaying per row: <code>database identifier</code>: <code>previous build datetime</code> -&gt; <code>current build datetime</code>.</p>
-<pre class="highlight"><code class="language-shell">asn: n/a -&gt; 2024-11-01 02:29:44
-city: n/a -&gt; 2024-11-01 02:29:31
-country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
+    <h1 id="configuration-files">Configuration Files</h1>
+<h2 id="mail">Mail</h2>
 <blockquote>
-<p><code>n/a</code> will be replaced by the older version of the GeoLite2 databases when you run the command again.</p>
+<p>If you intend to send emails from your Frontend, make sure to fill in SMTP connection params.
+This will be covered in the next section.</p>
+<p><strong>optional</strong>: in order to run/create tests, duplicate <code>config/autoload/local.test.php.dist</code> as <code>config/autoload/local.test.php</code> this creates a new in-memory database that your tests will run on.</p>
 </blockquote>
-<p>Get help for this command by running:</p>
-<pre class="highlight"><code class="language-shell">php bin/cli.php help geoip:synchronize</code></pre>
-<p><strong>Tip</strong>: If you set up the synchronizer command as a cronjob, you can add the <code>-q|--quiet</code> option, and it will output data only if an error has occurred.</p>
+<p>If you want your application to send mail, add valid credentials to the following keys in <code>config/autoload/mail.global.php</code></p>
+<p>Under <code>message_options</code> key:</p>
+<ul>
+<li><code>from</code> - email address that will send emails (required)</li>
+<li><code>from_name</code> - organization name for signing sent emails (optional)</li>
+</ul>
+<blockquote>
+<p><strong>Please add at least 1 email address in order for contact message to reach someone</strong></p>
+</blockquote>
+<p>Also feel free to add as many CCs as you require under the <code>dot_mail</code> =&gt; <code>default</code> =&gt; <code>message_options</code> =&gt; <code>cc</code> key.</p>
 
 
 
@@ -484,9 +490,9 @@ country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
         
         <li class="col text-nowrap text-md-start">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../doctrine-orm/">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../composer/">
                     <i class="bi bi-chevron-left"></i>
-                    Doctrine ORM
+                    Composer
                 </a>
             
         </li>
@@ -494,8 +500,8 @@ country: n/a -&gt; 2024-11-01 02:25:09</code></pre>
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../test-the-installation/">
-                    Test the Installation
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../doctrine-orm/">
+                    Doctrine ORM
                     <i class="bi bi-chevron-right"></i>
                 </a>
             
