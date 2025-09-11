@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v6/tutorials/creating-a-module-via-dot-maker/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v6/tutorials/create-book-module-via-dot-maker/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Implementing a book module in Dotkernel Admin using dotkernel/dot-maker - admin - Dotkernel Documentation</title>
+        <title>Creating a book module using DotMaker - admin - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -201,8 +201,20 @@
                     <li class="breadcrumb-item"><a href="../../..">admin</a></li>
 
                     
+                        
+                            
+                            
+                        
+                    
+                        
+                            
+                            
+                                <li class="breadcrumb-item">Tutorials</li>
+                            
+                        
+                    
 
-                    <li class="breadcrumb-item active" aria-current="page">Implementing a book module in Dotkernel Admin using dotkernel/dot-maker</li>
+                    <li class="breadcrumb-item active" aria-current="page">Creating a book module using DotMaker</li>
                 
             
         </ol>
@@ -461,8 +473,8 @@
     <ul class="subnavigation__list collapse" id="tutorials">
         
         
-<li class="subnavigation__list-item ">
-    <a href="../create-book-module-via-dot-maker.md" class="subnavigation__link">Creating a book module using dotkernel/dot-maker</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Creating a book module using DotMaker</a>
 </li>
 
         
@@ -523,10 +535,10 @@
 
     
     
-<!--        <h2 class="chapter__headline text-black-50"></h2>-->
+<!--        <h2 class="chapter__headline text-black-50">Tutorials</h2>-->
     
 
-    <h1 id="implementing-a-book-module-in-dotkernel-admin-using-dotkerneldot-maker">Implementing a book module in Dotkernel Admin using dotkernel/dot-maker</h1>
+    <h1 id="implementing-a-book-module-in-dotkernel-admin-using-dotmaker">Implementing a book module in Dotkernel Admin using DotMaker</h1>
 <p>The <code>dotkernel/dot-maker</code> library can be used to programmatically generate project files and directories.
 It can be added to your API installation by following the <a href="https://docs.dotkernel.org/dot-maker/">official documentation</a>.</p>
 <h2 id="folder-and-files-structure">Folder and files structure</h2>
@@ -626,7 +638,7 @@ This will list all component types that can be created - for the purposes of thi
 <li><code>Allow deleting Books?</code> (Y): similar to the previous step, this step will generate multiple files:<ul>
 <li>The form used for creation <code>DeleteBookForm</code>, the input filter it uses <code>DeleteBookInputFilter</code> as well as a singular Input class it uses - <code>ConfirmDeleteBookInput</code></li>
 <li>The handler that fetches the form <code>GetDeleteBookFormHandler</code></li>
-<li>The handler for the POST action <code>PostDeleteTreeHandler</code></li>
+<li>The handler for the POST action <code>PostDeleteBookHandler</code></li>
 <li>The template file used for the form <code>delete-book-form.html.twig</code></li>
 </ul>
 </li>
@@ -644,7 +656,7 @@ as well as the <code>RoutesDelegator</code> class containing all the relevant ro
 </ul>
 <p>You will then be instructed to:</p>
 <ul>
-<li>Register the <code>ConfigProvider</code> classes by adding <code>Admin\Book\ConfigProvider::class</code> and <code>Core\Computer\ConfigProvider::class</code> to <code>config/config.php</code></li>
+<li>Register the <code>ConfigProvider</code> classes by adding <code>Admin\Book\ConfigProvider::class</code> and <code>Core\Book\ConfigProvider::class</code> to <code>config/config.php</code></li>
 <li>Register the new <code>Book</code> namespace by adding <code>"Admin\\Book\\": "src/Book/src/"</code> and <code>"Core\\Book\\": "src/Core/src/Book/src/"</code> to <code>composer.json</code> under the <code>autoload.psr-4</code> key.<ul>
 <li>After registering the namespace, run the following command to regenerate the autoloaded files, as notified by <code>dot-maker</code>:</li>
 </ul>
@@ -1425,6 +1437,25 @@ route.</p>
 
 
 
+
+    <nav>
+    <ul class="list-unstyled page-nav row w-100 mt-5 mb-3 pt-5 pb-3">
+        
+        <li class="col text-nowrap text-md-start">
+            
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../../how-to/csrf/">
+                    <i class="bi bi-chevron-left"></i>
+                    Set Up CSRF
+                </a>
+            
+        </li>
+
+        
+        <li class="col text-nowrap text-md-end pe-0">
+            
+        </li>
+    </ul>
+</nav>
 
 
 
