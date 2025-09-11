@@ -1,4 +1,4 @@
-# Implementing a book module in Dotkernel Admin using dotkernel/dot-maker
+# Implementing a book module in Dotkernel Admin using DotMaker
 
 The `dotkernel/dot-maker` library can be used to programmatically generate project files and directories.
 It can be added to your API installation by following the [official documentation](https://docs.dotkernel.org/dot-maker/).
@@ -106,7 +106,7 @@ Next you will be prompted to add the relevant components of a module, accepting 
     * `Allow deleting Books?` (Y): similar to the previous step, this step will generate multiple files:
         * The form used for creation `DeleteBookForm`, the input filter it uses `DeleteBookInputFilter` as well as a singular Input class it uses - `ConfirmDeleteBookInput`
         * The handler that fetches the form `GetDeleteBookFormHandler`
-        * The handler for the POST action `PostDeleteTreeHandler`
+        * The handler for the POST action `PostDeleteBookHandler`
         * The template file used for the form `delete-book-form.html.twig`
     * `Allow editing Books?` (Y): as the previous two cases, multiple files are generated on this step as well:
         * The form used for creation `EditBookForm` and the input filter it uses `EditBookInputFilter`
@@ -118,7 +118,7 @@ as well as the `RoutesDelegator` class containing all the relevant routes.
 
 You will then be instructed to:
 
-* Register the `ConfigProvider` classes by adding `Admin\Book\ConfigProvider::class` and `Core\Computer\ConfigProvider::class` to `config/config.php`
+* Register the `ConfigProvider` classes by adding `Admin\Book\ConfigProvider::class` and `Core\Book\ConfigProvider::class` to `config/config.php`
 * Register the new `Book` namespace by adding `"Admin\\Book\\": "src/Book/src/"` and `"Core\\Book\\": "src/Core/src/Book/src/"` to `composer.json` under the `autoload.psr-4` key.
     * After registering the namespace, run the following command to regenerate the autoloaded files, as notified by `dot-maker`:
 
