@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="description" content="DotKernel Admin">
+        
+        
+
+        
+        
+            
+        
+        <meta name="docsearch:version" content="6.0.0,latest">
+        <meta name="docsearch:language" content="en">
+        <meta name="docsearch:component" content="admin">
+
+        
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v6/tutorials/creating-a-module-via-dot-maker/">
+        
+        <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
+
+        <title>Implementing a book module in Dotkernel Admin using dotkernel/dot-maker - admin - Dotkernel Documentation</title>
+
+        <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
+        <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://docs.dotkernel.org/css/docs.css">
+        <script src="https://docs.dotkernel.org//js/bootstrap.js" defer></script>
+        <script src="https://docs.dotkernel.org//js/docs.js" defer></script>
+        <script src="https://docs.dotkernel.org//js/scripts.js" defer></script>
+    </head>
+    <body data-bs-spy="scroll" data-bs-target=".toc" data-bs-offset="100">
+
+        
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light dk-nav py-3" data-bs-theme="light">
+    <div class="container justify-content-between">
+        <div class="dk-nav-icon d-flex align-items-center">
+            <a class="navbar-brand" href="https://docs.dotkernel.org/">
+                <img alt="Dotkernel Logo" class="d-inline-block align-text-top" height="50"
+                     src="https://docs.dotkernel.org//img/dk_logomark_white.svg" width="45"/>
+            </a>
+
+            <div class="dk-nav-icon-items">
+                <span style="font-size: 12px; line-height: 13px">Dotkernel Documentation</span>
+
+                <div class="dropdown" data-bs-theme="light">
+                    <span class="fw-bold dropdown-toggle dk-pkg-name" data-bs-toggle="dropdown" aria-expanded="false">Admin</span>
+                    <ul class="dropdown-menu">
+                        
+                        <li class="dropdown-item ">
+                            <a href="https://docs.dotkernel.org/api-documentation/" class="nav-link d-flex gap-4 align-items-center">
+                                <img alt="Dotkernel Logo" class="d-inline-block align-text-top" height="50" src="https://docs.dotkernel.org/img/dk_logomark.svg" width="45" />
+                                <div>
+                                    <span class="fw-bold d-block">API</span>
+                                    <span>Dotkernel API</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="dropdown-item bg-light">
+                            <a href="https://docs.dotkernel.org/admin-documentation/" class="nav-link d-flex gap-4 align-items-center">
+                                <img alt="Dotkernel Logo" class="d-inline-block align-text-top" height="50" src="https://docs.dotkernel.org/img/dk_logomark.svg" width="45" />
+                                <div>
+                                    <span class="fw-bold d-block">Admin</span>
+                                    <span>Dotkernel Admin</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="dropdown-item ">
+                            <a href="https://docs.dotkernel.org/frontend-documentation/" class="nav-link d-flex gap-4 align-items-center">
+                                <img alt="Dotkernel Logo" class="d-inline-block align-text-top" height="50" src="https://docs.dotkernel.org/img/dk_logomark.svg" width="45" />
+                                <div>
+                                    <span class="fw-bold d-block">Frontend</span>
+                                    <span>Dotkernel Frontend</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="dropdown-item ">
+                            <a href="https://docs.dotkernel.org/light-documentation/" class="nav-link d-flex gap-4 align-items-center">
+                                <img alt="Dotkernel Logo" class="d-inline-block align-text-top" height="50" src="https://docs.dotkernel.org/img/dk_logomark.svg" width="45" />
+                                <div>
+                                    <span class="fw-bold d-block">Light</span>
+                                    <span>Dotkernel Light</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="dropdown-item ">
+                            <a href="https://docs.dotkernel.org/queue-documentation/" class="nav-link d-flex gap-4 align-items-center">
+                                <img alt="Dotkernel Logo" class="d-inline-block align-text-top" height="50" src="https://docs.dotkernel.org/img/dk_logomark.svg" width="45" />
+                                <div>
+                                    <span class="fw-bold d-block">Queue</span>
+                                    <span>Dotkernel Queue</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="dropdown-item ">
+                            <a href="https://docs.dotkernel.org/packages/" class="nav-link d-flex gap-4 align-items-center">
+                                <img alt="Dotkernel Logo" class="d-inline-block align-text-top" height="50" src="https://docs.dotkernel.org/img/dk_logomark.svg" width="45" />
+                                <div>
+                                    <span class="fw-bold d-block">Packages</span>
+                                    <span>Dotkernel packages</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="dropdown-item ">
+                            <a href="https://docs.dotkernel.org/development/" class="nav-link d-flex gap-4 align-items-center">
+                                <img alt="Dotkernel Logo" class="d-inline-block align-text-top" height="50" src="https://docs.dotkernel.org/img/dk_logomark.svg" width="45" />
+                                <div>
+                                    <span class="fw-bold d-block">Development</span>
+                                    <span>WSL2 Development Environment</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="dropdown-item ">
+                            <a href="https://docs.dotkernel.org/headless-documentation/" class="nav-link d-flex gap-4 align-items-center">
+                                <img alt="Dotkernel Logo" class="d-inline-block align-text-top" height="50" src="https://docs.dotkernel.org/img/dk_logomark.svg" width="45" />
+                                <div>
+                                    <span class="fw-bold d-block">Headless Platform</span>
+                                    <span>Dotkernel Headless Platform</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+<!--                <li class="nav-item">-->
+<!--                    <a href="#" class="nav-link fw-bold text-white" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal" title="Open search">-->
+<!--                        <i class="bi bi-search"></i> Search-->
+<!--                    </a>-->
+<!--                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-white" href="https://github.com/dotkernel/admin" title="Go to admin repository" target="_blank">
+                        <i class="bi bi-github"></i>
+                        GitHub
+                    </a>
+                </li>
+                <li class="nav-item">
+                    
+    
+    <div class="version-selector">
+        <div class="btn-group">
+            <button type="button" class="btn dropdown-toggle bg-light" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false" id="version-selector-dropdown">
+                
+                    v6
+                
+            </button>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="version-selector-dropdown">
+                
+                
+                <a href="../../introduction/introduction/" class="dropdown-item active">
+                    
+                        v6 (latest)
+                    
+                </a>
+                
+                
+                
+                <a href="../../../v5/introduction/introduction/" class="dropdown-item">
+                    
+                        v5
+                    
+                </a>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+        
+        <div class="container">
+    <nav aria-label="breadcrumb" class="nav_breadcrumb">
+        <ol class="breadcrumb">
+            
+                <li class="breadcrumb-item"><a href="https://docs.dotkernel.org/">Overview</a></li>
+                
+
+                
+                    <li class="breadcrumb-item"><a href="../../..">admin</a></li>
+
+                    
+
+                    <li class="breadcrumb-item active" aria-current="page">Implementing a book module in Dotkernel Admin using dotkernel/dot-maker</li>
+                
+            
+        </ol>
+    </nav>
+</div>
+
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 right_sidebar">
+                    
+                    
+    <div class="subnavigation hidden-print">
+<!--        <h4 class="subnavigation__title">-->
+<!--            <a href="../../..">admin</a>-->
+<!--        </h4>-->
+
+        <h5 class="subnavigation__title">Table of Contents</h5>
+
+        <ul class="subnavigation__list">
+            
+
+                
+                
+
+                    
+                    
+                
+            
+
+                
+                
+                    
+                        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/introduction/" class="subnavigation__link">Introduction</a>
+</li>
+
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#overview" role="button" aria-expanded="false" aria-controls="overview">
+        <span class="subnavigation__headline">Overview</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="overview">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/server-requirements/" class="subnavigation__link">Server Requirements</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
+</li>
+
+        
+    </ul>
+</li>
+
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#installation" role="button" aria-expanded="false" aria-controls="installation">
+        <span class="subnavigation__headline">Installation</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="installation">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../installation/installation-intro/" class="subnavigation__link">Introduction</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../installation/getting-started/" class="subnavigation__link">Getting Started</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../installation/composer/" class="subnavigation__link">Composer</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../installation/configuration-files/" class="subnavigation__link">Configuration Files</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../installation/doctrine-orm/" class="subnavigation__link">Doctrine ORM</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../installation/manage-geolite2/" class="subnavigation__link">Manage Geolite2</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../installation/test-the-installation/" class="subnavigation__link">Test the Installation</a>
+</li>
+
+        
+    </ul>
+</li>
+
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#how-to" role="button" aria-expanded="false" aria-controls="how-to">
+        <span class="subnavigation__headline">How to</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="how-to">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/creating-migrations/" class="subnavigation__link">Create Database Migrations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/creating-fixtures/" class="subnavigation__link">Create Database Fixtures</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/authorization/" class="subnavigation__link">Configure Authorizations</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/npm_commands/" class="subnavigation__link">Use NPM Commands</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/dependency-injection/" class="subnavigation__link">Inject Dependencies</a>
+</li>
+
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../../how-to/csrf/" class="subnavigation__link">Set Up CSRF</a>
+</li>
+
+        
+    </ul>
+</li>
+
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="subnavigation__list-item">
+    <a data-bs-toggle="collapse" href="#tutorials" role="button" aria-expanded="false" aria-controls="tutorials">
+        <span class="subnavigation__headline">Tutorials</span>
+    </a>
+    <ul class="subnavigation__list collapse" id="tutorials">
+        
+        
+<li class="subnavigation__list-item ">
+    <a href="../create-book-module-via-dot-maker.md" class="subnavigation__link">Creating a book module using dotkernel/dot-maker</a>
+</li>
+
+        
+    </ul>
+</li>
+
+                    
+                
+            
+        </ul>
+    </div>
+
+                    
+
+                    
+                    
+                    
+    
+
+    
+    
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+            
+                <li class="toc__entry">
+                    <a href="#folder-and-files-structure" class="toc__link nav-link">Folder and files structure</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#file-creation-and-contents" class="toc__link nav-link">File creation and contents</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#migrations" class="toc__link nav-link">Migrations</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#update-the-authorization-file" class="toc__link nav-link">Update the authorization file</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#checking-routes" class="toc__link nav-link">Checking routes</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+
+                    
+                </div>
+                <div class="col-lg-9 main_docs">
+                    
+                    
+
+
+
+
+    
+    
+<!--        <h2 class="chapter__headline text-black-50"></h2>-->
+    
+
+    <h1 id="implementing-a-book-module-in-dotkernel-admin-using-dotkerneldot-maker">Implementing a book module in Dotkernel Admin using dotkernel/dot-maker</h1>
+<p>The <code>dotkernel/dot-maker</code> library can be used to programmatically generate project files and directories.
+It can be added to your API installation by following the <a href="https://docs.dotkernel.org/dot-maker/">official documentation</a>.</p>
+<h2 id="folder-and-files-structure">Folder and files structure</h2>
+<p>The below files structure is what we will have at the end of this tutorial and is just an example,
+you can have multiple components such as event listeners, wrappers, etc.</p>
+<pre class="highlight"><code class="language-markdown">.
+└── src/
+    ├── Book/
+    │   ├── src/
+    │   │   ├── Handler/
+    │   │   │   ├── GetCreateBookFormHandler.php
+    │   │   │   ├── GetDeleteBookFormHandler.php
+    │   │   │   ├── GetEditBookFormHandler.php
+    │   │   │   ├── GetListBookHandler.php
+    │   │   │   ├── PostCreateBookHandler.php
+    │   │   │   ├── PostDeleteBookHandler.php
+    │   │   │   └── PostEditBookHandler.php
+    │   │   ├── InputFilter/
+    │   │   │   ├── Input/
+    │   │   │   │   └── ConfirmDeleteBookInput.php
+    │   │   │   ├── CreateBookInputFilter.php
+    │   │   │   ├── DeleteBookInputFilter.php
+    │   │   │   └── EditBookInputFilter.php
+    │   │   ├── Service/
+    │   │   │   ├── BookService.php
+    │   │   │   └── BookServiceInterface.php
+    │   │   ├── ConfigProvider.php
+    │   │   └── RoutesDelegator.php
+    │   └── templates/
+    │       └── book/
+    │           ├── create-book-form.html.twig
+    │           ├── delete-book-form.html.twig
+    │           ├── edit-book-form.html.twig
+    │           └── list-book.html.twig
+    └── Core/
+        └── src/
+            └── Book/
+                └── src/
+                    ├──Entity/
+                    │   └──Book.php
+                    ├──Repository/
+                    │   └──BookRepository.php
+                    └── ConfigProvider.php</code></pre>
+<ul>
+<li><code>src/Book/src/Handler/GetCreateBookFormHandler.php</code> – handler that reflects the GET action for the <code>CreateBookForm</code> class</li>
+<li><code>src/Book/src/Handler/GetDeleteBookFormHandler.php</code> – handler that reflects the GET action for the <code>DeleteBookForm</code> class</li>
+<li><code>src/Book/src/Handler/GetEditBookFormHandler.php</code> – handler that reflects the GET action for the <code>EditBookForm</code> class</li>
+<li><code>src/Book/src/Handler/GetListBookHandler.php</code> – handler that reflects the GET action for a configurable list of <code>Book</code> entities</li>
+<li><code>src/Book/src/Handler/PostCreateBookHandler.php</code> – handler that reflects the POST action for creating a <code>Book</code> entity</li>
+<li><code>src/Book/src/Handler/PostDeleteBookHandler.php</code> – handler that reflects the POST action for deleting a <code>Book</code> entity</li>
+<li><code>src/Book/src/Handler/PostEditBookHandler.php</code> – handler that reflects the POST action for editing a <code>Book</code> entity</li>
+<li><code>src/Book/src/InputFilter/Input/*</code> – input filters and validator configurations</li>
+<li><code>src/Book/src/InputFilter/CreateBookInputFilter.php</code> – input filters and validators</li>
+<li><code>src/Book/src/InputFilter/EditBookInputFilter.php</code> – input filters and validators</li>
+<li><code>src/Book/src/InputFilter/DeleteBookInputFilter.php</code> – input filters and validators</li>
+<li><code>src/Book/src/Service/BookService.php</code> – is a class or component responsible for performing a specific task or providing functionality to other parts of the application</li>
+<li><code>src/Book/src/Service/BookServiceInterface.php</code> – interface that reflects the publicly available methods in <code>BookService</code></li>
+<li><code>src/Book/src/ConfigProvider.php</code> – is a class that provides configuration for various aspects of the framework or application</li>
+<li><code>src/Book/src/RoutesDelegator.php</code> – a routes delegator is a delegator factory responsible for configuring routing middleware based on routing configuration provided by the application</li>
+<li><code>src/Book/templates/book/create-book-form.html.twig</code> – a Twig template for generating the view for the <code>CreateBookForm</code> class</li>
+<li><code>src/Book/templates/book/delete-book-form.html.twig</code> – a Twig template for generating the view for the <code>DeleteBookForm</code> class</li>
+<li><code>src/Book/templates/book/edit-book-form.html.twig</code> – a Twig template for generating the view for the <code>EditBookForm</code> class</li>
+<li><code>src/Book/templates/book/list-book.html.twig</code> – a Twig template for generating the view for the list of <code>Book</code> entities</li>
+<li><code>src/Core/src/Book/src/Entity/Book.php</code> – an entity refers to a PHP class that represents a persistent object or data structure</li>
+<li><code>src/Core/src/Book/src/Repository/BookRepository.php</code> – a repository is a class responsible for querying and retrieving entities from the database</li>
+<li><code>src/Core/src/Book/src/ConfigProvider.php</code> – is a class that provides configuration for Doctrine ORM</li>
+</ul>
+<blockquote>
+<p>Note that while this tutorial covers a standalone case, the <code>Core</code> module generated by default has the same structure as the one described in the
+<a href="https://docs.dotkernel.org/api-documentation/v6/tutorials/create-book-module-via-dot-maker/">Dotkernel API "Book" module</a>
+allowing use as part of the <a href="https://docs.dotkernel.org/headless-documentation/">Dotkernel Headless Platform</a></p>
+</blockquote>
+<h2 id="file-creation-and-contents">File creation and contents</h2>
+<p>After successfully installing <code>dot-maker</code>, it can be used to generate the Book module.
+Invoke <code>dot-maker</code> by executing <code>./vendor/bin/dot-maker</code> or via the optional script described in the documentation - <code>composer make</code>.
+This will list all component types that can be created - for the purposes of this tutorial, enter <code>module</code>:</p>
+<pre class="highlight"><code class="language-shell">./vendor/bin/dot-maker module</code></pre>
+<p>Type <code>book</code> when prompted to enter the module name.</p>
+<p>Next you will be prompted to add the relevant components of a module, accepting <code>y(es)</code>, <code>n(o)</code> and <code>Enter</code> (defaults to <code>yes</code>):</p>
+<blockquote>
+<p>Note that <code>dot-maker</code> will automatically split the files into the described <code>Api</code> and <code>Core</code> structure without a further input needed.</p>
+</blockquote>
+<ul>
+<li><code>Entity and repository</code> (Y): will generate the <code>Book.php</code> entity and the associated <code>BookRepository.php</code>.</li>
+<li><code>Service</code> and <code>service interface</code> (Y): will generate the <code>BookService</code> and the <code>BookServiceInterface</code>.</li>
+<li><code>Command</code>, followed by <code>middleware</code>(N): not necessary for the module described in this tutorial.</li>
+<li><code>Handler</code> (Y): this option is needed, and will further prompt you for the required actions.<ul>
+<li><code>Allow listing Books?</code> (Y): this will generate the <code>GetListBookHandler.php</code> class and the <code>list-book.html.twig</code>.</li>
+<li><code>Allow viewing Books?</code> (N): not necessary for the module described in this tutorial.</li>
+<li><code>Allow creating Books?</code> (Y): will generate all files used for creating <code>Book</code> entities, as follows:<ul>
+<li>The form used for creation <code>CreateBookForm</code> as well as the input filter it uses <code>CreateBookInputFilter</code></li>
+<li>The handler that fetches the form <code>GetCreateBookFormHandler</code></li>
+<li>The handler for the POST action <code>PostCreateBookHandler</code></li>
+<li>The template file used for the form <code>create-book-form.html.twig</code></li>
+</ul>
+</li>
+<li><code>Allow deleting Books?</code> (Y): similar to the previous step, this step will generate multiple files:<ul>
+<li>The form used for creation <code>DeleteBookForm</code>, the input filter it uses <code>DeleteBookInputFilter</code> as well as a singular Input class it uses - <code>ConfirmDeleteBookInput</code></li>
+<li>The handler that fetches the form <code>GetDeleteBookFormHandler</code></li>
+<li>The handler for the POST action <code>PostDeleteTreeHandler</code></li>
+<li>The template file used for the form <code>delete-book-form.html.twig</code></li>
+</ul>
+</li>
+<li><code>Allow editing Books?</code> (Y): as the previous two cases, multiple files are generated on this step as well:<ul>
+<li>The form used for creation <code>EditBookForm</code> and the input filter it uses <code>EditBookInputFilter</code></li>
+<li>The handler that fetches the form <code>GetEditBookFormHandler</code></li>
+<li>The handler for the POST action <code>PostEditBookHandler</code></li>
+<li>The template file used for the form <code>edit-book-form.html.twig</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Following this step, <code>dot-maker</code> will automatically generate the <code>ConfigProvider.php</code> classes for both the <code>Admin</code> and <code>Core</code> namespaces,
+as well as the <code>RoutesDelegator</code> class containing all the relevant routes.</li>
+</ul>
+<p>You will then be instructed to:</p>
+<ul>
+<li>Register the <code>ConfigProvider</code> classes by adding <code>Admin\Book\ConfigProvider::class</code> and <code>Core\Computer\ConfigProvider::class</code> to <code>config/config.php</code></li>
+<li>Register the new <code>Book</code> namespace by adding <code>"Admin\\Book\\": "src/Book/src/"</code> and <code>"Core\\Book\\": "src/Core/src/Book/src/"</code> to <code>composer.json</code> under the <code>autoload.psr-4</code> key.<ul>
+<li>After registering the namespace, run the following command to regenerate the autoloaded files, as notified by <code>dot-maker</code>:</li>
+</ul>
+</li>
+</ul>
+<pre class="highlight"><code class="language-shell">composer dump</code></pre>
+<ul>
+<li><code>dot-maker</code> will by default prompt you to generate the migrations for the new entity, but for the purpose of this tutorial
+  we will run this after updating the generated entity.</li>
+</ul>
+<p>The next step is filling in the required logic for the proposed flow of this module.
+While <code>dot-maker</code> does also include common logic in the relevant files, the tutorial adds custom functionality.
+As such, the following section will go over the files that require changes.</p>
+<ul>
+<li><code>src/Book/src/Handler/GetListBookHandler.php</code></li>
+</ul>
+<p>The overall class structure is fully generated, but for the purpose of this tutorial you will need to send the <code>indentifier</code> key
+to the template, as shown below:</p>
+<pre class="highlight"><code class="language-php">return new HtmlResponse(
+    $this-&gt;template-&gt;render('book::book-list', [
+        'pagination' =&gt; $this-&gt;bookService-&gt;getBooks($request-&gt;getQueryParams()),
+        'identifier' =&gt; SettingIdentifierEnum::IdentifierTableUserListSelectedColumns-&gt;value,
+    ])
+);</code></pre>
+<ul>
+<li><code>src/Core/src/App/src/Message.php</code></li>
+</ul>
+<p>The generated <code>PostCreateBookHandler</code>, <code>PostEditBookHandler</code> and <code>PostDeleteBookHandler</code> classes will by default make use
+of the <code>Message::BOOK_CREATED</code>, <code>Message::BOOK_UPDATED</code> and <code>Message::BOOK_DELETED</code> constants which you will have to manually add:</p>
+<pre class="highlight"><code class="language-php">public const BOOK_CREATED = 'Book created successfully.';
+public const BOOK_UPDATED = 'Book updated successfully.';
+public const BOOK_DELETED = 'Book deleted successfully.';</code></pre>
+<ul>
+<li><code>src/Core/src/Book/src/Entity/Book.php</code></li>
+</ul>
+<p>To keep things simple in this tutorial, our book will have three properties: <code>name</code>, <code>author</code> and <code>releaseDate</code>.
+Add the three properties and their getters and setters, while making sure to update the generated constructor method.</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+namespace Core\Book\Entity;
+
+use Core\App\Entity\AbstractEntity;
+use Core\App\Entity\TimestampsTrait;
+use Core\Book\Repository\BookRepository;
+use DateTimeImmutable;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: BookRepository::class)]
+#[ORM\Table("book")]
+#[ORM\HasLifecycleCallbacks]
+class Book extends AbstractEntity
+{
+    use TimestampsTrait;
+
+    #[ORM\Column(name: "name", type: "string", length: 100)]
+    protected string $name;
+
+    #[ORM\Column(name: "author", type: "string", length: 100)]
+    protected string $author;
+
+    #[ORM\Column(name: "releaseDate", type: "datetime_immutable")]
+    protected DateTimeImmutable $releaseDate;
+
+    public function __construct(string $name, string $author, DateTimeImmutable $releaseDate)
+    {
+        parent::__construct();
+
+        $this-&gt;setName($name);
+        $this-&gt;setAuthor($author);
+        $this-&gt;setReleaseDate($releaseDate);
+    }
+
+    public function getName(): string
+    {
+        return $this-&gt;name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this-&gt;name = $name;
+
+        return $this;
+    }
+
+    public function getAuthor(): string
+    {
+        return $this-&gt;author;
+    }
+
+    public function setAuthor(string $author): self
+    {
+        $this-&gt;author = $author;
+
+        return $this;
+    }
+
+    public function getReleaseDate(): DateTimeImmutable
+    {
+        return $this-&gt;releaseDate;
+    }
+
+    public function setReleaseDate(DateTimeImmutable $releaseDate): self
+    {
+        $this-&gt;releaseDate = $releaseDate;
+
+        return $this;
+    }
+
+    public function getArrayCopy(): array
+    {
+        return [
+            'uuid'        =&gt; $this-&gt;getUuid()-&gt;toString(),
+            'name'        =&gt; $this-&gt;getName(),
+            'author'      =&gt; $this-&gt;getAuthor(),
+            'releaseDate' =&gt; $this-&gt;getReleaseDate(),
+        ];
+    }
+}
+</code></pre>
+<p>The <code>BookService</code> class will require minor modifications for the <code>getBooks()</code> and <code>saveBook()</code> methods, to add the custom properties added in the previous step.
+The class should look like the following after updating the methods.</p>
+<ul>
+<li><code>src/Book/src/Service/BookService.php</code></li>
+</ul>
+<pre class="highlight"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+namespace Admin\Book\Service;
+
+use Admin\App\Exception\NotFoundException;
+use Core\App\Helper\Paginator;
+use Core\App\Message;
+use Core\Book\Entity\Book;
+use Core\Book\Repository\BookRepository;
+use DateTimeImmutable;
+use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
+use Dot\DependencyInjection\Attribute\Inject;
+
+use function array_key_exists;
+use function in_array;
+
+class BookService implements BookServiceInterface
+{
+    #[Inject(
+        BookRepository::class,
+    )]
+    public function __construct(
+        protected BookRepository $bookRepository,
+    ) {
+    }
+
+    public function getBookRepository(): BookRepository
+    {
+        return $this-&gt;bookRepository;
+    }
+
+    public function deleteBook(
+        Book $book,
+    ): void {
+        $this-&gt;bookRepository-&gt;deleteResource($book);
+    }
+
+    /**
+     * @param array&lt;non-empty-string, mixed&gt; $params
+     */
+    public function getBooks(
+        array $params,
+    ): array {
+        $filters = $params['filters'] ?? [];
+        $params  = Paginator::getParams($params, 'book.created');
+
+       $sortableColumns = [
+            'book.name',
+            'book.author',
+            'book.releaseDate',
+            'book.created',
+            'book.updated',
+        ];
+        if (! in_array($params['sort'], $sortableColumns, true)) {
+            $params['sort'] = 'book.created';
+        }
+
+        $paginator = new DoctrinePaginator($this-&gt;bookRepository-&gt;getBooks($params, $filters)-&gt;getQuery());
+
+        return Paginator::wrapper($paginator, $params, $filters);
+    }
+
+    /**
+     * @param array&lt;non-empty-string, mixed&gt; $data
+     * @throws \DateMalformedStringException
+     */
+    public function saveBook(
+        array $data,
+        ?Book $book = null,
+    ): Book {
+        if (! $book instanceof Book) {
+            $book = new Book(
+                $data['name'],
+                $data['author'],
+                new DateTimeImmutable($data['releaseDate'])
+            );
+        } else {
+            if (array_key_exists('name', $data) &amp;&amp; $data['name'] !== null) {
+                $book-&gt;setName($data['name']);
+            }
+
+            if (array_key_exists('author', $data) &amp;&amp; $data['author'] !== null) {
+                $book-&gt;setAuthor($data['author']);
+            }
+
+            if (array_key_exists('releaseDate', $data) &amp;&amp; $data['releaseDate'] !== null) {
+                $book-&gt;setReleaseDate(new DateTimeImmutable($data['releaseDate']));
+            }
+        }
+
+        $this-&gt;bookRepository-&gt;saveResource($book);
+
+        return $book;
+    }
+
+    /**
+     * @throws NotFoundException
+     */
+    public function findBook(
+        string $uuid,
+    ): Book {
+        $book = $this-&gt;bookRepository-&gt;find($uuid);
+        if (! $book instanceof Book) {
+            throw new NotFoundException(Message::resourceNotFound('Book'));
+        }
+
+        return $book;
+    }
+}
+</code></pre>
+<p>When creating a book, we will need some validators, so we will create a form and the input filter that will be used to validate the data received in the request.</p>
+<ul>
+<li><code>src/Book/src/Form/CreateBookForm.php</code></li>
+</ul>
+<p>The default <code>Csrf</code> and <code>Submit</code> Inputs will be automatically added to the <code>CreateBookForm.php</code> class that <code>dot-maker</code> will create for you.
+For this tutorial, you will have to add the custom inputs, by copying the following code in the <code>init</code> function of <code>CreateBookForm</code>:</p>
+<pre class="highlight"><code class="language-php">$this-&gt;add(
+    (new Text('name'))
+        -&gt;setLabel('Name')
+        -&gt;setAttribute('required', true)
+)-&gt;add(
+    (new Text('author'))
+        -&gt;setLabel('Author')
+        -&gt;setAttribute('required', true)
+)-&gt;add(
+    (new Date('releaseDate'))
+        -&gt;setLabel('Release Date')
+        -&gt;setAttribute('required', true)
+);</code></pre>
+<ul>
+<li><code>src/Book/src/Form/EditBookForm.php</code></li>
+</ul>
+<p>A similar sequence is used for the <code>init</code> function of <code>EditBookForm</code>, with the <code>required</code> attributes removed,
+as leaving the inputs empty is allowed for keeping the original data:</p>
+<pre class="highlight"><code class="language-php">$this-&gt;add(
+    (new Text('name'))
+        -&gt;setLabel('Name')
+)-&gt;add(
+    (new Text('author'))
+        -&gt;setLabel('Author')
+)-&gt;add(
+    (new Date('releaseDate'))
+        -&gt;setLabel('Release Date')
+);</code></pre>
+<p>By creating a <code>module</code> with <code>dot-maker</code>, separate inputs will not be created.
+However, you can still generate them as using these steps:</p>
+<ul>
+<li>Run the following to start adding <code>Input</code> classes:</li>
+</ul>
+<pre class="highlight"><code class="language-shell">./vendor/bin/dot-maker input</code></pre>
+<ul>
+<li>When prompted, enter the names <code>Author</code>, <code>Name</code> and <code>ReleaseDate</code> one by one to generate the classes.</li>
+<li>The resulting <code>AuthorInput.php</code>, <code>NameInput.php</code> and <code>ReleaseDateInput.php</code> classes require no further changes for the tutorial use case.</li>
+</ul>
+<p>The module creation process has generated the parent input filters <code>CreateBookInputFilter.php</code> and <code>EditBookInputFilter.php</code> containing only the default <code>CsrfInput</code>.
+Now we add all the inputs together in the parent input filters' <code>init</code> functions, as below:</p>
+<ul>
+<li><code>src/Book/src/InputFilter/CreateBookInputFilter.php</code> and <code>src/Book/src/InputFilter/EditBookInputFilter.php</code></li>
+</ul>
+<pre class="highlight"><code class="language-php">$this-&gt;add(new NameInput('name'))
+    -&gt;add(new AuthorInput('author'))
+    -&gt;add(new ReleaseDateInput('releaseDate'));</code></pre>
+<p>We create separate <code>Input</code> files to demonstrate their reusability and obtain a clean <code>InputFilter</code>s, but you could have all the inputs created directly in the <code>InputFilter</code> like this:</p>
+<blockquote>
+<p>Note that <code>dot-maker</code> will not generate inputs in the <code>init</code> method, so the following are to be added by hand before the default <code>CsrfInput</code>, <strong>if</strong> going for this approach.</p>
+</blockquote>
+<p><code>CreateBookInputFilter</code></p>
+<pre class="highlight"><code class="language-php">$nameInput = new Input('name');
+$nameInput-&gt;setRequired(true);
+
+$nameInput-&gt;getFilterChain()
+    -&gt;attachByName(StringTrim::class)
+    -&gt;attachByName(StripTags::class);
+
+$nameInput-&gt;getValidatorChain()
+    -&gt;attachByName(NotEmpty::class, [
+        'message' =&gt; Message::VALIDATOR_REQUIRED_FIELD,
+    ], true);
+
+$this-&gt;add($nameInput);
+
+$authorInput = new Input('author');
+$authorInput-&gt;setRequired(true);
+
+$authorInput-&gt;getFilterChain()
+    -&gt;attachByName(StringTrim::class)
+    -&gt;attachByName(StripTags::class);
+
+$authorInput-&gt;getValidatorChain()
+    -&gt;attachByName(NotEmpty::class, [
+        'message' =&gt; Message::VALIDATOR_REQUIRED_FIELD,
+    ], true);
+
+$this-&gt;add($authorInput);
+
+$releaseDateInput = new Input('releaseDate');
+$releaseDateInput-&gt;setRequired(true);
+
+$releaseDateInput-&gt;getFilterChain()
+    -&gt;attachByName(StringTrim::class)
+    -&gt;attachByName(StripTags::class);
+
+$releaseDateInput-&gt;getValidatorChain()
+    -&gt;attachByName(NotEmpty::class, [
+        'message' =&gt; Message::VALIDATOR_REQUIRED_FIELD,
+    ], true);
+
+$this-&gt;add($releaseDateInput);</code></pre>
+<p><code>EditBookInputFilter</code></p>
+<pre class="highlight"><code class="language-php">$nameInput = new Input('name');
+$nameInput-&gt;setRequired(false);
+
+$nameInput-&gt;getFilterChain()
+    -&gt;attachByName(StringTrim::class)
+    -&gt;attachByName(StripTags::class);
+
+$nameInput-&gt;getValidatorChain()
+    -&gt;attachByName(NotEmpty::class, [
+        'message' =&gt; Message::VALIDATOR_REQUIRED_FIELD,
+    ], true);
+
+$this-&gt;add($nameInput);
+
+$authorInput = new Input('author');
+$authorInput-&gt;setRequired(false);
+
+$authorInput-&gt;getFilterChain()
+    -&gt;attachByName(StringTrim::class)
+    -&gt;attachByName(StripTags::class);
+
+$authorInput-&gt;getValidatorChain()
+    -&gt;attachByName(NotEmpty::class, [
+        'message' =&gt; Message::VALIDATOR_REQUIRED_FIELD,
+    ], true);
+
+$this-&gt;add($authorInput);
+
+$releaseDateInput = new Input('releaseDate');
+$releaseDateInput-&gt;setRequired(false);
+
+$releaseDateInput-&gt;getFilterChain()
+    -&gt;attachByName(StringTrim::class)
+    -&gt;attachByName(StripTags::class);
+
+$releaseDateInput-&gt;getValidatorChain()
+    -&gt;attachByName(NotEmpty::class, [
+        'message' =&gt; Message::VALIDATOR_REQUIRED_FIELD,
+    ], true);
+
+$this-&gt;add($releaseDateInput);</code></pre>
+<ul>
+<li><code>src/App/assets/js/components/_book.js</code></li>
+</ul>
+<p>As the listing pages make use of JavaScript, you will need to manually create your module specific <code>_book.js</code> file and register
+it in <code>webpack.config.js</code> for building.</p>
+<p>You may copy this sample <code>_book.js</code> file to the <code>src/App/assets/js/components/</code> directory:</p>
+<pre class="highlight"><code class="language-js">$(document).ready(() =&gt; {
+    const request = async(url, options = {}) =&gt; {
+        try {
+            const response = await fetch(url, options);
+            const body     = await response.text();
+            if (! response.ok) {
+                throw {
+                    data: body,
+                }
+            }
+            return body;
+        } catch (error) {
+            throw {
+                data: error.data,
+            }
+        }
+    }
+
+    $("#add-book-modal").on('show.bs.modal', function () {
+        const modal = $(this);
+        request(modal.data('add-url'), {
+            method: 'GET'
+        }).then(data =&gt; {
+            modal.find('.modal-dialog').html(data);
+        }).catch(error =&gt; {
+            console.error(error);
+            location.reload();
+        });
+    }).on('hidden.bs.modal', function () {
+        const modal = $(this);
+        modal.find('.modal-dialog').find('.modal-body').html('Loading...');
+    });
+
+    $("#edit-book-modal").on('show.bs.modal', function () {
+        const selectedElement = $('.ui-checkbox:checked');
+        if (selectedElement.length !== 1) {
+            return;
+        }
+
+        const modal = $(this);
+        request(selectedElement.data('edit-url'), {
+            method: 'GET'
+        }).then(data =&gt; {
+            modal.find('.modal-dialog').html(data);
+        }).catch(error =&gt; {
+            console.error(error);
+            location.reload();
+        });
+    }).on('hidden.bs.modal', function () {
+        const modal = $(this);
+        modal.find('.modal-dialog').find('.modal-body').html('Loading...');
+    });
+
+    $("#delete-book-modal").on('show.bs.modal', function () {
+        const selectedElement = $('.ui-checkbox:checked');
+        if (selectedElement.length !== 1) {
+            return;
+        }
+
+        const modal = $(this);
+        request(selectedElement.data('delete-url'), {
+            method: 'GET'
+        }).then(data =&gt; {
+            modal.find('.modal-dialog').html(data);
+        }).catch(error =&gt; {
+            console.error(error);
+            location.reload();
+        });
+    }).on('hidden.bs.modal', function () {
+        const modal = $(this);
+        modal.find('.modal-dialog').find('.modal-body').html('Loading...');
+    });
+
+    $(document).on("submit", "#book-form", (event) =&gt; {
+        event.preventDefault();
+
+        const form = event.target;
+        if (! form.checkValidity()) {
+            event.stopPropagation();
+            form.classList.add('was-validated');
+            return;
+        }
+
+        const modal = $(form.closest('.modal'));
+        request(form.getAttribute('action'), {
+            method: 'POST',
+            body: new FormData(form),
+        }).then(() =&gt; {
+            location.reload();
+        }).catch(error =&gt; {
+            modal.find('.modal-dialog').html(error.data);
+        });
+    });
+
+    $(document).on("submit", "#delete-book-form", (event) =&gt; {
+        event.preventDefault();
+
+        const form = event.target;
+        if (! form.checkValidity()) {
+            event.stopPropagation();
+            form.classList.add('was-validated');
+            return;
+        }
+
+        const modal = $(form.closest('.modal'));
+        request(form.getAttribute('action'), {
+            method: 'POST',
+            body: new FormData(form),
+        }).then(() =&gt; {
+            location.reload();
+        }).catch(error =&gt; {
+            modal.find('.modal-dialog').html(error.data);
+        });
+    });
+});</code></pre>
+<p>Next you have to register the file in the <code>entries</code> array of <code>webpack.config.js</code> by adding the following key:</p>
+<pre class="highlight"><code class="language-js">book: [
+    './App/assets/js/components/_book.js'
+]</code></pre>
+<p>To make use of the newly added scripts, make sure to build your assets by running the command:</p>
+<pre class="highlight"><code class="language-shell">npm run prod</code></pre>
+<ul>
+<li><code>src/Book/templates/book/*</code></li>
+</ul>
+<p>The next step is creating the page structures in the <code>.twig</code> files <code>dot-maker</code> automatically generated for you.</p>
+<p>For this tutorial you may copy the following default page layout in the <code>list-book.html.twig</code>:</p>
+<pre class="highlight"><code class="language-html">{% from '@partial/macros.html.twig' import sortableColumn %}
+
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Manage books{% endblock %}
+
+{% block content %}
+&lt;div class="container-fluid"&gt;
+    &lt;h4 class="c-grey-900 mT-10 mB-30"&gt;Manage books&lt;/h4&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-md-12"&gt;
+            &lt;div class="bgc-white bd bdrs-3 pL-10 pR-20 pT-20 pB-3 mB-20"&gt;
+                &lt;form class="row g-3" method="get" action="{{ path('book::list-book') }}"&gt;
+                    &lt;input type="hidden" name="offset" value="0" /&gt;
+                    &lt;input type="hidden" name="limit" value="{{ pagination.limit }}" /&gt;
+                    &lt;input type="hidden" name="sort" value="{{ pagination.sort }}" /&gt;
+                    &lt;input type="hidden" name="order" value="{{ pagination.dir }}" /&gt;
+                    &lt;div class="col-sm-auto btn-group-sm"&gt;
+                        &lt;button type="button" class="btn btn-default btn-sm" id="btn-add-resource" data-bs-toggle="modal" data-bs-target="#add-book-modal"&gt;
+                            &lt;i class="fa fa-plus"&gt;&lt;/i&gt;
+                        &lt;/button&gt;
+                        &lt;button type="button" class="btn btn-default btn-sm" id="btn-edit-resource" data-bs-toggle="modal" data-bs-target="#edit-book-modal" disabled&gt;
+                            &lt;i class="fa fa-pencil"&gt;&lt;/i&gt;
+                        &lt;/button&gt;
+                        &lt;button type="button" class="btn btn-default btn-sm" id="btn-delete-resource" data-bs-toggle="modal" data-bs-target="#delete-book-modal" disabled&gt;
+                            &lt;i class="fa fa-trash-o"&gt;&lt;/i&gt;
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                    &lt;div class="col-sm-auto ms-auto"&gt;
+                        &lt;div class="dropdown" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Toggle columns"&gt;
+                            &lt;button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"&gt;
+                                &lt;i class="fa fa-columns"&gt;&lt;/i&gt;
+                            &lt;/button&gt;
+                            &lt;ul class="dropdown-menu" id="column-selector"&gt;&lt;/ul&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="col-md-12"&gt;
+            &lt;div class="table-responsive"&gt;
+                &lt;table id="book-table" class="table table-bordered table-hover table-striped table-light" style="display: none;"&gt;
+                    &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;th class="column-book-uuid"&gt;&lt;/th&gt;
+                        &lt;th class="column-book-name"&gt;
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.name', 'Name') }}
+                        &lt;/th&gt;
+                        &lt;th class="column-book-author"&gt;
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.author', 'Author') }}
+                        &lt;/th&gt;
+                        &lt;th class="column-book-release-date"&gt;
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.release-date', 'Release Date') }}
+                        &lt;/th&gt;
+                        &lt;th class="column-book-created"&gt;
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.created', 'Created') }}
+                        &lt;/th&gt;
+                        &lt;th class="column-book-updated"&gt;
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.updated', 'Updated') }}
+                        &lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                    {% for book in pagination.items %}
+                    &lt;tr class="table-row"&gt;
+                        &lt;td class="column-book-uuid" style="width: 1vw;"&gt;
+                            &lt;label&gt;
+                                &lt;input type="checkbox"
+                                       class="checkbox ui-checkbox"
+                                       value="{{ book.uuid }}"
+                                       data-edit-url="{{ path('book::edit-book', {uuid: book.uuid}) }}"
+                                       data-delete-url="{{ path('book::delete-book', {uuid: book.uuid}) }}"
+                                &gt;
+                            &lt;/label&gt;
+                        &lt;/td&gt;
+                        &lt;td class="column-book-name"&gt;{{ book.name }}&lt;/td&gt;
+                        &lt;td class="column-book-author"&gt;{{ book.author }}&lt;/td&gt;
+                        &lt;td class="column-book-release-date"&gt;{{ book.releaseDate|date('Y-m-d') }}&lt;/td&gt;
+                        &lt;td class="column-book-created"&gt;{{ book.getCreated()|date('Y-m-d H:i:s') }}&lt;/td&gt;
+                        &lt;td class="column-book-updated"&gt;{{ book.getUpdated() is not null ? book.getUpdated()|date('Y-m-d H:i:s') : '' }}&lt;/td&gt;
+                    &lt;/tr&gt;
+                    {% endfor %}
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+                {% if pagination.isOutOfBounds %}
+                &lt;div class="alert alert-warning text-center text-black fw-bold" role="alert"&gt;
+                    Out of bounds! Return to
+                    &lt;a href="{{ path('book::list-book', {}, pagination.queryParams|merge({offset: pagination.lastOffset})) }}"&gt;page {{ pagination.lastPage }}&lt;/a&gt;
+                &lt;/div&gt;
+                {% endif %}
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="col-md-12"&gt;
+            &lt;div class="bgc-white bd bdrs-3 p-20 mB-20"&gt;
+                {{ include('@partial/pagination.html.twig', {pagination: pagination, path: 'book::list-book'}, false) }}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="modal fade" id="add-book-modal" tabindex="-1" aria-labelledby="add-book-modal-content" aria-hidden="true" data-add-url="{{ path('book::create-book') }}"&gt;
+        &lt;div class="modal-dialog"&gt;
+            &lt;div class="modal-content"&gt;
+                &lt;div class="modal-header"&gt;
+                    &lt;h5 class="modal-title" id="add-book-modal-content"&gt;Create book&lt;/h5&gt;
+                    &lt;button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"&gt;&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class="modal-body"&gt;Loading...&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="modal fade" id="edit-book-modal" tabindex="-1" aria-labelledby="edit-book-modal-content" aria-hidden="true"&gt;
+        &lt;div class="modal-dialog"&gt;
+            &lt;div class="modal-content"&gt;
+                &lt;div class="modal-header"&gt;
+                    &lt;h5 class="modal-title" id="edit-book-modal-content"&gt;Edit book&lt;/h5&gt;
+                    &lt;button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"&gt;&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class="modal-body"&gt;Loading...&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="modal fade" id="delete-book-modal" tabindex="-1" aria-labelledby="delete-book-modal-content" aria-hidden="true"&gt;
+        &lt;div class="modal-dialog"&gt;
+            &lt;div class="modal-content"&gt;
+                &lt;div class="modal-header"&gt;
+                    &lt;h5 class="modal-title" id="delete-book-modal-content"&gt;Delete book&lt;/h5&gt;
+                    &lt;button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"&gt;&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class="modal-body"&gt;Loading...&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+&lt;script&gt;
+    const tableId = '#book-table';
+    const storeSettingsUrl = '{{ path('setting::store-setting', {identifier: identifier}) }}';
+    const getSettingsUrl = '{{ path('setting::view-setting', {identifier: identifier}) }}';
+&lt;/script&gt;
+&lt;script src="{{ asset('js/table_settings.js') }}" defer&gt;&lt;/script&gt;
+&lt;script src="{{ asset('js/book.js') }}" defer&gt;&lt;/script&gt;
+{% endblock %}</code></pre>
+<p>To add books, a modal must be generated based on the <code>CreateBookForm.php</code> class.
+You may copy the following structure in <code>create-book-form.html.twig</code>:</p>
+<pre class="highlight"><code class="language-html">{% from '@partial/macros.html.twig' import inputElement, submitElement %}
+
+&lt;div class="modal-content"&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h5 class="modal-title" id="add-book-modal-content"&gt;Create book&lt;/h5&gt;
+    &lt;button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"&gt;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    {{ form().openTag(form)|raw }}
+    {% set fieldsets = form.getFieldsets() %}
+
+    {{ inputElement(form.get('name')) }}
+    {{ inputElement(form.get('author')) }}
+    {{ inputElement(form.get('releaseDate')) }}
+
+    {{ inputElement(form.get('createBookCsrf')) }}
+    {{ submitElement(form.get('submit')) }}
+    {{ form().closeTag()|raw }}
+
+    {% if messages is defined and messages is iterable %}
+    {% for type, message in messages %}
+    &lt;div class="mt-3 alert alert-{% if type == 'success' %}success{% elseif type == 'warning' %}warning{% else %}danger{% endif %}" role="alert"&gt;{{ message }}&lt;/div&gt;
+    {% endfor %}
+    {% endif %}
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>For the "edit" action, use the following modal in the <code>edit-book-form.html.twig</code>:</p>
+<pre class="highlight"><code class="language-html">{% from '@partial/macros.html.twig' import inputElement, submitElement %}
+
+&lt;div class="modal-content"&gt;
+    &lt;div class="modal-header"&gt;
+        &lt;h5 class="modal-title" id="edit-book-modal-content"&gt;Edit book&lt;/h5&gt;
+        &lt;button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body"&gt;
+        {{ form().openTag(form)|raw }}
+        {% set fieldsets = form.getFieldsets() %}
+
+        {{ inputElement(form.get('name')) }}
+        {{ inputElement(form.get('author')) }}
+        {{ inputElement(form.get('releaseDate')) }}
+
+        {{ inputElement(form.get('editBookCsrf')) }}
+        {{ submitElement(form.get('submit')) }}
+        {{ form().closeTag()|raw }}
+
+        {% if messages is defined and messages is iterable %}
+            {% for type, message in messages %}
+                &lt;div class="mt-3 alert alert-{% if type == 'success' %}success{% elseif type == 'warning' %}warning{% else %}danger{% endif %}" role="alert"&gt;{{ message }}&lt;/div&gt;
+            {% endfor %}
+        {% endif %}
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>Add the following structure to the <code>delete-book-form.html.twig</code> file:</p>
+<pre class="highlight"><code class="language-html">&lt;div class="modal-content"&gt;
+    &lt;div class="modal-header"&gt;
+        &lt;h5 class="modal-title" id="delete-book-modal-content"&gt;Delete book&lt;/h5&gt;
+        &lt;button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body"&gt;
+        {{ form().openTag(form)|raw }}
+        &lt;div class="row"&gt;book
+            &lt;div class="col-md-12"&gt;
+                &lt;p&gt;Are you sure you want to delete the following book: &lt;span id="book" class="fw-bold"&gt;{{ book.name }} by {{ book.author }}&lt;/span&gt; ?&lt;/p&gt;
+                &lt;div class="form-check"&gt;
+                    {{ formElement(form.get('confirmation')) }}
+                    &lt;label class="form-check-label" for="confirmation"&gt;Yes, I want to delete &lt;span class="fw-bold"&gt;{{ book.name }} by {{ book.author }}&lt;/span&gt;&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class="d-flex justify-content-end"&gt;
+                    {{ formElement(form.get('submit')) }}
+                    {{ formElement(form.get('deleteBookCsrf')) }}
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        {{ form().closeTag()|raw }}
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<ul>
+<li><code>/config/autoload/navigation.global.php</code></li>
+</ul>
+<p>Lastly, link the new module to the admin side-menu by adding the following array to <code>navigation.global.php</code>,
+under the <code>dot_navigation.containers.main_menu.options.items</code> key:</p>
+<pre class="highlight"><code class="language-php">[
+    'options' =&gt; [
+        'label' =&gt; 'Book',
+        'route' =&gt; [
+            'route_name' =&gt; 'book::list-book',
+        ],
+        'icon'  =&gt; 'c-blue-500 fa fa-book',
+    ],
+],</code></pre>
+<h2 id="migrations">Migrations</h2>
+<p>All changes are done, so at this point the migration file can be generated to create the associated table for the <code>Book</code> entity.</p>
+<blockquote>
+<p>You can check the mapping files by running:</p>
+</blockquote>
+<pre class="highlight"><code class="language-shell">php ./bin/doctrine orm:validate-schema</code></pre>
+<blockquote>
+<p>Generate the migration files by running:</p>
+</blockquote>
+<pre class="highlight"><code class="language-shell">php ./vendor/bin/doctrine-migrations diff</code></pre>
+<p>This will check for differences between your entities and database structure and create migration files if necessary, in <code>src/Core/src/App/src/Migration</code>.</p>
+<p>To execute the migrations run:</p>
+<pre class="highlight"><code class="language-shell">php ./vendor/bin/doctrine-migrations migrate</code></pre>
+<h2 id="update-the-authorization-file">Update the authorization file</h2>
+<p>We need to configure access to the newly created endpoints.
+Open <code>config/autoload/authorization-guards.global.php</code> and append the below routes to the <code>guards.options.rules</code> key:</p>
+<pre class="highlight"><code class="language-php">'book::create-book-form' =&gt; ['authenticated'],
+'book::create-book'      =&gt; ['authenticated'],
+'book::list-book'        =&gt; ['authenticated'],</code></pre>
+<blockquote>
+<p>Make sure you read and understand the <code>rbac</code> <a href="https://docs.dotkernel.org/dot-rbac-guard/v4/configuration/">documentation</a>.</p>
+</blockquote>
+<h2 id="checking-routes">Checking routes</h2>
+<p>The module should now be accessible via the <code>Book</code> section of the <code>Admin</code> main menu, linking to the newly created <code>/list-book</code>
+route.</p>
+<p>New book entities can be added via the new "Create book" modal accessible form the <code>+</code> button on the management page.</p>
+<p>Once selected with the checkbox, existing entries can be edited via the <code>-</code> button , or deleted via the "trash" icon.</p>
+
+
+
+
+
+
+                    
+                </div>
+            </div>
+        </div>
+
+        
+        <footer class="footer">
+    <div class="container">
+        <hr class="mb-5" />
+
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 dk_widget">
+                        <p class="ms-0">API</p>
+
+                        <a href="https://docs.dotkernel.org/api-documentation/">
+                            <i class="bi bi-arrow-return-right"></i>
+                            Dotkernel web starter project suitable for building RESTful APIs
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 dk_widget">
+                        <p class="ms-0">Admin</p>
+
+                        <a href="https://docs.dotkernel.org/admin-documentation/">
+                            <i class="bi bi-arrow-return-right"></i>
+                            Dotkernel web starter project suitable for admin applications
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 dk_widget">
+                        <p class="ms-0">Frontend</p>
+
+                        <a href="https://docs.dotkernel.org/frontend-documentation/">
+                            <i class="bi bi-arrow-return-right"></i>
+                            Dotkernel web starter project suitable for frontend applications
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 dk_widget">
+                        <p class="ms-0">Light</p>
+
+                        <a href="https://docs.dotkernel.org/light-documentation/">
+                            <i class="bi bi-arrow-return-right"></i>
+                            Dotkernel web starter project suitable for generating a simple website
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 dk_widget">
+                        <p class="ms-0">Dotkernel Packages</p>
+
+                        <a href="https://docs.dotkernel.org/packages/">
+                            <i class="bi bi-arrow-return-right"></i>
+                            Dotkernel packages offering a wide range of tools
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 dk_widget">
+                        <p class="ms-0">Development environment</p>
+
+                        <a href="https://docs.dotkernel.org/development/">
+                            <i class="bi bi-arrow-return-right"></i>
+                            Install PHP, Apache, MariaDB, Composer, PhpMyAdmin, Node.js and Git on WSL2
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 pt-3 mt-1">
+                <ul class="support__list row">
+                    <li class="support__list-item col-lg-6 mb-md-3">
+                        <a href="https://github.com/dotkernel" class="support__link" title="GitHub" target="_blank">
+                            <i class="bi bi-github"></i> GitHub
+                        </a>
+                    </li>
+                    <li class="support__list-item col-lg-6 mb-md-3">
+                        <a href="https://dotkernel.slack.com" class="support__link" title="Chat" target="_blank">
+                            <i class="bi bi-slack"></i> Slack
+                        </a>
+                    </li>
+                    <li class="support__list-item col-lg-6 mb-md-3">
+                        <a href="https://twitter.com/dotkernel" class="support__link" title="X (Twitter)" target="_blank">
+                            <i class="bi bi-twitter-x"></i> Twitter
+                        </a>
+                    </li>
+                    <li class="support__list-item col-lg-6 mb-md-3">
+                        <a href="https://www.dotkernel.com/blog/" class="support__link" title="Blog" target="_blank">
+                            <i class="bi bi-file-post"></i> Blog
+                        </a>
+                    </li>
+                    <li class="support__list-item col-lg-6 mb-md-3">
+                        <a href="https://www.dotkernel.com/feed/" class="support__link" title="Blog feed" target="_blank">
+                            <i class="bi bi-rss-fill"></i> Feed
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="mt-5" />
+
+        <div class="footer_copy">
+            &#169; Copyright Dotkernel 2024. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+        <script>
+            let base_url = '../../..',
+                project  = "admin",
+                siteName = 'admin';
+
+                document.addEventListener("DOMContentLoaded", function() {
+                    document.querySelectorAll('.subnavigation__link').forEach(function(link) {
+                        if (link.getAttribute('href') === './') {
+                            link.parentNode.parentNode.classList.add('show');
+                        }
+                    });
+                });
+        </script>
+<!--        -->
+<!--        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Search</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search in admin" id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+        </div>
+    </div>
+</div>-->
+    </body>
+</html>
