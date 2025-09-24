@@ -2,146 +2,146 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/how-to/authorization/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/how-to/creating-fixtures/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/how-to/creating-migrations/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/how-to/csrf/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/how-to/dependency-injection/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/how-to/npm_commands/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/installation/composer/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/installation/configuration-files/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/installation/doctrine-orm/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/installation/getting-started/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/installation/installation-intro/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/installation/manage-geolite2/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/installation/test-the-installation/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/introduction/file-structure/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/introduction/introduction/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/introduction/packages/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v5/introduction/server-requirements/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/how-to/authorization/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/how-to/creating-fixtures/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/how-to/creating-migrations/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/how-to/csrf/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/how-to/dependency-injection/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/how-to/npm_commands/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/installation/composer/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/installation/configuration-files/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/installation/doctrine-orm/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/installation/getting-started/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/installation/installation-intro/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/installation/manage-geolite2/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/installation/test-the-installation/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/introduction/file-structure/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/introduction/introduction/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/introduction/packages/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/introduction/server-requirements/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
     <url>
          <loc>https://docs.dotkernel.org/admin-documentation/v6/tutorials/create-book-module-via-dot-maker/</loc>
-         <lastmod>2025-09-11</lastmod>
+         <lastmod>2025-09-24</lastmod>
     </url>
 </urlset>

@@ -504,14 +504,6 @@
                     <a href="#setup-database" class="toc__link nav-link">Setup database</a>
                 </li>
             
-                <li class="toc__entry">
-                    <a href="#running-migrations" class="toc__link nav-link">Running migrations</a>
-                </li>
-            
-                <li class="toc__entry">
-                    <a href="#fixtures" class="toc__link nav-link">Fixtures</a>
-                </li>
-            
             </ul>
         </div>
     
@@ -534,12 +526,9 @@
 <p>This step saves the database connection credentials in an Admin configuration file.
 We do not cover the creation steps of the database itself.</p>
 <h2 id="setup-database">Setup database</h2>
-<p>Create a new MySQL database and set its collation to <code>utf8mb4_general_ci</code>.</p>
+<p>Create a new <strong>MariaDB</strong>/<strong>MySQL</strong> database and set its collation to <code>utf8mb4_general_ci</code>.</p>
 <p>Make sure you fill out the database credentials in <code>config/autoload/local.php</code> under <code>$databases['default']</code>.
-Below is the item you need to focus on.</p>
-<blockquote>
-<p><code>my_database</code>, <code>my_user</code>, <code>my_password</code> are provided only as an example.</p>
-</blockquote>
+Below is the item you need to focus on:</p>
 <pre class="highlight"><code class="language-php">$databases = [
     'default' =&gt; [
         'host'     =&gt; 'localhost',
@@ -553,26 +542,33 @@ Below is the item you need to focus on.</p>
     ],
     // you can add more database connections into this array
 ];</code></pre>
-<h2 id="running-migrations">Running migrations</h2>
-<p>Run the database migrations by using the following command:</p>
+<blockquote>
+<p><code>my_database</code>, <code>my_user</code>, <code>my_password</code> are provided only as an example.</p>
+</blockquote>
+<h3 id="creating-migrations">Creating migrations</h3>
+<p>Create a database migration by executing the following command:</p>
+<pre class="highlight"><code class="language-shell">php ./vendor/bin/doctrine-migrations diff</code></pre>
+<p>The new migration file will be placed in <code>src/Core/src/App/src/Migration/</code>.</p>
+<h3 id="running-migrations">Running migrations</h3>
+<p>Run the database migrations by executing the following command:</p>
 <pre class="highlight"><code class="language-shell">php ./vendor/bin/doctrine-migrations migrate</code></pre>
 <blockquote>
-<p>If you have already run the migrations, you may get this message.
-You should double-check to make sure the new migrations are ok to run.</p>
+<p>If you have already run the migrations, you may get the below message:</p>
 </blockquote>
 <pre class="highlight"><code class="language-text">WARNING! You have x previously executed migrations in the database that are not registered migrations.
   {migration list}
 Are you sure you wish to continue? (y/n)</code></pre>
-<p>When using an empty database, you will get this confirmation message instead.</p>
+<blockquote>
+<p>In this case, you should double-check to make sure the new migrations are ok to run.</p>
+</blockquote>
+<p>When using an empty database, you will get this confirmation message:</p>
 <pre class="highlight"><code class="language-text">WARNING! You are about to execute a migration in database "&lt;your_database_name&gt;" that could result in schema changes and data loss. Are you sure you wish to continue? (yes/no)</code></pre>
-<p>Again, submit <code>y</code> to run all the migrations in chronological order.
+<p>Hit <code>Enter</code> to confirm the operation.
+This will run all the migrations in chronological order.
 Each migration will be logged in the <code>migrations</code> table to prevent running the same migration more than once, which is often not desirable.</p>
 <p>If everything ran correctly, you will get this confirmation.</p>
-<pre class="highlight"><code class="language-text">[OK] Successfully migrated to version: Core\App\Migration\Version20250407142911</code></pre>
-<blockquote>
-<p>The migration name <code>Version20250407142911</code> may differ in future Admin updates.</p>
-</blockquote>
-<h2 id="fixtures">Fixtures</h2>
+<pre class="highlight"><code class="language-text">[OK] Successfully migrated to version: Core\App\Migration\VersionYYYYMMDDHHMMSS</code></pre>
+<h3 id="fixtures">Fixtures</h3>
 <p>Run this command to populate the admin tables with the default values:</p>
 <pre class="highlight"><code class="language-shell">php ./bin/doctrine fixtures:execute</code></pre>
 <p>You should see our galloping horse in the command line.</p>
