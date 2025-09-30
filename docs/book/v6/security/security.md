@@ -56,10 +56,10 @@ Keep an eye on any vulnerabilities whenever using `npm` to install or update pac
 ## General Considerations
 
 - `*.global.php` and `*.php.dist` configuration files are visible to the VCS, make sure **not** to include sensitive data in commits.
-  - `*.local.php` configuration files are ignored by the VCS by default and are the recommended place for sensitive data such as API keys.
+    - `*.local.php` configuration files are ignored by the VCS by default and are the recommended place for sensitive data such as API keys.
 - Review `config/autoload/cors.global.php` to ensure your application is accessible by your preferred origins.
 - Make sure the `development mode` is correctly set - **do not** enable `development mode` in a production environment.
-  - You can use the following command to check the current status:
+    - You can use the following command to check the current status:
 
 ```shell
 composer development-status
