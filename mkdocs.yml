@@ -51,7 +51,7 @@ nav:
           - "Inject Dependencies": v6/how-to/dependency-injection.md
           - "Set Up CSRF": v6/how-to/csrf.md
       - Security:
-          - "Security Observations": v6/security/security.md
+          - "Basic Security Observations": v6/security/basic-security.md
       - Tutorials:
           - "Creating a book module using DotMaker": v6/tutorials/create-book-module-via-dot-maker.md
 site_name: admin

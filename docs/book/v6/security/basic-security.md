@@ -1,4 +1,4 @@
-# Security Observations
+# Basic Security Observations
 
 `dotkernel/admin` provides all necessary tools to implement safe applications, however you will need to manually make use of some of them.
 This section will go over the provided tools and any steps you need to follow in order to use them successfully, as well as a few general considerations.
@@ -65,4 +65,6 @@ Keep an eye on any vulnerabilities whenever using `npm` to install or update pac
 composer development-status
 ```
 
-- `Admin` ships with a `laminas/laminas-ci` integration, consider keeping it in your custom applications to ensure code quality.
+- `Admin` ships with a [Laminas Continuous Integration GitHub Action](https://github.com/laminas/laminas-continuous-integration-action), consider keeping it in your custom applications to ensure code quality.
+
+> Read more about the benefits of using [Laminas Continuous Integration](https://getlaminas.org/blog/2024-09-26-using-laminas-continuous-delivery-and-deployment.html).
