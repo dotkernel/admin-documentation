@@ -65,6 +65,7 @@ Keep an eye on any vulnerabilities whenever using `npm` to install or update pac
 composer development-status
 ```
 
-- `Admin` ships with a [Laminas Continuous Integration](https://github.com/laminas/laminas-continuous-integration-action) GitHub Action, consider keeping it in your custom applications to ensure code quality.
+- `Admin` ships with a [Laminas Continuous Integration](https://github.com/laminas/laminas-continuous-integration-action) GitHub Action,
+if you are using a public repository consider keeping it in your custom applications to ensure code quality.
 
 > Read more about using [Laminas Continuous Integration](https://getlaminas.org/blog/2024-08-05-using-laminas-continuous-integration.html).
