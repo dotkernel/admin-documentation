@@ -8,52 +8,52 @@ extra:
     - v6
 nav:
   - Home: index.md
-  - v5:
-      - Introduction: v5/introduction/introduction.md
-      - Overview:
-          - "Server Requirements": v5/introduction/server-requirements.md
-          - "File Structure": v5/introduction/file-structure.md
-          - "Packages": v5/introduction/packages.md
-      - Installation:
-          - "Introduction": v5/installation/installation-intro.md
-          - "Getting Started": v5/installation/getting-started.md
-          - "Composer": v5/installation/composer.md
-          - "Configuration Files": v5/installation/configuration-files.md
-          - "Doctrine ORM": v5/installation/doctrine-orm.md
-          - "Manage Geolite2": v5/installation/manage-geolite2.md
-          - "Test the Installation": v5/installation/test-the-installation.md
-      - How to:
-          - "Create Database Migrations": v5/how-to/creating-migrations.md
-          - "Create Database Fixtures": v5/how-to/creating-fixtures.md
-          - "Configure Authorizations": v5/how-to/authorization.md
-          - "Use NPM Commands": v5/how-to/npm_commands.md
-          - "Inject Dependencies": v5/how-to/dependency-injection.md
-          - "Set Up CSRF": v5/how-to/csrf.md
   - v6:
-      - Introduction: v6/introduction/introduction.md
-      - Overview:
-          - "Server Requirements": v6/introduction/server-requirements.md
-          - "File Structure": v6/introduction/file-structure.md
-          - "Packages": v6/introduction/packages.md
-      - Installation:
-          - "Introduction": v6/installation/installation-intro.md
-          - "Getting Started": v6/installation/getting-started.md
-          - "Composer": v6/installation/composer.md
-          - "Configuration Files": v6/installation/configuration-files.md
-          - "Doctrine ORM": v6/installation/doctrine-orm.md
-          - "Manage Geolite2": v6/installation/manage-geolite2.md
-          - "Test the Installation": v6/installation/test-the-installation.md
-      - How to:
-          - "Create Database Migrations": v6/how-to/creating-migrations.md
-          - "Create Database Fixtures": v6/how-to/creating-fixtures.md
-          - "Configure Authorizations": v6/how-to/authorization.md
-          - "Use NPM Commands": v6/how-to/npm_commands.md
-          - "Inject Dependencies": v6/how-to/dependency-injection.md
-          - "Set Up CSRF": v6/how-to/csrf.md
-      - Security:
-          - "Basic Security": v6/security/basic-security.md
-      - Tutorials:
-          - "Creating a book module using DotMaker": v6/tutorials/create-book-module-via-dot-maker.md
+    - Introduction: v6/introduction/introduction.md
+    - Overview:
+      - "Server Requirements": v6/introduction/server-requirements.md
+      - "File Structure": v6/introduction/file-structure.md
+      - "Packages": v6/introduction/packages.md
+    - Installation:
+      - "Introduction": v6/installation/installation-intro.md
+      - "Getting Started": v6/installation/getting-started.md
+      - "Composer": v6/installation/composer.md
+      - "Configuration Files": v6/installation/configuration-files.md
+      - "Doctrine ORM": v6/installation/doctrine-orm.md
+      - "Manage GeoLite2": v6/installation/manage-geolite2.md
+      - "Test the Installation": v6/installation/test-the-installation.md
+    - How to:
+      - "Create Database Migrations": v6/how-to/creating-migrations.md
+      - "Create Database Fixtures": v6/how-to/creating-fixtures.md
+      - "Configure Authorizations": v6/how-to/authorization.md
+      - "Use NPM Commands": v6/how-to/npm_commands.md
+      - "Inject Dependencies": v6/how-to/dependency-injection.md
+      - "Set Up CSRF": v6/how-to/csrf.md
+    - Security:
+        - "Basic Security": v6/security/basic-security.md
+    - Tutorials:
+        - "Creating a book module using DotMaker": v6/tutorials/create-book-module-via-dot-maker.md
+  - v5:
+    - Introduction: v5/introduction/introduction.md
+    - Overview:
+      - "Server Requirements": v5/introduction/server-requirements.md
+      - "File Structure": v5/introduction/file-structure.md
+      - "Packages": v5/introduction/packages.md
+    - Installation:
+      - "Introduction": v5/installation/installation-intro.md
+      - "Getting Started": v5/installation/getting-started.md
+      - "Composer": v5/installation/composer.md
+      - "Configuration Files": v5/installation/configuration-files.md
+      - "Doctrine ORM": v5/installation/doctrine-orm.md
+      - "Manage GeoLite2": v5/installation/manage-geolite2.md
+      - "Test the Installation": v5/installation/test-the-installation.md
+    - How to:
+      - "Create Database Migrations": v5/how-to/creating-migrations.md
+      - "Create Database Fixtures": v5/how-to/creating-fixtures.md
+      - "Configure Authorizations": v5/how-to/authorization.md
+      - "Use NPM Commands": v5/how-to/npm_commands.md
+      - "Inject Dependencies": v5/how-to/dependency-injection.md
+      - "Set Up CSRF": v5/how-to/csrf.md
 site_name: admin
 site_description: "Dotkernel Admin"
 repo_url: "https://github.com/dotkernel/admin"
