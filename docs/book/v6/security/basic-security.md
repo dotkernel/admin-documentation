@@ -1,4 +1,4 @@
-# Basic Security Observations
+# Basic Security
 
 `dotkernel/admin` provides all necessary tools to implement safe applications, however you will need to manually make use of some of them.
 This section will go over the provided tools and any steps you need to follow in order to use them successfully, as well as a few general considerations.
