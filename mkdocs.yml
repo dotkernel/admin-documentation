@@ -50,6 +50,8 @@ nav:
           - "Use NPM Commands": v6/how-to/npm_commands.md
           - "Inject Dependencies": v6/how-to/dependency-injection.md
           - "Set Up CSRF": v6/how-to/csrf.md
+      - Security:
+          - "Basic Security": v6/security/basic-security.md
       - Tutorials:
           - "Creating a book module using DotMaker": v6/tutorials/create-book-module-via-dot-maker.md
 site_name: admin
