@@ -1,16 +1,16 @@
 # Basic Security
 
-`dotkernel/admin` provides all necessary tools to implement safe applications, however you will need to manually make use of some of them.
+Dotkernel Admin provides all necessary tools to implement safe applications, however you will need to manually make use of some of them.
 This section will go over the provided tools and any steps you need to follow in order to use them successfully, as well as a few general considerations.
 
 ## Form Input Validation
 
-In order to create safe forms, `dotkernel/admin` makes use of [laminas/laminas-form](https://github.com/laminas/laminas-form) and [laminas/laminas-inputfilter](https://github.com/laminas/laminas-inputfilter).
+In order to create safe forms, Dotkernel Admin makes use of [laminas/laminas-form](https://github.com/laminas/laminas-form) and [laminas/laminas-inputfilter](https://github.com/laminas/laminas-inputfilter).
 All shipped forms have their inputs validated, and it is strongly recommended any custom forms added also make use of input filters to validate user input.
 
 ## Cross-Site Request Forgery Protection
 
-`dotkernel/admin` provides protection against CSRF attacks by using CSRF token creation and validation, available for all forms.
+Dotkernel Admin provides protection against CSRF attacks by using CSRF token creation and validation, available for all forms.
 
 All forms provided make use of CSRF token validation, but you must ensure to implement this step for any new forms you create.
 
@@ -41,10 +41,10 @@ Pay extra attention to the following keys, to make sure your desired values are 
 
 ## PHP Dependencies
 
-`dotkernel/admin` uses `composer` to handle PHP dependencies.
+Dotkernel Admin uses `composer` to handle PHP dependencies.
 In time, make sure to review any common vulnerabilities and exposures for your dependencies.
 
-> You may also keep an eye on the `dotkernel/admin` changelog for any updates relevant to your project.
+> You may also keep an eye on the Dotkernel Admin changelog for any updates relevant to your project.
 
 ## JavaScript Dependencies
 
@@ -65,7 +65,7 @@ Keep an eye on any vulnerabilities whenever using `npm` to install or update pac
 composer development-status
 ```
 
-- `Admin` ships with a [Laminas Continuous Integration](https://github.com/laminas/laminas-continuous-integration-action) GitHub Action,
+- Dotkernel Admin ships with a [Laminas Continuous Integration](https://github.com/laminas/laminas-continuous-integration-action) GitHub Action,
 if you are using a public repository consider keeping it in your custom applications to ensure code quality.
 
 > Read more about using [Laminas Continuous Integration](https://getlaminas.org/blog/2024-08-05-using-laminas-continuous-integration.html).

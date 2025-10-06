@@ -55,7 +55,7 @@ nav:
       - Tutorials:
           - "Creating a book module using DotMaker": v6/tutorials/create-book-module-via-dot-maker.md
 site_name: admin
-site_description: "DotKernel Admin"
+site_description: "Dotkernel Admin"
 repo_url: "https://github.com/dotkernel/admin"
 plugins:
   - search
