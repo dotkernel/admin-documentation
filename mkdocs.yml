@@ -2,12 +2,41 @@ docs_dir: docs/book
 site_dir: docs/html
 extra:
   project: Admin
-  current_version: v6
+  current_version: v7
   versions:
-    - v5
+    - v7
     - v6
+    - v5
 nav:
   - Home: index.md
+  - v7:
+    - Introduction: v7/introduction/introduction.md
+    - Overview:
+      - "Server Requirements": v7/introduction/server-requirements.md
+      - "File Structure": v7/introduction/file-structure.md
+      - "Packages": v7/introduction/packages.md
+    - Installation:
+      - "Introduction": v7/installation/installation-intro.md
+      - "Getting Started": v7/installation/getting-started.md
+      - "Composer": v7/installation/composer.md
+      - "Configuration Files": v7/installation/configuration-files.md
+      - "Doctrine ORM": v7/installation/doctrine-orm.md
+      - "Manage GeoLite2": v7/installation/manage-geolite2.md
+      - "Test the Installation": v7/installation/test-the-installation.md
+    - Upgrading:
+        - "Upgrade procedure": v7/upgrading/upgrading.md
+        - "Upgrading 6.x to 7.0": v7/upgrading/UPGRADE-7.0.md
+    - How to:
+      - "Create Database Migrations": v7/how-to/creating-migrations.md
+      - "Create Database Fixtures": v7/how-to/creating-fixtures.md
+      - "Configure Authorizations": v7/how-to/authorization.md
+      - "Use NPM Commands": v7/how-to/npm_commands.md
+      - "Inject Dependencies": v7/how-to/dependency-injection.md
+      - "Set Up CSRF": v7/how-to/csrf.md
+    - Security:
+        - "Basic Security": v7/security/basic-security.md
+    - Tutorials:
+        - "Creating a book module using DotMaker": v7/tutorials/create-book-module-via-dot-maker.md
   - v6:
     - Introduction: v6/introduction/introduction.md
     - Overview:

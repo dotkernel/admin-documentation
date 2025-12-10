@@ -1,12 +1,11 @@
 # Implementing a book module in Dotkernel Admin using DotMaker
 
 The `dotkernel/dot-maker` library can be used to programmatically generate project files and directories.
-It can be added to your Dotkernel Admin installation by following the [official documentation](https://docs.dotkernel.org/dot-maker/).
+It can be added to your Admin installation by following the [official documentation](https://docs.dotkernel.org/dot-maker/).
 
 ## Folder and files structure
 
-The below files structure is what we will have at the end of this tutorial and is just an example,
-you can have multiple components such as event listeners, wrappers, etc.
+The below files structure is what we will have at the end of this tutorial and is just an example; you can have multiple components such as event listeners, wrappers, etc.
 
 ```markdown
 .
@@ -76,7 +75,7 @@ you can have multiple components such as event listeners, wrappers, etc.
 
 After successfully installing `dot-maker`, it can be used to generate the Book module.
 Invoke `dot-maker` by executing `./vendor/bin/dot-maker` or via the optional script described in the documentation - `composer make`.
-This will list all component types that can be created - for the purposes of this tutorial, enter `module`:
+This will list all component types that can be created - for this tutorial, enter `module`:
 
 ```shell
 ./vendor/bin/dot-maker module
@@ -122,8 +121,7 @@ You will then be instructed to:
 composer dump
 ```
 
-* `dot-maker` will by default prompt you to generate the migrations for the new entity, but for the purpose of this tutorial
-  we will run this after updating the generated entity.
+* `dot-maker` will by default prompt you to generate the migrations for the new entity, but for this tutorial we will run this after updating the generated entity.
 
 The next step is filling in the required logic for the proposed flow of this module.
 While `dot-maker` does also include common logic in the relevant files, the tutorial adds custom functionality.
@@ -131,8 +129,7 @@ As such, the following section will go over the files that require changes.
 
 * `src/Book/src/Handler/GetListBookHandler.php`
 
-The overall class structure is fully generated, but for the purpose of this tutorial you will need to send the `indentifier` key
-to the template, as shown below:
+The overall class structure is fully generated, but for this tutorial you will need to send the `indentifier` key to the template, as shown below:
 
 ```php
 return new HtmlResponse(
@@ -145,8 +142,7 @@ return new HtmlResponse(
 
 * `src/Core/src/App/src/Message.php`
 
-The generated `PostCreateBookHandler`, `PostEditBookHandler` and `PostDeleteBookHandler` classes will by default make use
-of the `Message::BOOK_CREATED`, `Message::BOOK_UPDATED` and `Message::BOOK_DELETED` constants which you will have to manually add:
+The generated `PostCreateBookHandler`, `PostEditBookHandler` and `PostDeleteBookHandler` classes will by default make use of the `Message::BOOK_CREATED`, `Message::BOOK_UPDATED` and `Message::BOOK_DELETED` constants which you will have to manually add:
 
 ```php
 public const BOOK_CREATED = 'Book created successfully.';
@@ -391,8 +387,7 @@ $this->add(
 
 * `src/Book/src/Form/EditBookForm.php`
 
-A similar sequence is used for the `init` function of `EditBookForm`, with the `required` attributes removed,
-as leaving the inputs empty is allowed for keeping the original data:
+A similar sequence is used for the `init` function of `EditBookForm`, with the `required` attributes removed, as leaving the inputs empty is allowed for keeping the original data:
 
 ```php
 $this->add(
@@ -528,8 +523,7 @@ $this->add($releaseDateInput);
 
 * `src/App/assets/js/components/_book.js`
 
-As the listing pages make use of JavaScript, you will need to manually create your module specific `_book.js` file and register
-it in `webpack.config.js` for building.
+As the listing pages make use of JavaScript, you will need to manually create your module specific `_book.js` file and register it in `webpack.config.js` for building.
 
 You may copy this sample `_book.js` file to the `src/App/assets/js/components/` directory:
 
@@ -914,8 +908,7 @@ Add the following structure to the `delete-book-form.html.twig` file:
 
 * `/config/autoload/navigation.global.php`
 
-Lastly, link the new module to the admin side-menu by adding the following array to `navigation.global.php`,
-under the `dot_navigation.containers.main_menu.options.items` key:
+Lastly, link the new module to the admin side-menu by adding the following array to `navigation.global.php`, under the `dot_navigation.containers.main_menu.options.items` key:
 
 ```php
 [
@@ -947,7 +940,7 @@ php ./vendor/bin/doctrine-migrations diff
 
 This will check for differences between your entities and database structure and create migration files if necessary, in `src/Core/src/App/src/Migration`.
 
-To execute the migrations run:
+To execute the migrations, run:
 
 ```shell
 php ./vendor/bin/doctrine-migrations migrate
@@ -968,9 +961,8 @@ Open `config/autoload/authorization-guards.global.php` and append the below rout
 
 ## Checking routes
 
-The module should now be accessible via the `Book` section of the `Admin` main menu, linking to the newly created `/list-book`
-route.
+The module should now be accessible via the `Book` section of the `Admin` main menu, linking to the newly created `/list-book` route.
 
-New book entities can be added via the new "Create book" modal accessible form the `+` button on the management page.
+New book entities can be added via the new "Create book" modal accessible from the `+` button on the management page.
 
 Once selected with the checkbox, existing entries can be edited via the `-` button , or deleted via the "trash" icon.
