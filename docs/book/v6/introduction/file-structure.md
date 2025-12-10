@@ -110,7 +110,6 @@ Other classes the `src` folder may include are `Adapter`, `Factory`, `Form`, `De
 The `src` folder in each Module folder normally also contains these files:
 
 * `ConfigProvider.php` - Configuration data for the module
-* `OpenAPI.php` - Detailed descriptions for each endpoint in the OpenAPI format
 * `RoutesDelegator.php` - Module specific route registrations
 
 ### `templates` folder for modules
