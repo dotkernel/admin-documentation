@@ -12,6 +12,8 @@ We recommend running your applications in WSL:
 
 You should see the `Dotkernel Admin` login page.
 
+> If you are getting server error 500, please check the folders permissions [Common permission issues](https://docs.dotkernel.org/development/v2/faq/#how-do-i-fix-common-permission-issues)
+
 > If you are getting exceptions or errors regarding some missing services, try running the following command:
 
 ```shell
