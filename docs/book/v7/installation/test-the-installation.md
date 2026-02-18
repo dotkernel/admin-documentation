@@ -5,7 +5,7 @@
 We recommend running your applications in WSL:
 
 - Make sure you have [WSL2](https://docs.dotkernel.org/development/v2/setup/system-requirements/) installed on your system.
-- Currently, we provide a distro implementation for [AlmaLinux9](https://github.com/dotkernel/development/blob/main/wsl/README.md).
+- Currently, we provide a distro implementation for [AlmaLinux 10](https://docs.dotkernel.org/development/v2/running/).
 - Install the application in a virtualhost as recommended by the chosen distro.
 - Set `$baseUrl` in **config/autoload/local.php** to the address of the virtualhost.
 - Run the application by opening the virtualhost address in your browser.
