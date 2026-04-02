@@ -22,7 +22,7 @@ return [
             'algorithm' => 'sha1',
         ],
         'provision_uri_config' => [
-            'issuer' => 'ALX-Admin',
+            'issuer' => 'DK-Admin',
         ],
     ],
 ];
