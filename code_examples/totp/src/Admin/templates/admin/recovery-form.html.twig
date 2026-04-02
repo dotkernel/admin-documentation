@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body class="app">
+{{ messagesPartial('partial::notifications', {dismissible: true}) }}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <div class="mb-3">
+            <h2 class="mx-3">Recovery code</h2>
+
+            {{ form().openTag(recoveryForm)|raw }}
+
+            {{ formElement(recoveryForm.get('recoveryCode')) }}
+            {{ formElement(recoveryForm.get('recoveryCsrf')) }}
+
+            <div class="d-flex flex-column align-items-center mt-3">
+                {{ formElement(recoveryForm.get('submit')) }}
+                <a href="{{ path('admin::validate-totp-form') }}" class="btn btn-secondary mt-2">Cancel</a>
+            </div>
+
+            {{ form().closeTag()|raw }}
+        </div>
+    </div>
+</div>
+<script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>

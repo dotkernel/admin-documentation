@@ -1,0 +1,11 @@
+GetEnableTotpFormHandler::class         => AttributedServiceFactory::class,
+PostEnableTotpHandler::class            => AttributedServiceFactory::class,
+GetDisableTotpFormHandler::class        => AttributedServiceFactory::class,
+PostDisableTotpHandler::class           => AttributedServiceFactory::class,
+PostValidateTotpHandler::class          => AttributedServiceFactory::class,
+GetTotpHandler::class                   => AttributedServiceFactory::class,
+GetRecoveryFormHandler::class           => AttributedServiceFactory::class,
+PostValidateRecoveryHandler::class      => AttributedServiceFactory::class,
+
+TotpForm::class                         => ElementFactory::class,
+RecoveryForm::class                     => ElementFactory::class,
