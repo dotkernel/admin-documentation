@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body class="app">
+{{ messagesPartial('partial::notifications', {dismissible: true}) }}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <div class="mb-3">
+            <h2 class="mx-3">{{ totpForm.getAttribute('title') }}</h2>
+
+            {% if qrSvg is defined %}
+                <div id="qrCodeContainer" class="my-4">
+                    {{ qrSvg|raw }}
+                </div>
+
+                <p class="mb-3">
+                    Scan the QR code with your authenticator app and enter the 6-digit code below.
+                </p>
+            {% endif %}
+
+            {{ form().openTag(totpForm)|raw }}
+
+            {{ formElement(totpForm.get('code')) }}
+            {{ formElement(totpForm.get('totpCsrf')) }}
+
+            <div class="d-flex flex-column align-items-center mt-3">
+                {{ formElement(totpForm.get('submit')) }}
+
+                {% if qrSvg is not defined %}
+                    <a href="{{ path('admin::recovery-form') }}" class="btn btn-warning mt-2">Recovery</a>
+                {% endif %}
+
+                <a href="{{ cancelUrl }}" class="btn btn-secondary mt-2">Cancel</a>
+            </div>
+
+            {{ form().closeTag()|raw }}
+        </div>
+    </div>
+</div>
+<script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>

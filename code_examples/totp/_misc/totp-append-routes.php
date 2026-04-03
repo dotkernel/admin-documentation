@@ -1,0 +1,8 @@
+->get('/enable-totp-form', GetEnableTotpFormHandler::class, 'admin::enable-totp-form')
+->post('/enable-totp', PostEnableTotpHandler::class, 'admin::enable-totp')
+->get('/disable-totp-form', GetDisableTotpFormHandler::class, 'admin::disable-totp-form')
+->post('/disable-totp', PostDisableTotpHandler::class, 'admin::disable-totp')
+->get('/validate-totp-form', GetTotpHandler::class, 'admin::validate-totp-form')
+->post('/validate-totp', PostValidateTotpHandler::class, 'admin::validate-totp')
+->get('/recovery-form', GetRecoveryFormHandler::class, 'admin::recovery-form')
+->post('/validate-recovery', PostValidateRecoveryHandler::class, 'admin::validate-recovery')

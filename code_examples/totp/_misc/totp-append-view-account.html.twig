@@ -1,0 +1,20 @@
+<div class="bgc-white p-20 bd">
+    <h6 class="c-grey-900">TOTP Setup</h6>
+    {% if isTotpEnabled %}
+        <h6 class="c-grey-900">TOTP is enabled</h6>
+        <div class="d-flex justify-content-end">
+            <a href="{{ path('admin::disable-totp-form') }}"
+               class="btn btn-primary btn-color btn-sm">
+                Disable TOTP
+            </a>
+        </div>
+    {% else %}
+        <h6 class="c-grey-900">TOTP is disabled</h6>
+        <div class="d-flex justify-content-end">
+            <a href="{{ path('admin::enable-totp-form') }}"
+               class="btn btn-primary btn-color btn-sm">
+                Enable TOTP
+            </a>
+        </div>
+    {% endif %}
+</div>
