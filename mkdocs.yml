@@ -35,8 +35,10 @@ nav:
       - "Set Up CSRF": v7/how-to/csrf.md
     - Security:
         - "Basic Security": v7/security/basic-security.md
+        - "Two Factor Authorization with Time-based One-Time Password": v7/security/2fa-with-totp.md
     - Tutorials:
         - "Creating a book module using DotMaker": v7/tutorials/create-book-module-via-dot-maker.md
+        - "Installing dot-totp": v7/tutorials/install-dot-totp.md
   - v6:
     - Introduction: v6/introduction/introduction.md
     - Overview:
