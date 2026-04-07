@@ -18,11 +18,11 @@
         <meta name="docsearch:component" content="admin">
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v7/introduction/packages/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v7/tutorials/install-dot-totp/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Packages - admin - Dotkernel Documentation</title>
+        <title>Installing dot-totp - admin - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -155,7 +155,7 @@
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="version-selector-dropdown">
                 
                 
-                <a href="../introduction/" class="dropdown-item active">
+                <a href="../../introduction/introduction/" class="dropdown-item active">
                     
                         v7 (latest)
                     
@@ -209,12 +209,12 @@
                         
                             
                             
-                                <li class="breadcrumb-item">Overview</li>
+                                <li class="breadcrumb-item">Tutorials</li>
                             
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Packages</li>
+                    <li class="breadcrumb-item active" aria-current="page">Installing dot-totp</li>
                 
             
         </ol>
@@ -242,7 +242,7 @@
                     
                         
 <li class="subnavigation__list-item ">
-    <a href="../introduction/" class="subnavigation__link">Introduction</a>
+    <a href="../../introduction/introduction/" class="subnavigation__link">Introduction</a>
 </li>
 
                     
@@ -274,19 +274,19 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../server-requirements/" class="subnavigation__link">Server Requirements</a>
+    <a href="../../introduction/server-requirements/" class="subnavigation__link">Server Requirements</a>
 </li>
 
         
         
 <li class="subnavigation__list-item ">
-    <a href="../file-structure/" class="subnavigation__link">File Structure</a>
+    <a href="../../introduction/file-structure/" class="subnavigation__link">File Structure</a>
 </li>
 
         
         
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Packages</a>
+<li class="subnavigation__list-item ">
+    <a href="../../introduction/packages/" class="subnavigation__link">Packages</a>
 </li>
 
         
@@ -552,13 +552,13 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../tutorials/create-book-module-via-dot-maker/" class="subnavigation__link">Creating a book module using DotMaker</a>
+    <a href="../create-book-module-via-dot-maker/" class="subnavigation__link">Creating a book module using DotMaker</a>
 </li>
 
         
         
-<li class="subnavigation__list-item ">
-    <a href="../../tutorials/install-dot-totp/" class="subnavigation__link">Installing dot-totp</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Installing dot-totp</a>
 </li>
 
         
@@ -596,6 +596,17 @@
 
     
     
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+            
+                <li class="toc__entry">
+                    <a href="#dot-totp-in-action" class="toc__link nav-link">Dot-totp in Action</a>
+                </li>
+            
+            </ul>
+        </div>
+    
 
                     
                 </div>
@@ -608,47 +619,76 @@
 
     
     
-<!--        <h2 class="chapter__headline text-black-50">Overview</h2>-->
+<!--        <h2 class="chapter__headline text-black-50">Tutorials</h2>-->
     
 
-    <h1 id="packages">Packages</h1>
+    <h1 id="installing-dot-totp-into-dotkernel-admin">Installing dot-totp into Dotkernel Admin</h1>
+<p>If you haven't already, install <a href="https://github.com/dotkernel/admin">Dotkernel Admin</a>.</p>
+<blockquote>
+<p>The installation steps listed below should work similarly in any middleware-based application.</p>
+</blockquote>
+<p>The first step is to include the package in your project by running this command:</p>
+<pre class="highlight"><code class="language-shell">composer require dotkernel/dot-totp</code></pre>
+<p>We will follow the Dotkernel file structure and create the files in the list below.
+If you follow the links from the <a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp">main totp integration example</a>, you can download the files and add them to your codebase.</p>
 <ul>
-<li><code>doctrine/dbal</code>:<code>^4.4</code> - Powerful PHP database abstraction layer (DBAL) with many features for database schema introspection and management.</li>
-<li><code>doctrine/orm</code>:<code>^3.6</code> - Object-Relational-Mapper for PHP</li>
-<li><code>dotkernel/dot-authorization</code>:<code>^3.8</code> - Authorization base package defining interfaces for authorization services to be used with Dotkernel applications</li>
-<li><code>dotkernel/dot-cache</code>:<code>^4.4</code> - Cache component extending symfony-cache</li>
-<li><code>dotkernel/dot-cli</code>:<code>^3.10</code> - Component for creating console applications based on laminas-cli</li>
-<li><code>dotkernel/dot-controller</code>:<code>^3.6</code> - Provides base classes for action based controllers similar to Laminas controller component</li>
-<li><code>dotkernel/dot-data-fixtures</code>:<code>^1.5</code> - Provides a CLI interface for listing &amp; executing doctrine data fixtures</li>
-<li><code>dotkernel/dot-dependency-injection</code>:<code>^1.3</code> - Dependency injection component using class attributes</li>
-<li><code>dotkernel/dot-errorhandler</code>:<code>^4.0</code> - Logging Error Handler for Middleware Applications</li>
-<li><code>dotkernel/dot-flashmessenger</code>:<code>^3.7</code> - Provides session messages between redirects</li>
-<li><code>dotkernel/dot-mail</code>:<code>^5.1</code> - Mail component based on laminas-mail</li>
-<li><code>dotkernel/dot-navigation</code>:<code>^3.6</code> - Allows you to easily define and parse menus inside templates, configuration based approach</li>
-<li><code>dotkernel/dot-rbac-guard</code>:<code>^3.7</code> - Defines authorization guards that authorize users for accessing certain parts of an application based on various criteria</li>
-<li><code>dotkernel/dot-router</code>:<code>^1.1</code> - Dotkernel component to build complex routes, based on <code>mezzio/mezzio-fastroute</code></li>
-<li><code>dotkernel/dot-session</code>"<code>^5.8</code> - Dotkernel session component extending and customizing laminas-session</li>
-<li><code>dotkernel/dot-twigrenderer</code>:<code>^3.7</code> - Dotkernel component providing twig extensions and customizations</li>
-<li><code>friendsofphp/proxy-manager-lts</code>:<code>^1.0</code> - Fork of ocramius/proxy-manager</li>
-<li><code>laminas/laminas-authentication</code>:<code>^2.19</code> - API for authentication and includes concrete authentication adapters for common use case scenarios</li>
-<li><code>laminas/laminas-component-installer</code>:<code>^3.7</code> - Composer plugin for injecting modules and configuration providers into application configuration</li>
-<li><code>laminas/laminas-config-aggregator</code>:<code>^1.19</code> - Lightweight library for collecting and merging configuration from different sources</li>
-<li><code>laminas/laminas-form</code>:<code>^3.24</code> - Bridge between your domain models and the View Layer</li>
-<li><code>laminas/laminas-hydrator</code>:<code>^4.18</code> - Serialize objects to arrays, and vice versa</li>
-<li><code>laminas/laminas-inputfilter</code>:<code>^2.35</code> - Normalize and validate input sets from the web, APIs, the CLI, and more, including files</li>
-<li><code>laminas/laminas-servicemanager</code>:<code>^3.24</code> - Factory-Driven Dependency Injection Container</li>
-<li><code>laminas/laminas-stdlib</code>:<code>^3.21</code> - SPL extensions, array utilities, error handlers, and more</li>
-<li><code>mezzio/mezzio</code>:<code>^3.27</code> - PSR-15 Middleware Microframework</li>
-<li><code>mezzio/mezzio-authentication-oauth2</code>:<code>^2.14</code> - OAuth2 (server) authentication middleware for Mezzio and PSR-15 applications</li>
-<li><code>mezzio/mezzio-authorization-rbac</code>:<code>^1.10</code> - mezzio authorization rbac adapter for laminas/laminas-permissions-rbac</li>
-<li><code>mezzio/mezzio-cors</code>:<code>^1.16</code> - CORS component for Mezzio and other PSR-15 middleware runners</li>
-<li><code>mezzio/mezzio-fastroute</code>:<code>^3.14</code> - FastRoute integration for Mezzio</li>
-<li><code>mezzio/mezzio-helpers</code>:<code>^5.20</code> - Helper/Utility classes for Mezzio</li>
-<li><code>ramsey/uuid</code>:<code>^4.9</code> - A PHP library for generating and working with universally unique identifiers (UUIDs)</li>
-<li><code>ramsey/uuid-doctrine</code>:<code>^2.1</code> - Use ramsey/uuid as a Doctrine field type</li>
-<li><code>roave/psr-container-doctrine</code>:<code>^6.1</code> - Doctrine Factories for PSR-11 Containers</li>
-<li><code>symfony/filesystem</code>:<code>^8.0</code> - Provides basic utilities for the filesystem</li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Form/RecoveryForm.php">src/Admin/src/Form/RecoveryForm.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Form/TotpForm.php">src/Admin/src/Form/TotpForm.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/GetDisableTotpFormHandler.php">src/Admin/src/Handler/Account/GetDisableTotpFormHandler.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/GetEnableTotpFormHandler.php">src/Admin/src/Handler/Account/GetEnableTotpFormHandler.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/GetRecoveryFormHandler.php">src/Admin/src/Handler/Account/GetRecoveryFormHandler.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/GetTotpHandler.php">src/Admin/src/Handler/Account/GetTotpHandler.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostDisableTotpHandler.php">src/Admin/src/Handler/Account/PostDisableTotpHandler.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostEnableTotpHandler.php">src/Admin/src/Handler/Account/PostEnableTotpHandler.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostValidateRecoveryHandler.php">src/Admin/src/Handler/Account/PostValidateRecoveryHandler.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostValidateTotpHandler.php">src/Admin/src/Handler/Account/PostValidateTotpHandler.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/templates/admin/recovery-form.html.twig">src/Admin/templates/admin/recovery-form.html.twig</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/App/src/Middleware/CancelUrlMiddleware.php">src/App/src/Middleware/CancelUrlMiddleware.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/App/src/Middleware/TotpMiddleware.php">src/App/src/Middleware/TotpMiddleware.php</a></li>
 </ul>
+<p>You can use the trait at <a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Core/src/App/src/Entity/TotpTrait.php">src/Core/src/App/src/Entity/TotpTrait.php</a> in any entity where you need 2FA.</p>
+<blockquote>
+<p>Make sure to migrate the new columns <code>totpSecret</code>, <code>totp_enabled</code> and <code>recovery_codes</code> in your entity.</p>
+</blockquote>
+<p>There are still some code snippets in the <a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp">_misc</a> folder:</p>
+<ul>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-view-account.html.twig">the enable/disable 2FA button</a> should be used in the <code>view-account.html.twig</code> file or in a new page.</li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-routes.php">the routes updates</a> must be added in the <code>src/Admin/src/RoutesDelegator.php</code> file.</li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-Pipeline.php">the pipeline updates</a> must be added in the <code>config/pipeline.php</code> file after <code>$app-&gt;pipe(AuthMiddleware::class);</code>.</li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-ConfigProvider.php">the ConfigProvider updates</a> must be added in the <code>src/Admin/src/ConfigProvider.php</code> file.</li>
+</ul>
+<h2 id="dot-totp-in-action">Dot-totp in Action</h2>
+<p>Once you have <code>dot-totp</code> implemented, you can activate the feature in your admin accounts.
+If you navigate to your profile from the top-right image in Dotkernel Admin, you should see this box.</p>
+<p><img alt="Dotkernel Admin File Structure!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/profile-totp-deactivated.jpg" class="img-responsive"/></p>
+<p>Simply click on 'Enable TOTP' to begin the activation process.</p>
+<blockquote>
+<p>We blurred out the QR code and recovery codes for this tutorial.
+You will receive dynamically generated versions that will be fully visible to you.</p>
+<p>You will need to have an Authenticator app installed on your mobile device.</p>
+</blockquote>
+<p><img alt="Dotkernel Admin File Structure!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/totp-activate-qr.jpg" class="img-responsive"/></p>
+<p>Follow the instructions on the screen:</p>
+<ul>
+<li>Scan the QR code with your mobile device.</li>
+<li>Enter the 6-digit code it generates on your mobile device.</li>
+</ul>
+<blockquote>
+<p>The code refreshes every 30 seconds.</p>
+</blockquote>
+<p>The TOPT activation flow will list several recovery codes you can use if your mobile device isn't available.</p>
+<p><img alt="Dotkernel Admin File Structure!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/totp-recovery-codes.jpg" class="img-responsive"/></p>
+<blockquote>
+<p>Each recovery code is usable only once.</p>
+<p>Save the recovery codes in a secure location.</p>
+</blockquote>
+<p>If the code is valid, you will be logged in, and TOTP will be activated for your account.</p>
+<p>Whenever you need to log into the account, you will start by entering your username and password, like before.
+Since TOTP is activated, you will need to also submit the code from your Authenticator app.
+Alternatively, you can submit a recovery code.</p>
+<p><img alt="Dotkernel Admin File Structure!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/totp-ask-code.jpg" class="img-responsive"/></p>
+<p>That's it!
+You are now logged in securely.</p>
 
 
 
@@ -658,9 +698,9 @@
         
         <li class="col text-nowrap text-md-start">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../file-structure/">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../create-book-module-via-dot-maker/">
                     <i class="bi bi-chevron-left"></i>
-                    File Structure
+                    Creating a book module using DotMaker
                 </a>
             
         </li>
@@ -668,7 +708,7 @@
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../../installation/installation-intro/">
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../../../v6/introduction/introduction/">
                     Introduction
                     <i class="bi bi-chevron-right"></i>
                 </a>
