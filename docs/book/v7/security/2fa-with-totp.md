@@ -9,25 +9,8 @@ Our implementation follows the industry standard of using an Authenticator app t
 
 Below is a simplified flow for the 2FA with a TOTP mechanism.
 
-```mermaid
-sequenceDiagram
-    participant U as 👤 User
-    participant A as 📱 Authenticator App
-    participant S as 🖥 Server
-
-    U->>S: 1. Enter username + password
-    S->>S: 2. Verify credentials
-
-    S-->>U: 3. Request TOTP code
-
-    A->>U: 4. Display TOTP (time-based)
-    U->>S: 5. Submit TOTP code
-
-    S->>S: 6. Validate (shared secret + time)
-
-    S-->>U: 7. ✅ Access granted
-```
+![totp-flow!](https://docs.dotkernel.org/img/admin/v7/install-totp/totp-flow.jpg)
 
 ## Next Steps
 
-[Install 2FA with dot-totp](../configuring-2fa-with-totp.md).
+[Install 2FA with dot-totp](https://docs.dotkernel.org/admin-documentation/v7/tutorials/install-dot-totp/).
