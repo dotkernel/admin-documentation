@@ -22,7 +22,7 @@
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Two Factor Authorization with Time-based One-Time Password - admin - Dotkernel Documentation</title>
+        <title>Two-Factor Authentication with Time-based One-Time Password - admin - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -214,7 +214,7 @@
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Two Factor Authorization with Time-based One-Time Password</li>
+                    <li class="breadcrumb-item active" aria-current="page">Two-Factor Authentication with Time-based One-Time Password</li>
                 
             
         </ol>
@@ -514,7 +514,7 @@
         
         
 <li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Two Factor Authorization with Time-based One-Time Password</a>
+    <a href="./" class="subnavigation__link">Two-Factor Authentication with Time-based One-Time Password</a>
 </li>
 
         
@@ -558,7 +558,7 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../tutorials/install-dot-totp/" class="subnavigation__link">Installing dot-totp</a>
+    <a href="../../tutorials/install-dot-totp/" class="subnavigation__link">Enabling Time-based One-Time Password (TOTP)</a>
 </li>
 
         
@@ -632,24 +632,9 @@
 Our implementation follows the industry standard of using an Authenticator app to generate temporary, unique 6-digit codes that change every 30 seconds.</p>
 <h2 id="2fa-with-totp-flow">2FA with TOTP Flow</h2>
 <p>Below is a simplified flow for the 2FA with a TOTP mechanism.</p>
-<pre class="highlight"><code class="language-mermaid">sequenceDiagram
-    participant U as 👤 User
-    participant A as 📱 Authenticator App
-    participant S as 🖥 Server
-
-    U-&gt;&gt;S: 1. Enter username + password
-    S-&gt;&gt;S: 2. Verify credentials
-
-    S--&gt;&gt;U: 3. Request TOTP code
-
-    A-&gt;&gt;U: 4. Display TOTP (time-based)
-    U-&gt;&gt;S: 5. Submit TOTP code
-
-    S-&gt;&gt;S: 6. Validate (shared secret + time)
-
-    S--&gt;&gt;U: 7. ✅ Access granted</code></pre>
+<p><img alt="totp-flow!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/totp-flow.jpg" class="img-responsive"/></p>
 <h2 id="next-steps">Next Steps</h2>
-<p><a href="../configuring-2fa-with-totp.md">Install 2FA with dot-totp</a>.</p>
+<p><a href="https://docs.dotkernel.org/admin-documentation/v7/tutorials/install-dot-totp/">Install 2FA with dot-totp</a>.</p>
 
 
 

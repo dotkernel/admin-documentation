@@ -22,7 +22,7 @@
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Installing dot-totp - admin - Dotkernel Documentation</title>
+        <title>Enabling Time-based One-Time Password (TOTP) - admin - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -214,7 +214,7 @@
                         
                     
 
-                    <li class="breadcrumb-item active" aria-current="page">Installing dot-totp</li>
+                    <li class="breadcrumb-item active" aria-current="page">Enabling Time-based One-Time Password (TOTP)</li>
                 
             
         </ol>
@@ -514,7 +514,7 @@
         
         
 <li class="subnavigation__list-item ">
-    <a href="../../security/2fa-with-totp/" class="subnavigation__link">Two Factor Authorization with Time-based One-Time Password</a>
+    <a href="../../security/2fa-with-totp/" class="subnavigation__link">Two-Factor Authentication with Time-based One-Time Password</a>
 </li>
 
         
@@ -558,7 +558,7 @@
         
         
 <li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Installing dot-totp</a>
+    <a href="./" class="subnavigation__link">Enabling Time-based One-Time Password (TOTP)</a>
 </li>
 
         
@@ -660,14 +660,14 @@ If you follow the links from the <a href="https://github.com/dotkernel/admin-doc
 <h2 id="dot-totp-in-action">Dot-totp in Action</h2>
 <p>Once you have <code>dot-totp</code> implemented, you can activate the feature in your admin accounts.
 If you navigate to your profile from the top-right image in Dotkernel Admin, you should see this box.</p>
-<p><img alt="Dotkernel Admin File Structure!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/profile-totp-deactivated.jpg" class="img-responsive"/></p>
+<p><img alt="profile-totp-deactivated!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/profile-totp-deactivated.jpg" class="img-responsive"/></p>
 <p>Simply click on 'Enable TOTP' to begin the activation process.</p>
 <blockquote>
 <p>We blurred out the QR code and recovery codes for this tutorial.
 You will receive dynamically generated versions that will be fully visible to you.</p>
 <p>You will need to have an Authenticator app installed on your mobile device.</p>
 </blockquote>
-<p><img alt="Dotkernel Admin File Structure!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/totp-activate-qr.jpg" class="img-responsive"/></p>
+<p><img alt="totp-activate-qr!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/totp-activate-qr.jpg" class="img-responsive"/></p>
 <p>Follow the instructions on the screen:</p>
 <ul>
 <li>Scan the QR code with your mobile device.</li>
@@ -677,7 +677,7 @@ You will receive dynamically generated versions that will be fully visible to yo
 <p>The code refreshes every 30 seconds.</p>
 </blockquote>
 <p>The TOPT activation flow will list several recovery codes you can use if your mobile device isn't available.</p>
-<p><img alt="Dotkernel Admin File Structure!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/totp-recovery-codes.jpg" class="img-responsive"/></p>
+<p><img alt="totp-recovery-codes!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/totp-recovery-codes.jpg" class="img-responsive"/></p>
 <blockquote>
 <p>Each recovery code is usable only once.</p>
 <p>Save the recovery codes in a secure location.</p>
@@ -686,7 +686,7 @@ You will receive dynamically generated versions that will be fully visible to yo
 <p>Whenever you need to log into the account, you will start by entering your username and password, like before.
 Since TOTP is activated, you will need to also submit the code from your Authenticator app.
 Alternatively, you can submit a recovery code.</p>
-<p><img alt="Dotkernel Admin File Structure!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/totp-ask-code.jpg" class="img-responsive"/></p>
+<p><img alt="totp-ask-code!" src="https://docs.dotkernel.org/img/admin/v7/install-totp/totp-ask-code.jpg" class="img-responsive"/></p>
 <p>That's it!
 You are now logged in securely.</p>
 
