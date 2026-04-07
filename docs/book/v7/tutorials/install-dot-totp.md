@@ -43,7 +43,7 @@ There are still some code snippets in the [_misc](https://github.com/dotkernel/a
 Once you have `dot-totp` implemented, you can activate the feature in your admin accounts.
 If you navigate to your profile from the top-right image in Dotkernel Admin, you should see this box.
 
-![Dotkernel Admin File Structure!](https://docs.dotkernel.org/img/admin/v7/install-totp/profile-totp-deactivated.jpg)
+![profile-totp-deactivated!](https://docs.dotkernel.org/img/admin/v7/install-totp/profile-totp-deactivated.jpg)
 
 Simply click on 'Enable TOTP' to begin the activation process.
 
@@ -52,7 +52,7 @@ Simply click on 'Enable TOTP' to begin the activation process.
 
 > You will need to have an Authenticator app installed on your mobile device.
 
-![Dotkernel Admin File Structure!](https://docs.dotkernel.org/img/admin/v7/install-totp/totp-activate-qr.jpg)
+![totp-activate-qr!](https://docs.dotkernel.org/img/admin/v7/install-totp/totp-activate-qr.jpg)
 
 Follow the instructions on the screen:
 
@@ -63,7 +63,7 @@ Follow the instructions on the screen:
 
 The TOPT activation flow will list several recovery codes you can use if your mobile device isn't available.
 
-![Dotkernel Admin File Structure!](https://docs.dotkernel.org/img/admin/v7/install-totp/totp-recovery-codes.jpg)
+![totp-recovery-codes!](https://docs.dotkernel.org/img/admin/v7/install-totp/totp-recovery-codes.jpg)
 
 > Each recovery code is usable only once.
 
@@ -75,7 +75,7 @@ Whenever you need to log into the account, you will start by entering your usern
 Since TOTP is activated, you will need to also submit the code from your Authenticator app.
 Alternatively, you can submit a recovery code.
 
-![Dotkernel Admin File Structure!](https://docs.dotkernel.org/img/admin/v7/install-totp/totp-ask-code.jpg)
+![totp-ask-code!](https://docs.dotkernel.org/img/admin/v7/install-totp/totp-ask-code.jpg)
 
 That's it!
 You are now logged in securely.
