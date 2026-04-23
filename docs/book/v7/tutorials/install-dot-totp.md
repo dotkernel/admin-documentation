@@ -25,7 +25,9 @@ If you follow the links from the [main totp integration example](https://github.
 - [src/Admin/src/Handler/Account/PostValidateTotpHandler.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostValidateTotpHandler.php)
 - [src/Admin/src/InputFilter/RecoveryInputFilter.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/InputFilter/RecoveryInputFilter.php)
 - [src/Admin/src/InputFilter/TotpInputFilter.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/InputFilter/TotpInputFilter.php)
+- [src/Admin/templates/admin/list-recovery-codes.html.twig](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/templates/admin/list-recovery-codes.html.twig)
 - [src/Admin/templates/admin/recovery-form.html.twig](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/templates/admin/recovery-form.html.twig)
+- [src/Admin/templates/admin/validate-totp-form.html.twig](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/templates/admin/validate-totp-form.html.twig)
 - [src/App/src/Middleware/CancelUrlMiddleware.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/App/src/Middleware/CancelUrlMiddleware.php)
 - [src/App/src/Middleware/TotpMiddleware.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/App/src/Middleware/TotpMiddleware.php)
 
