@@ -46,7 +46,7 @@ There are still some code snippets in the [_misc](https://github.com/dotkernel/a
 
 ```php
 public const VALIDATOR_INVALID_CODE = 'Invalid recovery code.'
-``` 
+```
 
 ## Dot-totp in Action
 
