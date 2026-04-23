@@ -23,6 +23,8 @@ If you follow the links from the [main totp integration example](https://github.
 - [src/Admin/src/Handler/Account/PostEnableTotpHandler.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostEnableTotpHandler.php)
 - [src/Admin/src/Handler/Account/PostValidateRecoveryHandler.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostValidateRecoveryHandler.php)
 - [src/Admin/src/Handler/Account/PostValidateTotpHandler.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostValidateTotpHandler.php)
+- [src/Admin/src/InputFilter/RecoveryInputFilter.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/InputFilter/RecoveryInputFilter.php)
+- [src/Admin/src/InputFilter/TotpInputFilter.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/InputFilter/TotpInputFilter.php)
 - [src/Admin/templates/admin/recovery-form.html.twig](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/templates/admin/recovery-form.html.twig)
 - [src/App/src/Middleware/CancelUrlMiddleware.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/App/src/Middleware/CancelUrlMiddleware.php)
 - [src/App/src/Middleware/TotpMiddleware.php](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/App/src/Middleware/TotpMiddleware.php)
@@ -37,6 +39,12 @@ There are still some code snippets in the [_misc](https://github.com/dotkernel/a
 - [the routes updates](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-routes.php) must be added in the `src/Admin/src/RoutesDelegator.php` file.
 - [the pipeline updates](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-Pipeline.php) must be added in the `config/pipeline.php` file after `$app->pipe(AuthMiddleware::class);`.
 - [the ConfigProvider updates](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-ConfigProvider.php) must be added in the `src/Admin/src/ConfigProvider.php` file.
+- [append these routes](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-authorization-guards.global.php) to your `authorization-guards.global.php` file.
+- Add the constant below in `src/Core/src/App/src/Message.php` to return an error message when the recovery code is invalid.
+
+```php
+public const VALIDATOR_INVALID_CODE = 'Invalid recovery code.'
+``` 
 
 ## Dot-totp in Action
 

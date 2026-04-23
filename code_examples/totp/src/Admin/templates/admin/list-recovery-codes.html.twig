@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body class="app">
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <div class="mb-3">
+            <h2 class="mx-3">Recovery codes</h2>
+
+            {% if plainCodes|length > 0 %}
+                <div class="alert alert-info">
+                    <p>Save these recovery codes. Each code can be used only once:</p>
+                    <ul>
+                        {% for code in plainCodes %}
+                            <li>{{ code }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="d-flex flex-column align-items-center mt-3">
+                <a href="{{ path('dashboard::view-dashboard') }}" class="btn btn-secondary mt-2">Ok</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
