@@ -642,7 +642,11 @@ If you follow the links from the <a href="https://github.com/dotkernel/admin-doc
 <li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostEnableTotpHandler.php">src/Admin/src/Handler/Account/PostEnableTotpHandler.php</a></li>
 <li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostValidateRecoveryHandler.php">src/Admin/src/Handler/Account/PostValidateRecoveryHandler.php</a></li>
 <li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostValidateTotpHandler.php">src/Admin/src/Handler/Account/PostValidateTotpHandler.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/InputFilter/RecoveryInputFilter.php">src/Admin/src/InputFilter/RecoveryInputFilter.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/InputFilter/TotpInputFilter.php">src/Admin/src/InputFilter/TotpInputFilter.php</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/templates/admin/list-recovery-codes.html.twig">src/Admin/templates/admin/list-recovery-codes.html.twig</a></li>
 <li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/templates/admin/recovery-form.html.twig">src/Admin/templates/admin/recovery-form.html.twig</a></li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/templates/admin/validate-totp-form.html.twig">src/Admin/templates/admin/validate-totp-form.html.twig</a></li>
 <li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/App/src/Middleware/CancelUrlMiddleware.php">src/App/src/Middleware/CancelUrlMiddleware.php</a></li>
 <li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/App/src/Middleware/TotpMiddleware.php">src/App/src/Middleware/TotpMiddleware.php</a></li>
 </ul>
@@ -656,7 +660,10 @@ If you follow the links from the <a href="https://github.com/dotkernel/admin-doc
 <li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-routes.php">the routes updates</a> must be added in the <code>src/Admin/src/RoutesDelegator.php</code> file.</li>
 <li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-Pipeline.php">the pipeline updates</a> must be added in the <code>config/pipeline.php</code> file after <code>$app-&gt;pipe(AuthMiddleware::class);</code>.</li>
 <li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-ConfigProvider.php">the ConfigProvider updates</a> must be added in the <code>src/Admin/src/ConfigProvider.php</code> file.</li>
+<li><a href="https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-authorization-guards.global.php">append these routes</a> to your <code>authorization-guards.global.php</code> file.</li>
+<li>Add the constant below in <code>src/Core/src/App/src/Message.php</code> to return an error message when the recovery code is invalid.</li>
 </ul>
+<pre class="highlight"><code class="language-php">public const VALIDATOR_INVALID_CODE = 'Invalid recovery code.'</code></pre>
 <h2 id="dot-totp-in-action">Dot-totp in Action</h2>
 <p>Once you have <code>dot-totp</code> implemented, you can activate the feature in your admin accounts.
 If you navigate to your profile from the top-right image in Dotkernel Admin, you should see this box.</p>
