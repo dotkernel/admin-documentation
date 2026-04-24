@@ -1,0 +1,1 @@
+public const VALIDATOR_INVALID_CODE = 'Invalid recovery code.'
