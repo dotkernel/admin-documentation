@@ -1,5 +1,11 @@
 # Composer Installation of Packages
 
+## Summary
+
+This page walks through installing Composer dependencies, answering the setup script's configuration prompts, and enabling or disabling development mode.
+
+## Details
+
 Composer is required to install Dotkernel Admin. You can install Composer from the [official site](https://getcomposer.org/).
 
 > First, make sure that you have navigated your command prompt to the folder where you copied the files in the previous step.
@@ -71,3 +77,17 @@ You can check if you have development mode enabled by running:
 ```shell
 composer development-status
 ```
+
+## FAQ
+
+**Q: How do I install the project's PHP dependencies?**
+
+A: Run `composer install` from the command line, using the CLI to ensure interactivity for proper configuration.
+
+**Q: Why should I select `[0] Do not inject` during setup?**
+
+A: Dotkernel includes its own `ConfigProvider`, which already contains the prompted configurations, so injecting an extra one is unnecessary.
+
+**Q: How do I check whether development mode is enabled?**
+
+A: Run `composer development-status`; use `composer development-enable` or `composer development-disable` to toggle it.

@@ -1,5 +1,11 @@
 # Packages
 
+## Summary
+
+This page lists the main Composer packages Dotkernel Admin depends on, covering Doctrine, Dotkernel, Laminas and Mezzio components.
+
+## Details
+
 * `doctrine/dbal`:`^4.4` - Powerful PHP database abstraction layer (DBAL) with many features for database schema introspection and management.
 * `doctrine/orm`:`^3.6` - Object-Relational-Mapper for PHP
 * `dotkernel/dot-authorization`:`^3.8` - Authorization base package defining interfaces for authorization services to be used with Dotkernel applications
@@ -35,3 +41,17 @@
 * `ramsey/uuid-doctrine`:`^2.1` - Use ramsey/uuid as a Doctrine field type
 * `roave/psr-container-doctrine`:`^6.1` - Doctrine Factories for PSR-11 Containers
 * `symfony/filesystem`:`^8.0` - Provides basic utilities for the filesystem
+
+## FAQ
+
+**Q: What ORM does Dotkernel Admin use?**
+
+A: `doctrine/orm`, together with `doctrine/dbal` for database schema introspection and management.
+
+**Q: Which framework underpins Dotkernel Admin?**
+
+A: `mezzio/mezzio`, a PSR-15 middleware microframework, along with several Mezzio and Laminas components.
+
+**Q: Which Dotkernel packages handle authorization?**
+
+A: `dotkernel/dot-authorization` and `dotkernel/dot-rbac-guard` define and enforce role-based access to the application.

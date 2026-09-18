@@ -1,5 +1,11 @@
 # Implementing a book module in Dotkernel Admin using DotMaker
 
+## Summary
+
+This tutorial uses `dotkernel/dot-maker` to scaffold a complete `Book` module in Dotkernel Admin, from folder structure and file contents to migrations, authorization and route verification.
+
+## Details
+
 The `dotkernel/dot-maker` library can be used to programmatically generate project files and directories.
 It can be added to your Admin installation by following the [official documentation](https://docs.dotkernel.org/dot-maker/).
 
@@ -964,5 +970,23 @@ Open `config/autoload/authorization-guards.global.php` and append the below rout
 The module should now be accessible via the `Book` section of the `Admin` main menu, linking to the newly created `/list-book` route.
 
 New book entities can be added via the new "Create book" modal accessible from the `+` button on the management page.
+
+## FAQ
+
+**Q: What tool generates the files for the book module?**
+
+A: The `dotkernel/dot-maker` library, which programmatically generates project files and directories.
+
+**Q: How do I create the database table for the new `Book` entity?**
+
+A: Generate a migration by running `php ./vendor/bin/doctrine-migrations diff`, then apply it with `php ./vendor/bin/doctrine-migrations migrate`.
+
+**Q: How do I make the new endpoints accessible?**
+
+A: Configure access to them by appending the new routes to the `guards.options.rules` key in `config/autoload/authorization-guards.global.php`.
+
+**Q: How do I verify the module works after implementing it?**
+
+A: Check that the `Book` section appears in the `Admin` main menu, linking to `/list-book`, and that new book entities can be added via the "Create book" modal.
 
 Once selected with the checkbox, existing entries can be edited via the `-` button , or deleted via the "trash" icon.

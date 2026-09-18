@@ -1,5 +1,11 @@
 # Server Requirements
 
+## Summary
+
+This page lists the recommended webserver, PHP version, required settings, supported RDBMS engines and recommended PHP extensions for running Dotkernel Admin.
+
+## Details
+
 For production, we highly recommend a *nix based system.
 
 ## Webserver
@@ -44,3 +50,17 @@ Both mod_php and FCGI (FPM) are supported.
 * `zlib`, `zip`, `bz2` - if compressing files
 * `curl` (required if APIs are used)
 * `sqlite3` - for tests
+
+## FAQ
+
+**Q: What is the minimum required PHP version?**
+
+A: PHP 8.2 or above, supported through either mod_php or FCGI (FPM).
+
+**Q: Which databases are supported?**
+
+A: MariaDB (10.7, 10.11 LTS, 11.4 LTS, 11.8 LTS) and PostgreSQL (13 and above); MySQL is not supported because it lacks UUID support.
+
+**Q: What webserver modules are required?**
+
+A: On Apache, `mod_rewrite` and `.htaccess` support (`AllowOverride All`); on Nginx, the provided `.htaccess` file must be converted into Nginx configuration instructions.

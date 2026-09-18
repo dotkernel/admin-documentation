@@ -1,5 +1,11 @@
 # Upgrades
 
+## Summary
+
+This page explains that Dotkernel Admin has no automatic upgrade path, and describes the manual procedure for tracking and applying releases.
+
+## Details
+
 Dotkernel Admin does not provide an automatic upgrade path.
 Instead, the recommended procedure is to manually implement each modification listed in [releases](https://github.com/dotkernel/admin/releases).
 Additionally, release info can also be accessed as an [RSS](https://github.com/dotkernel/admin/releases.atom) feed.
@@ -17,3 +23,17 @@ This allows you to track your Admin's version and keep your project up to date w
 ## Version to version upgrading
 
 Starting from [version 6.2](UPGRADE-7.0.md) the upgrading procedure is detailed version to version.
+
+## FAQ
+
+**Q: Does Dotkernel Admin provide an automatic upgrade path?**
+
+A: No, upgrades must be implemented manually by following the modifications listed in each [release](https://github.com/dotkernel/admin/releases).
+
+**Q: How do I track which version of Dotkernel Admin I'm on?**
+
+A: Use the `CHANGELOG.md` file created when you clone the project, and keep it updated by copying each release's info into it.
+
+**Q: Where can I find version-to-version upgrade details?**
+
+A: Starting from [version 6.2](UPGRADE-7.0.md), the upgrading procedure is documented version to version.

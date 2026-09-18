@@ -1,5 +1,9 @@
 # Clone the project
 
+## Summary
+
+This page explains how to clone the Dotkernel Admin repository into an empty directory and verify that the files were downloaded correctly.
+
 ## Recommended development environment
 
 > If you are using Windows on your machine, you can use WSL2 as a development environment.
@@ -26,3 +30,13 @@ Resolving deltas: 100% (3359/3359), done.
 ```
 
 You can already open the project in your preferred IDE to double-check the files were copied correctly.
+
+## FAQ
+
+**Q: What command do I use to clone Dotkernel Admin?**
+
+A: Run `git clone https://github.com/dotkernel/admin.git .` inside an empty directory.
+
+**Q: What development environment is recommended on Windows?**
+
+A: Use WSL2, following the guide linked in this page's "Recommended development environment" section.

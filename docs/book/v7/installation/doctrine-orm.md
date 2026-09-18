@@ -1,5 +1,11 @@
 # Doctrine ORM
 
+## Summary
+
+This page covers setting up the database connection, creating and running migrations, and executing fixtures to populate the admin tables.
+
+## Details
+
 This step saves the database connection credentials in an Admin configuration file.
 We do not cover the creation steps of the database itself.
 
@@ -115,3 +121,21 @@ Fixtures have been loaded.
     ' <' `\ ._/'\
        `   \     \
 ```
+
+## FAQ
+
+**Q: Which database engines are supported?**
+
+A: You can create a **MariaDB** or **PostgreSQL** database, and its collation should be set to `utf8mb4_general_ci`.
+
+**Q: Where do I put my database connection credentials?**
+
+A: Fill them out in `config/autoload/local.php`, under `$databases['mariadb']` (or `$databases['postgresql']` if using PostgreSQL).
+
+**Q: How do I create and run a migration?**
+
+A: Run `php ./vendor/bin/doctrine-migrations diff` to generate the migration file, then `php ./vendor/bin/doctrine-migrations migrate` to apply it.
+
+**Q: How do I populate the admin tables with default data?**
+
+A: Run `php ./bin/doctrine fixtures:execute` to load the fixtures.
