@@ -54,7 +54,8 @@ return [
 
 **Q: What are the default admin credentials after running the fixtures?**
 
-A: **User**: `admin`, **Password**: `dotadmin`. Make sure to change these before going to production.
+A: **User**: `admin`, **Password**: `dotadmin`.
+Make sure to change these before going to production.
 
 **Q: What should I do if I get a server error 500?**
 

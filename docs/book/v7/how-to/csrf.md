@@ -60,7 +60,8 @@ Open the template that renders your form and add the following code somewhere be
 
 ## Test the implementation
 
-Access your form from the browser and view its source. You should see a new hidden field, called `exampleCsrf` (or however you named it).
+Access your form from the browser and view its source.
+You should see a new hidden field, called `exampleCsrf` (or however you named it).
 After filling out the form, submitting it should work as before.
 
 To make sure that the new CSRF field works as expected, you can inspect the form using your browser's `Developer tools` and modify its value in any way.
