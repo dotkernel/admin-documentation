@@ -1,5 +1,11 @@
 # Installing dot-totp into Dotkernel Admin
 
+## Summary
+
+This tutorial walks through installing the `dot-totp` package, adding the required files, wiring routes and configuration, and activating 2FA on an admin account.
+
+## Details
+
 If you haven't already, install [Dotkernel Admin](https://github.com/dotkernel/admin).
 
 > The installation steps listed below should work similarly in any middleware-based application.
@@ -89,3 +95,21 @@ Alternatively, you can submit a recovery code.
 
 That's it!
 You are now logged in securely.
+
+## FAQ
+
+**Q: How do I add `dot-totp` to my project?**
+
+A: Run `composer require dotkernel/dot-totp`, then add the files listed in this tutorial, following the Dotkernel file structure.
+
+**Q: What do I need to migrate after adding the `TotpTrait`?**
+
+A: Migrate the new columns `totpSecret`, `totp_enabled` and `recovery_codes` in the entity that uses the trait.
+
+**Q: How does a user activate 2FA on their account?**
+
+A: They click 'Enable TOTP' from their profile, scan the QR code with an Authenticator app, and enter the 6-digit code it generates.
+
+**Q: What happens if a user loses access to their Authenticator app?**
+
+A: They can log in using one of the recovery codes generated during activation; each recovery code is usable only once.

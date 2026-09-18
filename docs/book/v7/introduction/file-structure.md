@@ -1,5 +1,11 @@
 # File structure
 
+## Summary
+
+This page describes the default folder and file layout of Dotkernel Admin, including the purpose of `bin`, `config`, `data`, `log`, `public` and `src`, along with the Core module's submodule structure.
+
+## Details
+
 Dotkernel Admin follows the [PSR-4](https://www.php-fig.org/psr/psr-4/) standards.
 
 It is considered good practice to standardize the file structure of projects.
@@ -138,3 +144,21 @@ Each submodule folder should contain:
 
 The above example is just some of the folders a project may include, but they should give you an idea about the recommended structure.
 Other classes the `src` folder may include are `DBAL`, `Enum`, `Command`, `Factory` etc.
+
+## FAQ
+
+**Q: What standard does Dotkernel Admin's file structure follow?**
+
+A: It follows the [PSR-4](https://www.php-fig.org/psr/psr-4/) standard.
+
+**Q: Where do application configuration files live?**
+
+A: In the `config` folder, with service-related local and global config files under `config/autoload`.
+
+**Q: What does each Module folder typically contain?**
+
+A: Folders such as `src/Handler`, `src/InputFilter` and `src/Service`, plus a `ConfigProvider.php` and a `RoutesDelegator.php`.
+
+**Q: What is the Core module used for?**
+
+A: It is a common codebase shared across the applications in your project, containing submodules such as `Admin`, `App`, `Security`, `Setting` and `User`, each typically with `src/Entity`, `src/Repository` and a `ConfigProvider.php`.

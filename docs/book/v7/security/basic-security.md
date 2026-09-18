@@ -1,5 +1,11 @@
 # Basic Security
 
+## Summary
+
+This page covers the security tools Dotkernel Admin ships with, including form validation, CSRF protection, RBAC, session and cookie settings, demo credentials, dependency management, and general production considerations.
+
+## Details
+
 Dotkernel Admin provides all necessary tools to implement safe applications; however, you will need to manually make use of some of them.
 This section will go over the provided tools and any steps you need to follow to use them successfully, as well as a few general considerations.
 
@@ -69,3 +75,21 @@ composer development-status
 if you are using a public repository, consider keeping it in your custom applications to ensure code quality.
 
 > Read more about using [Laminas Continuous Integration](https://getlaminas.org/blog/2024-08-05-using-laminas-continuous-integration.html).
+
+## FAQ
+
+**Q: Does Dotkernel Admin protect forms against CSRF attacks by default?**
+
+A: Yes, all shipped forms use CSRF token creation and validation; you must implement this yourself for any new forms you create.
+
+**Q: How is access control handled?**
+
+A: Through [dot-rbac-guard](https://github.com/dotkernel/dot-rbac-guard) and [dot-rbac](https://github.com/dotkernel/dot-rbac); update their configuration whenever you add new routes or roles.
+
+**Q: What should I do about the demo admin account before going live?**
+
+A: Make sure to change or remove the demo account, since it ships with a public identity and password.
+
+**Q: Where should sensitive data like API keys be stored?**
+
+A: In `*.local.php` configuration files, which are ignored by VCS by default; never put sensitive data in `*.global.php` or `*.php.dist` files.
