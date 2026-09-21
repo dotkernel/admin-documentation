@@ -21,7 +21,7 @@ For production, we highly recommend a *nix based system.
 
 You need to convert the provided Apache related `.htaccess` file into Nginx configuration instructions.
 
-## PHP >= 8.2
+## PHP >= 8.3
 
 Both mod_php and FCGI (FPM) are supported.
 
@@ -55,7 +55,7 @@ Both mod_php and FCGI (FPM) are supported.
 
 **Q: What is the minimum required PHP version?**
 
-A: PHP 8.2 or above, supported through either mod_php or FCGI (FPM).
+A: PHP 8.3 or above, supported through either mod_php or FCGI (FPM).
 
 **Q: Which databases are supported?**
 

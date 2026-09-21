@@ -955,7 +955,7 @@ php ./vendor/bin/doctrine-migrations migrate
 ## Update the authorization file
 
 We need to configure access to the newly created endpoints.
-Open `config/autoload/authorization-guards.global.php` and append the below routes to the `guards.options.rules` key:
+Open `config/autoload/authorization-guards.global.php` and append the below routes to the `dot_authorization.guards_provider.options.guards[0].options.rules` key:
 
 ```php
 'book::create-book-form' => ['authenticated'],
