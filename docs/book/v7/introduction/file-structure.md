@@ -35,15 +35,14 @@ This folder contains all application-related config files:
 * `config.php` - Registers ConfigProviders for installing packages
 * `container.php` - Main service container that provides access to all registered services
 * `development.config.php.dist` - Activates debug mode; gets symlinked as `development.config.php` when enabling development mode
-* `migrations.php` - Configuration for database migration, like migration file location and table to save the migration log
 * `pipeline.php` - Contains a list of middlewares, in the order of their execution
+* `routes.php` - Registers the application's routes
 * `twig-cs-fixer.php` - Configuration file for Twig code style checker/fixer
 
 ### `config/autoload` folder
 
 This folder contains all service-related local and global config files:
 
-* `app.global.php` - Configures basic app variables
 * `authentication.global.php` - Defines the Admin identity
 * `authorization.global.php` - Configures permissions for user roles
 * `authorization-guards.global.php` - Configures access per route for user roles
@@ -52,6 +51,7 @@ This folder contains all service-related local and global config files:
 * `dependencies.global.php` - Config file to set global dependencies that should be accessible by all modules
 * `development.local.php.dist` - Gets symlinked as `development.local.php` when enabling development mode; activates error handlers
 * `error-handling.global.php` - Configures and activates error logs
+* `geoip.global.php` - Configures the GeoLite2 synchronizer command
 * `local.php.dist` - Local config file where you can overwrite application name and URL
 * `local.test.php.dist` - Local configuration for functional tests
 * `mail.global.php` - Mail configuration; e.g. sendmail vs smtp, message configuration, mail logging
@@ -85,7 +85,7 @@ This folder contains all publicly available assets and serves as the entry point
 * `uploads` - a folder that normally contains admin avatar images
 * `.htaccess` - server configuration file used by Apache web server; it enables the URL rewrite functionality
 * `index.php` - the application's main entry point
-* `robots.txt.dist` - a sample robots.txt file that allows/denies bot access to certain areas of your application; activate it by duplicating the file as `robots.txt` and comment out the lines that don't match your environment
+* `robots.txt` - controls bot access to certain areas of your application; ships ready to use, edit the lines that don't match your environment
 
 ## `src` folder
 
