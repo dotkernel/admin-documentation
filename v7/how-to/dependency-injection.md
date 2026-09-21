@@ -20,12 +20,12 @@ Dotkernel Admin comes out of the box with the [dot-dependency-injection](https:/
 `dot-dependency-injection` determines the dependencies by looking at the `#[Inject]` attribute, added to the constructor of a class.
 Each dependency is specified as a separate parameter of the `#[Inject]` attribute.
 
-For our example we will inject `RouterInterface` and `AuthenticationServiceInterface` dependencies into `GetAccountLogoutHandler`.
+For our example we will inject `RouterInterface` and `AuthenticationServiceInterface` dependencies into `GetLogoutAccountHandler`.
 
 ```php
 use Dot\DependencyInjection\Attribute\Inject;
 
-class GetAccountLogoutHandler implements RequestHandlerInterface
+class GetLogoutAccountHandler implements RequestHandlerInterface
 {
     #[Inject(
         RouterInterface::class,
@@ -48,7 +48,7 @@ public function getDependencies(): array
 {
     return [
         'factories' => [
-            GetAccountLogoutHandler::class => AttributedServiceFactory::class,
+            GetLogoutAccountHandler::class => AttributedServiceFactory::class,
         ],
     ];
 }

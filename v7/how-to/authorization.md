@@ -13,22 +13,28 @@ The `authorization.global.php` file provides multiple configurations specifying 
 
 ```php
 //example of a flat RBAC model that specifies two types of roles as well as their permission
-    'roles' => [
-        'admin' => [
-            'permissions' => [
-                'authenticated',
-                'edit',
-                'delete',
-                //etc..
-            ]
+'dot_authorization' => [
+    'role_provider' => [
+        'options' => [
+            'roles' => [
+                'admin' => [
+                    'permissions' => [
+                        'authenticated',
+                        'edit',
+                        'delete',
+                        //etc..
+                    ]
+                ],
+                'user' => [
+                    'permissions' => [
+                        'authenticated',
+                        //etc..
+                    ]
+                ]
+            ],
         ],
-        'user' => [
-            'permissions' => [
-                'authenticated',
-                //etc..
-            ]
-        ]
-    ]
+    ],
+]
 ```
 
 The `authorization-guards.global.php` file defines which permissions are required to access specific route handlers.
@@ -37,14 +43,14 @@ These permissions must first be declared in the `authorization.global.php` (dot-
 ```php
 // Example configuration granting access to route handlers based on permissions.
     'rules' => [
-        'admin::admin-login-form'        => [],
-        'admin::admin-login'             => [],
-        'admin::admin-create-form'       => ['authenticated'],
-        'admin::admin-create'            => ['authenticated'],
-        'admin::admin-delete-form'       => ['authenticated'],
-        'admin::admin-delete'            => ['authenticated'],
-        'admin::admin-edit-form'         => ['authenticated'],
-        'admin::admin-edit'              => ['authenticated'],
+        'admin::login-admin-form'        => ['unauthenticated'],
+        'admin::login-admin'             => ['unauthenticated'],
+        'admin::create-admin-form'       => ['authenticated'],
+        'admin::create-admin'            => ['authenticated'],
+        'admin::delete-admin-form'       => ['authenticated'],
+        'admin::delete-admin'            => ['authenticated'],
+        'admin::edit-admin-form'         => ['authenticated'],
+        'admin::edit-admin'              => ['authenticated'],
     ]
 ```
 

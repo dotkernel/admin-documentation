@@ -668,14 +668,13 @@
 <li><code>config.php</code> - Registers ConfigProviders for installing packages</li>
 <li><code>container.php</code> - Main service container that provides access to all registered services</li>
 <li><code>development.config.php.dist</code> - Activates debug mode; gets symlinked as <code>development.config.php</code> when enabling development mode</li>
-<li><code>migrations.php</code> - Configuration for database migration, like migration file location and table to save the migration log</li>
 <li><code>pipeline.php</code> - Contains a list of middlewares, in the order of their execution</li>
+<li><code>routes.php</code> - Registers the application's routes</li>
 <li><code>twig-cs-fixer.php</code> - Configuration file for Twig code style checker/fixer</li>
 </ul>
 <h3 id="configautoload-folder"><code>config/autoload</code> folder</h3>
 <p>This folder contains all service-related local and global config files:</p>
 <ul>
-<li><code>app.global.php</code> - Configures basic app variables</li>
 <li><code>authentication.global.php</code> - Defines the Admin identity</li>
 <li><code>authorization.global.php</code> - Configures permissions for user roles</li>
 <li><code>authorization-guards.global.php</code> - Configures access per route for user roles</li>
@@ -684,6 +683,7 @@
 <li><code>dependencies.global.php</code> - Config file to set global dependencies that should be accessible by all modules</li>
 <li><code>development.local.php.dist</code> - Gets symlinked as <code>development.local.php</code> when enabling development mode; activates error handlers</li>
 <li><code>error-handling.global.php</code> - Configures and activates error logs</li>
+<li><code>geoip.global.php</code> - Configures the GeoLite2 synchronizer command</li>
 <li><code>local.php.dist</code> - Local config file where you can overwrite application name and URL</li>
 <li><code>local.test.php.dist</code> - Local configuration for functional tests</li>
 <li><code>mail.global.php</code> - Mail configuration; e.g. sendmail vs smtp, message configuration, mail logging</li>
@@ -714,7 +714,7 @@ When you access the application from the browser, (if not already created) a new
 <li><code>uploads</code> - a folder that normally contains admin avatar images</li>
 <li><code>.htaccess</code> - server configuration file used by Apache web server; it enables the URL rewrite functionality</li>
 <li><code>index.php</code> - the application's main entry point</li>
-<li><code>robots.txt.dist</code> - a sample robots.txt file that allows/denies bot access to certain areas of your application; activate it by duplicating the file as <code>robots.txt</code> and comment out the lines that don't match your environment</li>
+<li><code>robots.txt</code> - controls bot access to certain areas of your application; ships ready to use, edit the lines that don't match your environment</li>
 </ul>
 <h2 id="src-folder"><code>src</code> folder</h2>
 <p>This folder contains a separate folder for each Module.</p>

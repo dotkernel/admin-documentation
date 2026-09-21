@@ -649,34 +649,40 @@
 These packages work together to create an infrastructure that is customizable and diversified to manage user access to the platform by specifying the type of role the user has.</p>
 <p>The <code>authorization.global.php</code> file provides multiple configurations specifying multiple roles as well as the types of permissions to which these roles have access.</p>
 <pre class="highlight"><code class="language-php">//example of a flat RBAC model that specifies two types of roles as well as their permission
-    'roles' =&gt; [
-        'admin' =&gt; [
-            'permissions' =&gt; [
-                'authenticated',
-                'edit',
-                'delete',
-                //etc..
-            ]
+'dot_authorization' =&gt; [
+    'role_provider' =&gt; [
+        'options' =&gt; [
+            'roles' =&gt; [
+                'admin' =&gt; [
+                    'permissions' =&gt; [
+                        'authenticated',
+                        'edit',
+                        'delete',
+                        //etc..
+                    ]
+                ],
+                'user' =&gt; [
+                    'permissions' =&gt; [
+                        'authenticated',
+                        //etc..
+                    ]
+                ]
+            ],
         ],
-        'user' =&gt; [
-            'permissions' =&gt; [
-                'authenticated',
-                //etc..
-            ]
-        ]
-    ]</code></pre>
+    ],
+]</code></pre>
 <p>The <code>authorization-guards.global.php</code> file defines which permissions are required to access specific route handlers.
 These permissions must first be declared in the <code>authorization.global.php</code> (dot-rbac) configuration file.</p>
 <pre class="highlight"><code class="language-php">// Example configuration granting access to route handlers based on permissions.
     'rules' =&gt; [
-        'admin::admin-login-form'        =&gt; [],
-        'admin::admin-login'             =&gt; [],
-        'admin::admin-create-form'       =&gt; ['authenticated'],
-        'admin::admin-create'            =&gt; ['authenticated'],
-        'admin::admin-delete-form'       =&gt; ['authenticated'],
-        'admin::admin-delete'            =&gt; ['authenticated'],
-        'admin::admin-edit-form'         =&gt; ['authenticated'],
-        'admin::admin-edit'              =&gt; ['authenticated'],
+        'admin::login-admin-form'        =&gt; ['unauthenticated'],
+        'admin::login-admin'             =&gt; ['unauthenticated'],
+        'admin::create-admin-form'       =&gt; ['authenticated'],
+        'admin::create-admin'            =&gt; ['authenticated'],
+        'admin::delete-admin-form'       =&gt; ['authenticated'],
+        'admin::delete-admin'            =&gt; ['authenticated'],
+        'admin::edit-admin-form'         =&gt; ['authenticated'],
+        'admin::edit-admin'              =&gt; ['authenticated'],
     ]</code></pre>
 <h2 id="faq">FAQ</h2>
 <p><strong>Q: Which packages handle authorization in Dotkernel Admin?</strong></p>

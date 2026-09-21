@@ -653,10 +653,10 @@ In simpler terms, it's the act of providing dependencies for an object during in
 <p>Dotkernel Admin comes out of the box with the <a href="https://github.com/dotkernel/dot-dependency-injection">dot-dependency-injection</a> package, which provides all the functionality for injecting dependencies into any object you want.</p>
 <p><code>dot-dependency-injection</code> determines the dependencies by looking at the <code>#[Inject]</code> attribute, added to the constructor of a class.
 Each dependency is specified as a separate parameter of the <code>#[Inject]</code> attribute.</p>
-<p>For our example we will inject <code>RouterInterface</code> and <code>AuthenticationServiceInterface</code> dependencies into <code>GetAccountLogoutHandler</code>.</p>
+<p>For our example we will inject <code>RouterInterface</code> and <code>AuthenticationServiceInterface</code> dependencies into <code>GetLogoutAccountHandler</code>.</p>
 <pre class="highlight"><code class="language-php">use Dot\DependencyInjection\Attribute\Inject;
 
-class GetAccountLogoutHandler implements RequestHandlerInterface
+class GetLogoutAccountHandler implements RequestHandlerInterface
 {
     #[Inject(
         RouterInterface::class,
@@ -676,7 +676,7 @@ class GetAccountLogoutHandler implements RequestHandlerInterface
 {
     return [
         'factories' =&gt; [
-            GetAccountLogoutHandler::class =&gt; AttributedServiceFactory::class,
+            GetLogoutAccountHandler::class =&gt; AttributedServiceFactory::class,
         ],
     ];
 }</code></pre>

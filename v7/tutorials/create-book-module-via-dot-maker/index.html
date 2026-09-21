@@ -1516,7 +1516,7 @@ You may copy the following structure in <code>create-book-form.html.twig</code>:
 <pre class="highlight"><code class="language-shell">php ./vendor/bin/doctrine-migrations migrate</code></pre>
 <h2 id="update-the-authorization-file">Update the authorization file</h2>
 <p>We need to configure access to the newly created endpoints.
-Open <code>config/autoload/authorization-guards.global.php</code> and append the below routes to the <code>guards.options.rules</code> key:</p>
+Open <code>config/autoload/authorization-guards.global.php</code> and append the below routes to the <code>dot_authorization.guards_provider.options.guards[0].options.rules</code> key:</p>
 <pre class="highlight"><code class="language-php">'book::create-book-form' =&gt; ['authenticated'],
 'book::create-book'      =&gt; ['authenticated'],
 'book::list-book'        =&gt; ['authenticated'],</code></pre>
