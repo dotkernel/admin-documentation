@@ -23,6 +23,7 @@ This allows you to track your Admin's version and keep your project up to date w
 ## Version to version upgrading
 
 Starting from [version 6.0](UPGRADE-7.0.md) the upgrading procedure is detailed version to version.
+The upgrade from [version 7.0 to 7.2](UPGRADE-7.2.md) is detailed on its own page.
 
 ## FAQ
 
@@ -37,3 +38,4 @@ A: Use the `CHANGELOG.md` file created when you clone the project, and keep it u
 **Q: Where can I find version-to-version upgrade details?**
 
 A: Starting from [version 6.0](UPGRADE-7.0.md), the upgrading procedure is documented version to version.
+The upgrade from [version 7.0 to 7.2](UPGRADE-7.2.md) has its own page.
