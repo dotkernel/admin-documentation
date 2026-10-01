@@ -35,7 +35,7 @@
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Upgrading 6.x to 7.0 - admin - Dotkernel Documentation</title>
+        <title>Upgrading 6.0 to 7.0 - admin - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -388,8 +388,14 @@
 
         
         
+<li class="subnavigation__list-item ">
+    <a href="../UPGRADE-7.2/" class="subnavigation__link">Upgrading 7.0 to 7.2</a>
+</li>
+
+        
+        
 <li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Upgrading 6.x to 7.0</a>
+    <a href="./" class="subnavigation__link">Upgrading 6.0 to 7.0</a>
 </li>
 
         
@@ -593,7 +599,7 @@
                     
                 
 
-                <li class="breadcrumb-item active" aria-current="page">Upgrading 6.x to 7.0</li>
+                <li class="breadcrumb-item active" aria-current="page">Upgrading 6.0 to 7.0</li>
             
         
     </ol>
@@ -650,24 +656,104 @@
         </div>
     
 
-    <h1 id="upgrading-from-6x-to-70">Upgrading from 6.x to 7.0</h1>
+    <h1 id="upgrading-from-60-to-70">Upgrading from 6.0 to 7.0</h1>
 <h2 id="summary">Summary</h2>
-<p>This page lists the notable pull requests that make up the 6.x to 7.0 upgrade of Dotkernel Admin.</p>
+<p>This page lists the pull requests that make up the 6.0 to 7.0 upgrade of Dotkernel Admin.
+They come from the 6.1.0, 6.2.0 and 7.0.0 releases and are split into important and optional updates, grouped by release.
+Apply them in release order.</p>
 <h2 id="details">Details</h2>
 <blockquote>
 <p>You can find a complete list in <a href="https://github.com/dotkernel/admin/blob/7.0/CHANGELOG.md">Changelog</a></p>
 </blockquote>
+<h3 id="important-updates">Important updates</h3>
+<p>Important updates affect a project that has copied the Dotkernel Admin skeleton.</p>
+<h4 id="610">6.1.0</h4>
 <ul>
-<li>Bumped dependencies https://github.com/dotkernel/admin/pull/401</li>
-<li>Core Sync and update codebase https://github.com/dotkernel/admin/pull/403</li>
+<li>Updated auth guards, first change of the login route rules. Read it together with the next pull request and with the 6.2.0 pull request that sets the final rules https://github.com/dotkernel/admin/pull/371</li>
+<li>Updated auth guards, sets the login route rules to an empty list. The final rules are set in 6.2.0 https://github.com/dotkernel/admin/pull/372</li>
+<li>Changed route names to be in line with API naming scheme, from <code>noun-verb</code> to <code>verb-noun</code>, for example <code>admin::admin-list</code> becomes <code>admin::list-admin</code>.
+  URLs do not change, but the keys in <code>config/autoload/authorization-guards.global.php</code>, the <code>route_name</code> entries in <code>config/autoload/navigation.global.php</code>, the Twig template names and every <code>generateUri()</code> call must follow https://github.com/dotkernel/admin/pull/375</li>
+<li>Updated all handler names to match route names, for example <code>GetAdminListHandler</code> becomes <code>GetListAdminHandler</code>.
+  Custom handlers, tests and <code>ConfigProvider</code> or <code>RoutesDelegator</code> entries that reference the old classes must be updated https://github.com/dotkernel/admin/pull/377</li>
+<li>Implemented <code>dotkernel/dot-maker</code> in dev mode, adds <code>dotkernel/dot-maker</code> to <code>require-dev</code>, the <code>make</code> Composer script and <code>process-timeout</code> set to <code>0</code> https://github.com/dotkernel/admin/pull/380</li>
+<li>Core sync, <code>OAuthAccessToken::$userId</code> gets a default value, only needed when your project has its own copy of the Core entity https://github.com/dotkernel/admin/pull/381</li>
+</ul>
+<h4 id="620">6.2.0</h4>
+<ul>
+<li>Removed the initial migration file from <code>src/Core/src/App/src/Migration</code>.
+  If your database already ran it, keep your copy or remove it everywhere, otherwise it is reported as an unavailable migration https://github.com/dotkernel/admin/pull/383</li>
+<li>Added a comment with a new possible RBAC guard config.
+  It also sets the login routes back to <code>unauthenticated</code>, which is the final state of the rules from the 6.1.0 pull requests.
+  The commented wildcard config is optional and needs <code>dotkernel/dot-rbac-guard</code> <code>^3.6.1</code> or <code>^4.1.1</code> https://github.com/dotkernel/admin/pull/386</li>
+<li>Form updates, and the edit services no longer change the password when the submitted password is empty.
+  The rest of the changes are cleanups https://github.com/dotkernel/admin/pull/388</li>
+<li>Removed the <code>mezzio/mezzio-tooling</code> dependency from <code>composer.json</code> and from <code>config/config.php</code> https://github.com/dotkernel/admin/pull/390</li>
+<li>Implemented Doctrine table prefixes through the new <code>table_prefix</code> key of the database configuration.
+  The default is an empty prefix, so nothing changes unless you set one.
+  Setting a prefix on an existing database requires renaming the tables yourself https://github.com/dotkernel/admin/pull/392</li>
+<li>Bump to PHP 8.4, the PHP constraint also accepts 8.4, <code>roave/psr-container-doctrine</code> also accepts <code>^6.0.0</code> and the CLI commands use <code>$defaultName</code> https://github.com/dotkernel/admin/pull/393</li>
+</ul>
+<h4 id="700">7.0.0</h4>
+<ul>
+<li>Core Sync and update codebase.
+  This is the breaking pull request of the upgrade.
+  The <code>uuid</code> identifier is renamed to <code>id</code> in entities, columns, route parameters, handlers and services, and <code>getUuid()</code> becomes <code>getId()</code>.
+  The column type changes from <code>uuid_binary</code> to the native <code>uuid</code> type, so a migration is required and existing binary UUID data is not converted.
+  <code>config/autoload/app.global.php</code> and <code>config/migrations.php</code> are deleted, and <code>local.php.dist</code>, <code>templates.global.php</code> and <code>cli-config.php</code> change.
+  Read the FAQ before applying it https://github.com/dotkernel/admin/pull/403</li>
+<li>Core sync, <code>OAuthRefreshToken::setIdentifier()</code> no longer sets the id and <code>Message::restrictionDeprecation()</code> is removed.
+  It only matters when you use the OAuth2 refresh token flow or call the removed method.
+  Read it together with the previous pull request, which also changes <code>OAuthRefreshToken</code> https://github.com/dotkernel/admin/pull/398</li>
+<li>Bumped dependencies, raises the constraints of the <code>dotkernel/*</code>, <code>mezzio/*</code>, <code>laminas/*</code> and <code>ramsey/uuid</code> packages and adds <code>symfony/var-exporter</code> to <code>require</code> https://github.com/dotkernel/admin/pull/401</li>
+</ul>
+<h3 id="optional-updates">Optional updates</h3>
+<p>Skipping an optional update does not change how the application runs.</p>
+<h4 id="610_1">6.1.0</h4>
+<ul>
+<li>Replaced <code>.laminas-ci/pre-run.sh</code> script with <code>.laminas-ci.json</code> config file https://github.com/dotkernel/admin/pull/378</li>
+</ul>
+<h4 id="620_1">6.2.0</h4>
+<ul>
+<li>Update badge for Packagist dependency version https://github.com/dotkernel/admin/pull/387</li>
+</ul>
+<h4 id="700_1">7.0.0</h4>
+<ul>
 <li>Updated readme, oss https://github.com/dotkernel/admin/pull/397</li>
-<li>Core sync https://github.com/dotkernel/admin/pull/398</li>
 </ul>
 <h2 id="faq">FAQ</h2>
 <p><strong>Q: Where can I find the complete list of changes for the 7.0 upgrade?</strong></p>
 <p>A: In the <a href="https://github.com/dotkernel/admin/blob/7.0/CHANGELOG.md">Changelog</a>.</p>
-<p><strong>Q: What kind of changes were included in the 6.x to 7.0 upgrade?</strong></p>
-<p>A: Dependency bumps, Core sync and codebase updates, and readme/OSS updates, tracked via their respective pull requests.</p>
+<p><strong>Q: Which PHP versions does 7.0 support, and do I have to move to PHP 8.4?</strong></p>
+<p>A: The PHP constraint is <code>~8.2.0 || ~8.3.0 || ~8.4.0</code>, so 8.2 and 8.3 keep working and 8.4 is now supported.</p>
+<p><strong>Q: Do I need a database migration?</strong></p>
+<p>A: Yes, because of the <code>uuid</code> to <code>id</code> rename.
+The <code>uuid_binary</code> column type becomes the native <code>uuid</code> type, and join columns are renamed, for example <code>userUuid</code> and <code>roleUuid</code> become <code>user_id</code> and <code>role_id</code>.
+Write the migration by hand, because existing binary UUID data is not converted automatically and foreign keys must be recreated.
+The <code>uuid</code> type declares a native <code>UUID</code> column, so check that your database supports it.</p>
+<p><strong>Q: Which configuration files moved or changed?</strong></p>
+<p>A: <code>config/autoload/app.global.php</code> and <code>config/migrations.php</code> are deleted.
+In <code>config/autoload/local.php.dist</code> the database key <code>default</code> becomes <code>mariadb</code>, a <code>postgresql</code> entry is added and <code>charset</code> and <code>collate</code> become a single <code>collation</code> key.
+<code>appName</code> moves into <code>local.php</code>, and without it the Twig titles render empty.
+<code>config/autoload/templates.global.php</code> now sets the timezone to <code>UTC</code>.
+The optional <code>table_prefix</code> key is added to the database configuration.</p>
+<p><strong>Q: What must I rename after the route and handler renames?</strong></p>
+<p>A: The authorization keys, the navigation <code>route_name</code> entries, the Twig templates, the handler classes and every test or custom code that references the old names.
+Route URLs do not change.</p>
+<p><strong>Q: Which login route rules should I end up with?</strong></p>
+<p>A: The login form and login routes use <code>unauthenticated</code>, which is the final state after the 6.1.0 and 6.2.0 pull requests.</p>
+<p><strong>Q: What happens to admins that are already logged in?</strong></p>
+<p>A: <code>AdminIdentity</code> renames its constructor parameter and property from <code>uuid</code> to <code>id</code>, so existing sessions may break and admins may have to log in again.</p>
+<p><strong>Q: Which behaviour changes should I look for in my own code?</strong></p>
+<p>A: <code>UserStatusEnum::values()</code> now returns all cases, and the old result is available as <code>validValues()</code>.
+Unknown settings now return 404 instead of 400.
+Routes use <code>{id}</code> instead of <code>{uuid}</code>.
+<code>UserResetPasswordService</code> and its interface are removed.</p>
+<p><strong>Q: Are the optional updates required?</strong></p>
+<p>A: No, they are CI, README and badge changes and do not change how the application runs.</p>
+<p><strong>Q: How do I upgrade a project that is on 6.0?</strong></p>
+<p>A: Apply the pull requests in release order: 6.1.0, then 6.2.0, then 7.0.0.
+Read pull requests 371, 372 and 386 together, because the final login route rules are set by the last one.
+Read pull requests 375 and 377 together, and pull requests 398 and 403 together.</p>
 
 
 
@@ -677,9 +763,9 @@
         
         <li class="col text-nowrap text-md-start">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../upgrading/">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../UPGRADE-7.2/">
                     <i class="bi bi-chevron-left"></i>
-                    Upgrade procedure
+                    Upgrading 7.0 to 7.2
                 </a>
             
         </li>
