@@ -25,7 +25,8 @@ nav:
       - "Test the Installation": v7/installation/test-the-installation.md
     - Upgrading:
         - "Upgrade procedure": v7/upgrading/upgrading.md
-        - "Upgrading 6.x to 7.0": v7/upgrading/UPGRADE-7.0.md
+        - "Upgrading 7.0 to 7.2": v7/upgrading/UPGRADE-7.2.md
+        - "Upgrading 6.0 to 7.0": v7/upgrading/UPGRADE-7.0.md
     - How to:
       - "Create Database Migrations": v7/how-to/creating-migrations.md
       - "Create Database Fixtures": v7/how-to/creating-fixtures.md
