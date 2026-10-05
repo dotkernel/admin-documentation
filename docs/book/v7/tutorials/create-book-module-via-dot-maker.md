@@ -133,15 +133,27 @@ The next step is filling in the required logic for the proposed flow of this mod
 While `dot-maker` does also include common logic in the relevant files, the tutorial adds custom functionality.
 As such, the following section will go over the files that require changes.
 
+* `src/Core/src/Setting/src/Enum/SettingIdentifierEnum.php`
+
+Each table stores its selected columns under its own setting identifier.
+Add a new case for the books table, so it does not share its column selection with another table:
+
+```php
+case IdentifierTableBookListSelectedColumns = 'table_book_list_selected_columns';
+```
+
+The `identifier` column of the `settings` table is a database `ENUM`, so adding a case also requires a migration, which is generated in the [Migrations](#migrations) section.
+For more details about how the column selection works, see [Use simple tables](../how-to/using-simple-tables.md).
+
 * `src/Book/src/Handler/GetListBookHandler.php`
 
-The overall class structure is fully generated, but for this tutorial you will need to send the `indentifier` key to the template, as shown below:
+The overall class structure is fully generated, but for this tutorial you will need to send the `identifier` key to the template, as shown below:
 
 ```php
 return new HtmlResponse(
-    $this->template->render('book::book-list', [
+    $this->template->render('book::list-book', [
         'pagination' => $this->bookService->getBooks($request->getQueryParams()),
-        'identifier' => SettingIdentifierEnum::IdentifierTableUserListSelectedColumns->value,
+        'identifier' => SettingIdentifierEnum::IdentifierTableBookListSelectedColumns->value,
     ])
 );
 ```
@@ -529,11 +541,13 @@ $this->add($releaseDateInput);
 
 * `src/App/assets/js/components/_book.js`
 
-As the listing pages make use of JavaScript, you will need to manually create your module specific `_book.js` file and register it in `webpack.config.js` for building.
+As the listing pages make use of JavaScript, you will need to manually create your module specific `_book.js` file and register it in `vite.config.js` for building.
 
 You may copy this sample `_book.js` file to the `src/App/assets/js/components/` directory:
 
 ```js
+import $ from 'jquery';
+
 $(document).ready(() => {
     const request = async(url, options = {}) => {
         try {
@@ -651,12 +665,10 @@ $(document).ready(() => {
 });
 ```
 
-Next you have to register the file in the `entries` array of `webpack.config.js` by adding the following key:
+Next you have to register the file in the `entries` object of `vite.config.js` by adding the following key:
 
 ```js
-book: [
-    './App/assets/js/components/_book.js'
-]
+book: `${assetsPath}/js/components/_book.js`,
 ```
 
 To make use of the newly added scripts, make sure to build your assets by running the command:
@@ -816,8 +828,8 @@ For this tutorial you may copy the following default page layout in the `list-bo
     const storeSettingsUrl = '{{ path('setting::store-setting', {identifier: identifier}) }}';
     const getSettingsUrl = '{{ path('setting::view-setting', {identifier: identifier}) }}';
 </script>
-<script src="{{ asset('js/table_settings.js') }}" defer></script>
-<script src="{{ asset('js/book.js') }}" defer></script>
+<script type="module" src="{{ asset('js/table_settings.js') }}"></script>
+<script type="module" src="{{ asset('js/book.js') }}"></script>
 {% endblock %}
 ```
 
@@ -945,6 +957,8 @@ php ./vendor/bin/doctrine-migrations diff
 ```
 
 This will check for differences between your entities and database structure and create migration files if necessary, in `src/Core/src/App/src/Migration`.
+Besides creating the `book` table, the generated migration should also alter the `identifier` column of the `settings` table, to include the new `table_book_list_selected_columns` value.
+Check the generated file before running it.
 
 To execute the migrations, run:
 
