@@ -64,48 +64,69 @@ return new HtmlResponse(
 
 ### Render the table
 
-In the template, import the macro and render the column selector and the table:
+In the template, import the macro and render the column selector and the table.
+The example below shows only the basic listing.
+The full template, with the add, edit and delete buttons and modals, pagination and the remaining columns, is in [Creating a book module using DotMaker](../tutorials/create-book-module-via-dot-maker.md).
 
 ```html
 {% from '@partial/macros.html.twig' import sortableColumn %}
 
-<div class="dropdown">
-    <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa fa-columns"></i>
-    </button>
-    <ul class="dropdown-menu" id="column-selector"></ul>
-</div>
+{% extends '@layout/default.html.twig' %}
 
-<table id="book-table" class="table table-bordered table-hover table-striped table-light" style="display: none;">
-    <thead>
-    <tr>
-        <th class="column-book-uuid"></th>
-        <th class="column-book-name">
-            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.name', 'Name') }}
-        </th>
-        <th class="column-book-release-date">
-            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.release-date', 'Release Date') }}
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for book in pagination.items %}
-    <tr class="table-row">
-        <td class="column-book-uuid" style="width: 1vw;">
-            <label>
-                <input type="checkbox"
-                       class="checkbox ui-checkbox"
-                       value="{{ book.uuid }}"
-                       data-edit-url="{{ path('book::edit-book', {uuid: book.uuid}) }}"
-                       data-delete-url="{{ path('book::delete-book', {uuid: book.uuid}) }}">
-            </label>
-        </td>
-        <td class="column-book-name">{{ book.name }}</td>
-        <td class="column-book-release-date">{{ book.releaseDate|date('Y-m-d') }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
+{% block title %}Manage books{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h4 class="c-grey-900 mT-10 mB-30">Manage books</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table id="book-table" class="table table-bordered table-hover table-striped table-light" style="display: none;">
+                    <thead>
+                    <tr>
+                        <th class="column-book-id"></th>
+                        <th class="column-book-name">
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.name', 'Name') }}
+                        </th>
+                        <th class="column-book-author">
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.author', 'Author') }}
+                        </th>
+                        <th class="column-book-releaseDate">
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.releaseDate', 'Release Date') }}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for book in pagination.items %}
+                    <tr class="table-row">
+                        <td class="column-book-id" style="width: 1vw;">
+                            <label>
+                                <input type="checkbox"
+                                       class="checkbox ui-checkbox"
+                                       value="{{ book.id }}"
+                                       data-edit-url="{{ path('book::edit-book', {id: book.id}) }}"
+                                       data-delete-url="{{ path('book::delete-book', {id: book.id}) }}"
+                                >
+                            </label>
+                        </td>
+                        <td class="column-book-name">{{ book.name }}</td>
+                        <td class="column-book-author">{{ book.author }}</td>
+                        <td class="column-book-releaseDate">{{ book.releaseDate|date('Y-m-d') }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% if pagination.isOutOfBounds %}
+                <div class="alert alert-warning text-center text-black fw-bold" role="alert">
+                    Out of bounds! Return to
+                    <a href="{{ path('book::list-book', {}, pagination.queryParams|merge({offset: pagination.lastOffset})) }}">page {{ pagination.lastPage }}</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
 ```
 
 Things to note:
@@ -140,11 +161,11 @@ The `sortableColumn` macro receives the sort key as its fourth argument.
 It adds the `table-column` class to the header link and sets its `data-column` attribute to the sort key, with dots replaced by dashes.
 The script hides and shows a column by the class `column-<data-column>`, so every `<th>` and `<td>` of that column must use the same class:
 
-| Sort key | `data-column` | Class |
-| --- | --- | --- |
-| `user.identity` | `user-identity` | `column-user-identity` |
+| Sort key           | `data-column`      | Class                     |
+|--------------------|--------------------|---------------------------|
+| `user.identity`    | `user-identity`    | `column-user-identity`    |
 | `detail.firstName` | `detail-firstName` | `column-detail-firstName` |
-| `book.release-date` | `book-release-date` | `column-book-release-date` |
+| `book.releaseDate` | `book-releaseDate` | `column-book-releaseDate` |
 
 ## Edit and delete buttons
 
