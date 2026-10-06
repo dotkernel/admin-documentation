@@ -34,6 +34,7 @@ nav:
       - "Use NPM Commands": v7/how-to/npm_commands.md
       - "Inject Dependencies": v7/how-to/dependency-injection.md
       - "Set Up CSRF": v7/how-to/csrf.md
+      - "Use Simple Tables": v7/how-to/using-simple-tables.md
     - Security:
         - "Basic Security": v7/security/basic-security.md
         - "Two-Factor Authentication with Time-based One-Time Password": v7/security/2fa-with-totp.md

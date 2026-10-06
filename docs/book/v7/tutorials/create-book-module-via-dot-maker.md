@@ -133,15 +133,27 @@ The next step is filling in the required logic for the proposed flow of this mod
 While `dot-maker` does also include common logic in the relevant files, the tutorial adds custom functionality.
 As such, the following section will go over the files that require changes.
 
+* `src/Core/src/Setting/src/Enum/SettingIdentifierEnum.php`
+
+Each table stores its selected columns under its own setting identifier.
+Add a new case for the books table, so it does not share its column selection with another table:
+
+```php
+case IdentifierTableBookListSelectedColumns = 'table_book_list_selected_columns';
+```
+
+The `identifier` column of the `settings` table is a database `ENUM`, so adding a case also requires a migration, which is generated in the [Migrations](#migrations) section.
+For more details about how the column selection works, see [Use simple tables](../how-to/using-simple-tables.md).
+
 * `src/Book/src/Handler/GetListBookHandler.php`
 
-The overall class structure is fully generated, but for this tutorial you will need to send the `indentifier` key to the template, as shown below:
+The overall class structure is fully generated, but for this tutorial you will need to send the `identifier` key to the template, as shown below:
 
 ```php
 return new HtmlResponse(
-    $this->template->render('book::book-list', [
+    $this->template->render('book::list-book', [
         'pagination' => $this->bookService->getBooks($request->getQueryParams()),
-        'identifier' => SettingIdentifierEnum::IdentifierTableUserListSelectedColumns->value,
+        'identifier' => SettingIdentifierEnum::IdentifierTableBookListSelectedColumns->value,
     ])
 );
 ```
@@ -170,6 +182,7 @@ namespace Core\Book\Entity;
 
 use Core\App\Entity\AbstractEntity;
 use Core\App\Entity\TimestampsTrait;
+use Core\App\Entity\UuidIdentifierTrait;
 use Core\Book\Repository\BookRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
@@ -180,6 +193,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Book extends AbstractEntity
 {
     use TimestampsTrait;
+    use UuidIdentifierTrait;
 
     #[ORM\Column(name: "name", type: "string", length: 100)]
     protected string $name;
@@ -238,7 +252,7 @@ class Book extends AbstractEntity
     public function getArrayCopy(): array
     {
         return [
-            'uuid'        => $this->getUuid()->toString(),
+            'id'          => $this->getId()->toString(),
             'name'        => $this->getName(),
             'author'      => $this->getAuthor(),
             'releaseDate' => $this->getReleaseDate(),
@@ -355,9 +369,9 @@ class BookService implements BookServiceInterface
      * @throws NotFoundException
      */
     public function findBook(
-        string $uuid,
+        string $id,
     ): Book {
-        $book = $this->bookRepository->find($uuid);
+        $book = $this->bookRepository->find($id);
         if (! $book instanceof Book) {
             throw new NotFoundException(Message::resourceNotFound('Book'));
         }
@@ -529,11 +543,13 @@ $this->add($releaseDateInput);
 
 * `src/App/assets/js/components/_book.js`
 
-As the listing pages make use of JavaScript, you will need to manually create your module specific `_book.js` file and register it in `webpack.config.js` for building.
+As the listing pages make use of JavaScript, you will need to manually create your module specific `_book.js` file and register it in `vite.config.js` for building.
 
 You may copy this sample `_book.js` file to the `src/App/assets/js/components/` directory:
 
 ```js
+import $ from 'jquery';
+
 $(document).ready(() => {
     const request = async(url, options = {}) => {
         try {
@@ -651,12 +667,10 @@ $(document).ready(() => {
 });
 ```
 
-Next you have to register the file in the `entries` array of `webpack.config.js` by adding the following key:
+Next you have to register the file in the `entries` object of `vite.config.js` by adding the following key:
 
 ```js
-book: [
-    './App/assets/js/components/_book.js'
-]
+book: `${assetsPath}/js/components/_book.js`,
 ```
 
 To make use of the newly added scripts, make sure to build your assets by running the command:
@@ -682,6 +696,7 @@ For this tutorial you may copy the following default page layout in the `list-bo
 <div class="container-fluid">
     <h4 class="c-grey-900 mT-10 mB-30">Manage books</h4>
     <div class="row">
+        {# Controls: begin #}
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 pL-10 pR-20 pT-20 pB-3 mB-20">
                 <form class="row g-3" method="get" action="{{ path('book::list-book') }}">
@@ -711,20 +726,22 @@ For this tutorial you may copy the following default page layout in the `list-bo
                 </form>
             </div>
         </div>
+        {# Controls: end #}
+        {# Main content: begin #}
         <div class="col-md-12">
             <div class="table-responsive">
                 <table id="book-table" class="table table-bordered table-hover table-striped table-light" style="display: none;">
                     <thead>
                     <tr>
-                        <th class="column-book-uuid"></th>
+                        <th class="column-book-id"></th>
                         <th class="column-book-name">
                             {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.name', 'Name') }}
                         </th>
                         <th class="column-book-author">
                             {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.author', 'Author') }}
                         </th>
-                        <th class="column-book-release-date">
-                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.release-date', 'Release Date') }}
+                        <th class="column-book-releaseDate">
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.releaseDate', 'Release Date') }}
                         </th>
                         <th class="column-book-created">
                             {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.created', 'Created') }}
@@ -737,19 +754,19 @@ For this tutorial you may copy the following default page layout in the `list-bo
                     <tbody>
                     {% for book in pagination.items %}
                     <tr class="table-row">
-                        <td class="column-book-uuid" style="width: 1vw;">
+                        <td class="column-book-id" style="width: 1vw;">
                             <label>
                                 <input type="checkbox"
                                        class="checkbox ui-checkbox"
-                                       value="{{ book.uuid }}"
-                                       data-edit-url="{{ path('book::edit-book', {uuid: book.uuid}) }}"
-                                       data-delete-url="{{ path('book::delete-book', {uuid: book.uuid}) }}"
+                                       value="{{ book.id }}"
+                                       data-edit-url="{{ path('book::edit-book', {id: book.id}) }}"
+                                       data-delete-url="{{ path('book::delete-book', {id: book.id}) }}"
                                 >
                             </label>
                         </td>
                         <td class="column-book-name">{{ book.name }}</td>
                         <td class="column-book-author">{{ book.author }}</td>
-                        <td class="column-book-release-date">{{ book.releaseDate|date('Y-m-d') }}</td>
+                        <td class="column-book-releaseDate">{{ book.releaseDate|date('Y-m-d') }}</td>
                         <td class="column-book-created">{{ book.getCreated()|date('Y-m-d H:i:s') }}</td>
                         <td class="column-book-updated">{{ book.getUpdated() is not null ? book.getUpdated()|date('Y-m-d H:i:s') : '' }}</td>
                     </tr>
@@ -764,13 +781,17 @@ For this tutorial you may copy the following default page layout in the `list-bo
                 {% endif %}
             </div>
         </div>
+        {# Main content: end #}
+        {# Pagination: begin #}
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
                 {{ include('@partial/pagination.html.twig', {pagination: pagination, path: 'book::list-book'}, false) }}
             </div>
         </div>
+        {# Pagination: end #}
     </div>
 
+    {# Modals: begin #}
     <div class="modal fade" id="add-book-modal" tabindex="-1" aria-labelledby="add-book-modal-content" aria-hidden="true" data-add-url="{{ path('book::create-book') }}">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -806,6 +827,7 @@ For this tutorial you may copy the following default page layout in the `list-bo
             </div>
         </div>
     </div>
+    {# Modals: end #}
 </div>
 {% endblock %}
 
@@ -816,8 +838,8 @@ For this tutorial you may copy the following default page layout in the `list-bo
     const storeSettingsUrl = '{{ path('setting::store-setting', {identifier: identifier}) }}';
     const getSettingsUrl = '{{ path('setting::view-setting', {identifier: identifier}) }}';
 </script>
-<script src="{{ asset('js/table_settings.js') }}" defer></script>
-<script src="{{ asset('js/book.js') }}" defer></script>
+<script type="module" src="{{ asset('js/table_settings.js') }}"></script>
+<script type="module" src="{{ asset('js/book.js') }}"></script>
 {% endblock %}
 ```
 
@@ -945,6 +967,8 @@ php ./vendor/bin/doctrine-migrations diff
 ```
 
 This will check for differences between your entities and database structure and create migration files if necessary, in `src/Core/src/App/src/Migration`.
+Besides creating the `book` table, the generated migration should also alter the `identifier` column of the `settings` table, to include the new `table_book_list_selected_columns` value.
+Check the generated file before running it.
 
 To execute the migrations, run:
 
