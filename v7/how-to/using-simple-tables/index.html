@@ -31,11 +31,11 @@
         <meta name="twitter:image"       content="https://docs.dotkernel.org/img/open-graph/twitter-card-docs.png"/>
 
         
-        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v7/how-to/authorization/">
+        <link rel="canonical" href="https://docs.dotkernel.org/admin-documentation/v7/how-to/using-simple-tables/">
         
         <link rel="shortcut icon" href="https://docs.dotkernel.org/img/dk_docs_favicon_white.svg">
 
-        <title>Configure Authorizations - admin - Dotkernel Documentation</title>
+        <title>Use Simple Tables - admin - Dotkernel Documentation</title>
 
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap.css">
         <link rel="stylesheet" href="https://docs.dotkernel.org/css/bootstrap-icons.min.css">
@@ -438,8 +438,8 @@
 
         
         
-<li class="subnavigation__list-item subnavigation__list-item--active">
-    <a href="./" class="subnavigation__link">Configure Authorizations</a>
+<li class="subnavigation__list-item ">
+    <a href="../authorization/" class="subnavigation__link">Configure Authorizations</a>
 </li>
 
         
@@ -462,8 +462,8 @@
 
         
         
-<li class="subnavigation__list-item ">
-    <a href="../using-simple-tables/" class="subnavigation__link">Use Simple Tables</a>
+<li class="subnavigation__list-item subnavigation__list-item--active">
+    <a href="./" class="subnavigation__link">Use Simple Tables</a>
 </li>
 
         
@@ -605,7 +605,7 @@
                     
                 
 
-                <li class="breadcrumb-item active" aria-current="page">Configure Authorizations</li>
+                <li class="breadcrumb-item active" aria-current="page">Use Simple Tables</li>
             
         
     </ol>
@@ -642,17 +642,17 @@
                     </span>
                 </button>
                 <div class="md-actions-menu" role="menu">
-                    <button type="button" class="md-actions-item" role="menuitem" data-copy-url="../authorization.md"
+                    <button type="button" class="md-actions-item" role="menuitem" data-copy-url="../using-simple-tables.md"
                             onclick="copyMarkdownPage(this)">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
                         <span class="label">Copy Page (as Markdown)</span>
                     </button>
-                    <a href="../authorization.md" target="_blank" rel="alternate noopener noreferrer" type="text/markdown"
+                    <a href="../using-simple-tables.md" target="_blank" rel="alternate noopener noreferrer" type="text/markdown"
                        class="md-actions-item" role="menuitem" title="View the Markdown source of this page">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h9l7 7v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M13 4v6h6"/><path d="M8 15h8M8 11h4"/></svg>
                         <span class="label">View as Markdown</span>
                     </a>
-                    <a href="https://claude.ai/new?q=Read%20from%20https%3A//docs.dotkernel.org/admin-documentation/v7/how-to/authorization.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener noreferrer"
+                    <a href="https://claude.ai/new?q=Read%20from%20https%3A//docs.dotkernel.org/admin-documentation/v7/how-to/using-simple-tables.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener noreferrer"
                        class="md-actions-item" role="menuitem" title="Open this page in Claude">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.5 5.5L20 11l-5.5 2.5L12 19l-2.5-5.5L4 11l5.5-2.5z"/></svg>
                         <span class="label">Open in Claude</span>
@@ -662,56 +662,184 @@
         </div>
     
 
-    <h1 id="authorization-guards">Authorization Guards</h1>
+    <h1 id="use-simple-tables">Use simple tables</h1>
 <h2 id="summary">Summary</h2>
-<p>This guide explains how <a href="https://github.com/dotkernel/dot-rbac-guard">dot-rbac-guard</a> and <a href="https://github.com/dotkernel/dot-rbac">dot-rbac</a> restrict access to parts of Dotkernel Admin, and how the <code>authorization.global.php</code> and <code>authorization-guards.global.php</code> files define roles, permissions and route-level access rules.</p>
+<p>This page explains how to build a list page as a simple table, with sortable columns, row selection and column visibility that is remembered for each admin.</p>
 <h2 id="details">Details</h2>
-<p>The packages responsible for restricting access to certain parts of the application are <a href="https://github.com/dotkernel/dot-rbac-guard">dot-rbac-guard</a> and <a href="https://github.com/dotkernel/dot-rbac">dot-rbac</a>.
-These packages work together to create an infrastructure that is customizable and diversified to manage user access to the platform by specifying the type of role the user has.</p>
-<p>The <code>authorization.global.php</code> file provides multiple configurations specifying multiple roles as well as the types of permissions to which these roles have access.</p>
-<pre class="highlight"><code class="language-php">//example of a flat RBAC model that specifies two types of roles as well as their permission
-'dot_authorization' =&gt; [
-    'role_provider' =&gt; [
-        'options' =&gt; [
-            'roles' =&gt; [
-                'admin' =&gt; [
-                    'permissions' =&gt; [
-                        'authenticated',
-                        'edit',
-                        'delete',
-                        //etc..
-                    ]
-                ],
-                'user' =&gt; [
-                    'permissions' =&gt; [
-                        'authenticated',
-                        //etc..
-                    ]
-                ]
-            ],
-        ],
-    ],
-]</code></pre>
-<p>The <code>authorization-guards.global.php</code> file defines which permissions are required to access specific route handlers.
-These permissions must first be declared in the <code>authorization.global.php</code> (dot-rbac) configuration file.</p>
-<pre class="highlight"><code class="language-php">// Example configuration granting access to route handlers based on permissions.
-    'rules' =&gt; [
-        'admin::login-admin-form'        =&gt; ['unauthenticated'],
-        'admin::login-admin'             =&gt; ['unauthenticated'],
-        'admin::create-admin-form'       =&gt; ['authenticated'],
-        'admin::create-admin'            =&gt; ['authenticated'],
-        'admin::delete-admin-form'       =&gt; ['authenticated'],
-        'admin::delete-admin'            =&gt; ['authenticated'],
-        'admin::edit-admin-form'         =&gt; ['authenticated'],
-        'admin::edit-admin'              =&gt; ['authenticated'],
-    ]</code></pre>
+<p>Simple tables are used by the list pages of Dotkernel Admin, such as the lists of admins, admin logins and users.
+Each table is made of these parts:</p>
+<ul>
+<li>a Twig template that renders the table, using the <code>sortableColumn</code> macro from <code>@partial/macros.html.twig</code></li>
+<li>the <code>table_settings.js</code> script, which shows or hides columns and enables the edit and delete buttons</li>
+<li>the <code>Setting</code> entity, which stores the selected columns for each admin and table</li>
+<li>two routes that read and write the setting: <code>setting::view-setting</code> (<code>GET /{identifier}</code>) and <code>setting::store-setting</code> (<code>POST /{identifier}</code>)</li>
+</ul>
+<p>When the page loads, <code>table_settings.js</code> requests the saved column selection, applies it, then displays the table.
+Whenever the admin toggles a column, the script saves the new selection.
+If no selection was saved yet, all columns are displayed.</p>
+<p>The examples below build a list page for books.
+For a complete module, see <a href="../../tutorials/create-book-module-via-dot-maker/">Creating a book module using DotMaker</a>.</p>
+<h2 id="create-a-simple-table">Create a simple table</h2>
+<p>Creating a simple table requires four steps:</p>
+<ul>
+<li>add a setting identifier</li>
+<li>send the identifier to the template</li>
+<li>render the table</li>
+<li>load the scripts</li>
+</ul>
+<h3 id="add-a-setting-identifier">Add a setting identifier</h3>
+<p>Each table stores its selected columns under its own identifier.
+Open <code>src/Core/src/Setting/src/Enum/SettingIdentifierEnum.php</code> and add a new case:</p>
+<pre class="highlight"><code class="language-php">case IdentifierTableBookListSelectedColumns = 'table_book_list_selected_columns';</code></pre>
+<p>The <code>identifier</code> column of the <code>settings</code> table is a database <code>ENUM</code>, so the new case requires a migration.
+Generate it, check that it alters the <code>settings.identifier</code> column, then run it:</p>
+<pre class="highlight"><code class="language-shell">php ./vendor/bin/doctrine-migrations diff
+php ./vendor/bin/doctrine-migrations migrate</code></pre>
+<p>See <a href="../creating-migrations/">Create Database Migrations</a> for more details.</p>
+<h3 id="send-the-identifier-to-the-template">Send the identifier to the template</h3>
+<p>In the handler that renders the list, send the identifier to the template:</p>
+<pre class="highlight"><code class="language-php">return new HtmlResponse(
+    $this-&gt;template-&gt;render('book::list-book', [
+        'pagination' =&gt; $this-&gt;bookService-&gt;getBooks($request-&gt;getQueryParams()),
+        'identifier' =&gt; SettingIdentifierEnum::IdentifierTableBookListSelectedColumns-&gt;value,
+    ])
+);</code></pre>
+<h3 id="render-the-table">Render the table</h3>
+<p>In the template, import the macro and render the column selector and the table.
+The example below shows only the basic listing.
+The full template, with the add, edit and delete buttons and modals, pagination and the remaining columns, is in <a href="../../tutorials/create-book-module-via-dot-maker/">Creating a book module using DotMaker</a>.</p>
+<pre class="highlight"><code class="language-html">{% from '@partial/macros.html.twig' import sortableColumn %}
+
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Manage books{% endblock %}
+
+{% block content %}
+&lt;div class="container-fluid"&gt;
+    &lt;h4 class="c-grey-900 mT-10 mB-30"&gt;Manage books&lt;/h4&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-md-12"&gt;
+            &lt;div class="table-responsive"&gt;
+                &lt;table id="book-table" class="table table-bordered table-hover table-striped table-light" style="display: none;"&gt;
+                    &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;th class="column-book-id"&gt;&lt;/th&gt;
+                        &lt;th class="column-book-name"&gt;
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.name', 'Name') }}
+                        &lt;/th&gt;
+                        &lt;th class="column-book-author"&gt;
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.author', 'Author') }}
+                        &lt;/th&gt;
+                        &lt;th class="column-book-releaseDate"&gt;
+                            {{ sortableColumn('book::list-book', {}, pagination.queryParams, 'book.releaseDate', 'Release Date') }}
+                        &lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                    {% for book in pagination.items %}
+                    &lt;tr class="table-row"&gt;
+                        &lt;td class="column-book-id" style="width: 1vw;"&gt;
+                            &lt;label&gt;
+                                &lt;input type="checkbox"
+                                       class="checkbox ui-checkbox"
+                                       value="{{ book.id }}"
+                                       data-edit-url="{{ path('book::edit-book', {id: book.id}) }}"
+                                       data-delete-url="{{ path('book::delete-book', {id: book.id}) }}"
+                                &gt;
+                            &lt;/label&gt;
+                        &lt;/td&gt;
+                        &lt;td class="column-book-name"&gt;{{ book.name }}&lt;/td&gt;
+                        &lt;td class="column-book-author"&gt;{{ book.author }}&lt;/td&gt;
+                        &lt;td class="column-book-releaseDate"&gt;{{ book.releaseDate|date('Y-m-d') }}&lt;/td&gt;
+                    &lt;/tr&gt;
+                    {% endfor %}
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+                {% if pagination.isOutOfBounds %}
+                &lt;div class="alert alert-warning text-center text-black fw-bold" role="alert"&gt;
+                    Out of bounds! Return to
+                    &lt;a href="{{ path('book::list-book', {}, pagination.queryParams|merge({offset: pagination.lastOffset})) }}"&gt;page {{ pagination.lastPage }}&lt;/a&gt;
+                &lt;/div&gt;
+                {% endif %}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+{% endblock %}</code></pre>
+<p>Things to note:</p>
+<ul>
+<li>the table is hidden with <code>style="display: none;"</code>, the script displays it after applying the saved selection</li>
+<li>the <code>#column-selector</code> list is empty, the script fills it with one checkbox for each sortable column</li>
+<li>the first column holds the row checkbox and has no <code>sortableColumn</code>, so it cannot be hidden</li>
+</ul>
+<h3 id="load-the-scripts">Load the scripts</h3>
+<p>At the end of the template, define the three variables that <code>table_settings.js</code> requires, then load the script:</p>
+<pre class="highlight"><code class="language-html">{% block javascript %}
+{{ parent() }}
+&lt;script&gt;
+    const tableId = '#book-table';
+    const storeSettingsUrl = '{{ path('setting::store-setting', {identifier: identifier}) }}';
+    const getSettingsUrl = '{{ path('setting::view-setting', {identifier: identifier}) }}';
+&lt;/script&gt;
+&lt;script type="module" src="{{ asset('js/table_settings.js') }}"&gt;&lt;/script&gt;
+{% endblock %}</code></pre>
+<p>If any of the three variables is missing, the script logs an error in the browser console and does nothing.
+Any page specific script, such as <code>book.js</code>, is loaded the same way, using <code>type="module"</code>.
+It must be registered in the <code>entries</code> object of <code>vite.config.js</code> and built, see <a href="../npm_commands/">Use NPM Commands</a>.</p>
+<h2 id="name-the-columns">Name the columns</h2>
+<p>The <code>sortableColumn</code> macro receives the sort key as its fourth argument.
+It adds the <code>table-column</code> class to the header link and sets its <code>data-column</code> attribute to the sort key, with dots replaced by dashes.
+The script hides and shows a column by the class <code>column-&lt;data-column&gt;</code>, so every <code>&lt;th&gt;</code> and <code>&lt;td&gt;</code> of that column must use the same class:</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Sort key</th>
+<th><code>data-column</code></th>
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user.identity</code></td>
+<td><code>user-identity</code></td>
+<td><code>column-user-identity</code></td>
+</tr>
+<tr>
+<td><code>detail.firstName</code></td>
+<td><code>detail-firstName</code></td>
+<td><code>column-detail-firstName</code></td>
+</tr>
+<tr>
+<td><code>book.releaseDate</code></td>
+<td><code>book-releaseDate</code></td>
+<td><code>column-book-releaseDate</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="edit-and-delete-buttons">Edit and delete buttons</h2>
+<p><code>table_settings.js</code> also handles row selection:</p>
+<ul>
+<li>clicking a row (<code>.table-row</code>) toggles its checkbox</li>
+<li>the buttons with the ids <code>btn-edit-resource</code> and <code>btn-delete-resource</code> are enabled only while exactly one <code>.ui-checkbox</code> is checked</li>
+</ul>
+<p>The URLs of the selected row are read from the <code>data-edit-url</code> and <code>data-delete-url</code> attributes of the checked box.
+Opening the modals that use them is done by the page specific script, see the <code>_book.js</code> file in <a href="../../tutorials/create-book-module-via-dot-maker/">Creating a book module using DotMaker</a>.</p>
 <h2 id="faq">FAQ</h2>
-<p><strong>Q: Which packages handle authorization in Dotkernel Admin?</strong></p>
-<p>A: <code>dot-rbac-guard</code> and <code>dot-rbac</code> work together to restrict access to parts of the application based on the user's role.</p>
-<p><strong>Q: Where are roles and their permissions defined?</strong></p>
-<p>A: Roles and the permissions they grant are defined in the <code>authorization.global.php</code> configuration file.</p>
-<p><strong>Q: Where do I configure which permissions a route requires?</strong></p>
-<p>A: Route-level access is configured in <code>authorization-guards.global.php</code>, using permissions that are already declared in <code>authorization.global.php</code>.</p>
+<p><strong>Q: Why is a column always displayed, even if I untick it in the column selector?</strong></p>
+<p>A: The <code>&lt;th&gt;</code> or <code>&lt;td&gt;</code> class does not match the column's <code>data-column</code> value.
+Check that every cell of that column uses <code>column-</code> followed by the sort key with dots replaced by dashes.</p>
+<p><strong>Q: Why is the column selector empty?</strong></p>
+<p>A: The selector is built from the elements with the <code>table-column</code> class.
+Make sure the headers use the <code>sortableColumn</code> macro and that the template contains an empty <code>&lt;ul id="column-selector"&gt;</code>.</p>
+<p><strong>Q: Why is the table not displayed at all?</strong></p>
+<p>A: The table stays hidden until <code>table_settings.js</code> runs.
+Check the browser console for errors about <code>tableId</code>, <code>storeSettingsUrl</code> or <code>getSettingsUrl</code>, and make sure the script is loaded with <code>type="module"</code>.</p>
+<p><strong>Q: Why are my column selections not saved?</strong></p>
+<p>A: The identifier is probably not a case of <code>SettingIdentifierEnum</code>, or the migration that adds it to the <code>settings.identifier</code> column was not run.
+In both cases, the setting routes respond with an error, which you can see in the browser's network tab.</p>
+<p><strong>Q: Why are all columns displayed again after a reload?</strong></p>
+<p>A: When the saved selection is empty, all columns are displayed.
+This is also the state of an admin that never changed the selection for that table.</p>
 
 
 
@@ -721,9 +849,9 @@ These permissions must first be declared in the <code>authorization.global.php</
         
         <li class="col text-nowrap text-md-start">
             
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../creating-fixtures/">
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../csrf/">
                     <i class="bi bi-chevron-left"></i>
-                    Create Database Fixtures
+                    Set Up CSRF
                 </a>
             
         </li>
@@ -731,8 +859,8 @@ These permissions must first be declared in the <code>authorization.global.php</
         
         <li class="col text-nowrap text-md-end pe-0">
             
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../npm_commands/">
-                    Use NPM Commands
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../../security/basic-security/">
+                    Basic Security
                     <i class="bi bi-chevron-right"></i>
                 </a>
             
@@ -763,6 +891,18 @@ These permissions must first be declared in the <code>authorization.global.php</
             
                 <li class="toc__entry">
                     <a href="#details" class="toc__link nav-link">Details</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#create-a-simple-table" class="toc__link nav-link">Create a simple table</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#name-the-columns" class="toc__link nav-link">Name the columns</a>
+                </li>
+            
+                <li class="toc__entry">
+                    <a href="#edit-and-delete-buttons" class="toc__link nav-link">Edit and delete buttons</a>
                 </li>
             
                 <li class="toc__entry">
