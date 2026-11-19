@@ -56,6 +56,13 @@ Versions below are the ones actually resolved by Composer, not a direct version 
 
 A: `doctrine/orm`, together with `doctrine/dbal` for database schema introspection and management.
 
+**Q: Why did a `composer update` break the entity manager?**
+
+A: `composer.json` does not declare `doctrine/orm`, so an update can install a new minor release.
+`doctrine/orm` 3.8.0 moved the second-level cache into the separate package `doctrine/orm-plugin-second-level-cache`.
+An installation that still enables that cache fails on the first request.
+See [Second-level cache](../installation/doctrine-orm.md#second-level-cache).
+
 **Q: Which framework underpins Dotkernel Admin?**
 
 A: `mezzio/mezzio`, a PSR-15 middleware microframework, along with several Mezzio and Laminas components.
